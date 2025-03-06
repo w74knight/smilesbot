@@ -5,12 +5,13 @@ from rdkit.Chem import Draw
 import io
 from PIL import Image
 
+d2d = Draw.MolDraw2DCairo(350,300)
+opts = d2d.drawOptions()
+
 # Set up the bot with the necessary intents
 intents = discord.Intents.default()
 intents.message_content = True  # Enable the message content intent
-
 bot = commands.Bot(command_prefix="!", intents=intents)
-
 
 # Function to check if a string is a valid SMILES
 def is_valid_smiles(smiles: str):
@@ -20,7 +21,6 @@ def is_valid_smiles(smiles: str):
     except:
         return False
 
-
 # Function to handle kekulization and image creation
 def create_molecule_image(mol):
     try:
@@ -28,21 +28,10 @@ def create_molecule_image(mol):
     except:
         print("Kekulization failed, skipping.")
 
-        # Create an image from the molecule
-    img = Draw.MolToImage(mol, size=(900, 900))
-
-    # Convert the image to RGBA (which supports transparency)
-    img = img.convert("RGBA")
-    datas = img.getdata()
-
-    # Replace white pixels with transparent pixels (optional)
-    new_data = []
-    for item in datas:
-        if item[:3] == (255, 255, 255):  # white color
-            new_data.append((255, 255, 255, 0))  # transparent
-        else:
-            new_data.append((255, 255, 255, item[3]))  # Keep original alpha
-    img.putdata(new_data)
+    # Create an image from the molecule
+    opts.setBackgroundColour((1, 1, 1, 1))
+    opts.updateAtomPalette({6: (.7, 0, .7)})
+    img = Draw.MolToImage(mol, size=(350, 350))
 
     return img
 
