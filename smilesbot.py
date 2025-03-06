@@ -28,10 +28,23 @@ def create_molecule_image(mol):
     except:
         print("Kekulization failed, skipping.")
 
+    # Create a drawing surface
+    img_size = (900, 900)
+    drawer = Draw.MolDraw2DCairo(img_size[0], img_size[1])
+
     # Create an image from the molecule
-    opts.setBackgroundColour((1, 1, 1, 1))
-    opts.updateAtomPalette({6: (.7, 0, .7)})
+    opts.setBackgroundColour((0.196, 0.2, 0.22))
+    opts.updateAtomPalette({6: (1, 1, 1)})
     img = Draw.MolToImage(mol, size=(350, 350))
+
+    # Draw molecule
+    drawer.DrawMolecule(mol)
+    drawer.FinishDrawing()
+
+    # Convert the output to an image
+    img_bytes = drawer.GetDrawingText()
+    img = Image.open(io.BytesIO(img_bytes))
+    img = img.convert("RGBA")
 
     return img
 
