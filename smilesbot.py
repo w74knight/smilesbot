@@ -69,5 +69,12 @@ async def smiles(ctx, *, smiles_str: str):
     else:
         await ctx.send("Invalid SMILES string. Please provide a valid SMILES format.")
 
+@bot.command()
+async def help(ctx):
+    embed = discord.Embed(title="Help Menu", description="List of available commands:", color=0x2f3136)
+    embed.add_field(name="!smiles <SMILES string>", value="Generate a molecular structure image from a SMILES string.", inline=False)
+    embed.add_field(name="!help", value="Show this help menu.", inline=False)
+    await ctx.send(embed=embed)
+
 # Run the bot with your token
 bot.run('MTM0NzI3NTQxNjIyNTk3NjMzMw.GG4lPZ.voqxNW2Qw-MmiKdFAVkawlx_dPs2teUOKEgoB4')
