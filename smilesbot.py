@@ -1,51 +1,35 @@
 import discord
 from discord.ext import commands
-from rdkit import Chem
+from rdkit.Chem import AllChem as Chem
 from rdkit.Chem import Draw
 import io
-from PIL import Image
+import os
+from dotenv import load_dotenv
 
-d2d = Draw.MolDraw2DCairo(350,300)
-opts = d2d.drawOptions()
+load_dotenv()
 
-# Set up the bot with the necessary intents
+# Set up bot intents
 intents = discord.Intents.default()
-intents.message_content = True  # Enable the message content intent
-bot = commands.Bot(command_prefix="!", intents=intents)
+intents.message_content = True  # Enable message content intent
+bot = commands.Bot(command_prefix="!", intents=intents, help_command=None)
+
 
 # Function to check if a string is a valid SMILES
 def is_valid_smiles(smiles: str):
     try:
-        mol = Chem.MolFromSmiles(smiles)
-        return mol is not None
+        return Chem.MolFromSmiles(smiles) is not None
     except:
         return False
 
-# Function to handle kekulization and image creation
+
+# Function to create a molecule image
 def create_molecule_image(mol):
     try:
-        Chem.Kekulize(mol)
+        Chem.Kekulize(mol, clearAromaticFlags=True)
     except:
         print("Kekulization failed, skipping.")
 
-    # Create a drawing surface
-    img_size = (900, 900)
-    drawer = Draw.MolDraw2DCairo(img_size[0], img_size[1])
-
-    # Create an image from the molecule
-    opts.setBackgroundColour((0.196, 0.2, 0.22))
-    opts.updateAtomPalette({6: (1, 1, 1)})
-    img = Draw.MolToImage(mol, size=(350, 350))
-
-    # Draw molecule
-    drawer.DrawMolecule(mol)
-    drawer.FinishDrawing()
-
-    # Convert the output to an image
-    img_bytes = drawer.GetDrawingText()
-    img = Image.open(io.BytesIO(img_bytes))
-    img = img.convert("RGBA")
-
+    img = Draw.MolToImage(mol, size=(350, 350), kekulize=True)
     return img
 
 
@@ -67,14 +51,17 @@ async def smiles(ctx, *, smiles_str: str):
         except Exception as e:
             await ctx.send(f"An error occurred while processing the SMILES string: {str(e)}")
     else:
-        await ctx.send("Invalid SMILES string. Please provide a valid SMILES format.")
+        await ctx.send("Invalid SMILES string. Please provide a valid format.")
+
 
 @bot.command()
 async def help(ctx):
     embed = discord.Embed(title="Help Menu", description="List of available commands:", color=0x2f3136)
-    embed.add_field(name="!smiles <SMILES string>", value="Generate a molecular structure image from a SMILES string.", inline=False)
-    embed.add_field(name="!help", value="Show this help menu.", inline=False)
+    embed.add_field(name="`!smiles <SMILES string>`",
+                    value="Generate a molecular structure image from a SMILES string.", inline=False)
+    embed.add_field(name="`!help`",
+                    value="Show this help menu.", inline=False)
     await ctx.send(embed=embed)
 
-# Run the bot with your token
-bot.run('MTM0NzI3NTQxNjIyNTk3NjMzMw.GG4lPZ.voqxNW2Qw-MmiKdFAVkawlx_dPs2teUOKEgoB4')
+#token
+bot.run(os.getenv("TOKEN"))
