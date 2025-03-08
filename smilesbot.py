@@ -14,7 +14,6 @@ opts = d2d.drawOptions()
 opts.updateAtomPalette({6: (1, 1, 1)})
 opts.setBackgroundColour((44 / 255, 45 / 255, 49 / 255))
 
-
 # Set up bot intents
 intents = discord.Intents.default()
 intents.message_content = True  # Enable message content intent
