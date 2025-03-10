@@ -183,15 +183,96 @@ async def on_message(message):
                 mol = Chem.MolFromSmiles(smiles_str)
                 loop = asyncio.get_running_loop()
                 img = await loop.run_in_executor(None, create_molecule_image, mol)
-                
-                # Prepare the embed and send it to the same channel where the message was detected
+
                 embed = discord.Embed(title=f"SMILES: `{smiles_str}`", color=0x2f3136)
                 embed.set_image(url="attachment://molecule.png")
                 await message.channel.send(embed=embed, file=discord.File(img, filename="molecule.png"))
+                d2d.ClearDrawing()
             else:
-                await message.channel.send("Invalid SMILES string. Please provide a valid format.")
+                try:
+                    resolve = cirpy.resolve(smiles_str, 'smiles', ['cas_number', 'name_by_cir', 'name_by_opsin'])
+                    mol_resolve = Chem.MolFromSmiles(resolve)
+                    loop = asyncio.get_running_loop()
+                    img = await loop.run_in_executor(None, create_molecule_image, mol_resolve)
 
+                    embed = discord.Embed(title=f"SMILES: `{smiles_str}`", color=0x2f3136)
+                    embed.set_image(url="attachment://molecule.png")
+                    await message.channel.send(embed=embed, file=discord.File(img, filename="molecule.png"))
+                    d2d.ClearDrawing()
+                except:
+                    await message.channel.send(f"Error rendering {smiles_str}")
     await bot.process_commands(message)
+
+
+# commands without discord ui
+
+@bot.command()
+async def smiles(ctx, *, smiles_str: str, none=None):
+    if is_valid_smiles(smiles_str):
+        mol = Chem.MolFromSmiles(smiles_str)
+        loop = asyncio.get_running_loop()
+        img = await loop.run_in_executor(None, create_molecule_image, mol)
+
+        embed = discord.Embed(title=f"SMILES: `{smiles_str}`", color=0x2f3136)
+        embed.set_image(url="attachment://molecule.png")
+        await ctx.send(embed=embed, file=discord.File(img, filename="molecule.png"))
+        d2d.ClearDrawing()
+    else:
+        try:
+            resolve = cirpy.resolve(smiles_str, 'smiles', ['cas_number', 'name_by_cir', 'name_by_opsin'])
+            mol_resolve = Chem.MolFromSmiles(resolve)
+            loop = asyncio.get_running_loop()
+            img = await loop.run_in_executor(None, create_molecule_image, mol_resolve)
+
+            embed = discord.Embed(title=f"SMILES: `{smiles_str}`", color=0x2f3136)
+            embed.set_image(url="attachment://molecule.png")
+            await ctx.send(embed=embed, file=discord.File(img, filename="molecule.png"))
+            d2d.ClearDrawing()
+        except:
+            await ctx.send(f"Error rendering {smiles_str}")
+
+
+@bot.command()
+async def help(ctx):
+    embed = discord.Embed(title="Help Menu", description="List of available commands:", color=0x2f3136)
+    embed.add_field(name="`!smiles <SMILES string>`",
+                    value="Generate a molecular structure image from a SMILES string.", inline=False)
+    embed.add_field(name="`!help`",
+                    value="Show this help menu.", inline=False)
+    embed.add_field(name="`!smileshelp`",
+                    value="Quick guide to SMILES.", inline=False)
+    embed.add_field(name="`!smiles <SMILES string>`",
+                    value="Generate a molecular structure image from a SMILES string.", inline=False)
+    await ctx.send(embed=embed)
+
+@bot.command()
+async def smileshelp(ctx):
+    embed = discord.Embed(title="SMILES Syntax", description="Quick guide to SMILES", color=0x2f3136)
+    embed.add_field(name="Bonds",
+                    value="` . ` Disconnected structures such as ionic bonds and multiple compounds in an image.", inline=False)
+    embed.add_field(name="",
+                    value="` - ` Single bonds (optional/usually omitted).", inline=False)
+    embed.add_field(name="",
+                    value="` = ` Double bonds.", inline=False)
+    embed.add_field(name="",
+                    value="` # ` Tripple bonds.", inline=False)
+    embed.add_field(name="",
+                    value="` $ ` Quadruple bonds.", inline=False)
+    embed.add_field(name="",
+                    value="` : ` Aromatic 'one and a half' bonds.", inline=False)
+    embed.add_field(name="",
+                    value="` / ` Single bond (directional) use for cis-trans stereochemistry.", inline=False)
+    embed.add_field(name="",
+                    value="` \ ` Single bond (directional) use for cis-trans stereochemistry.", inline=False)
+    embed.add_field(name="Branching",
+                    value="`( )` are used to denote branches, for example Isopropyl Alcohol is `CC(O)C`. Bond type is put __inside__ the parentheses like `CCC(=O)O`.", inline=False)
+    embed.add_field(name="Stereochemistry",
+                    value="` / and \` are used for cis-trans stereochemistry, for example (E)-1,2-Dichloroethene is `Cl/C=C/Cl`.", inline=False)
+    embed.add_field(name="",
+                    value="` @ and @@ ` are used to denote S (@) and R (@@) stereocenters.", inline=False)
+    embed.add_field(name="Isotopes and charges",
+                    value="`[]` are used for charges and isotopes, for example Carbon-14 is `[14C]` and Sodium Chloride is `[Na+].[Cl-]`")
+    await ctx.send(embed=embed)
 
 ### **Bot Ready Event** ###
 @bot.event
