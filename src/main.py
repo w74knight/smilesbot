@@ -6,11 +6,12 @@ import io
 from util import load_configs, save_configs, get_server_config, set_server_config
 from rdkit.Chem import AllChem as Chem
 from rdkit.Chem import Draw
+import cirpy
 
 from dotenv import load_dotenv
 import os
 
-load_dotenv("env")
+load_dotenv()
 
 TOKEN = os.getenv("TOKEN")
 print(TOKEN)
@@ -29,6 +30,8 @@ def is_valid_smiles(smiles: str):
         return Chem.MolFromSmiles(smiles) is not None
     except:
         return False
+
+
 
 # Function to create a molecule image
 def create_molecule_image(mol):
@@ -65,7 +68,32 @@ async def help(interaction: discord.Interaction):
 
 @tree.command(name="smileshelp", description="Quick guide to SMILES.")
 async def smileshelp(interaction: discord.Interaction):
-    await interaction.response.send_message("SMILES (Simplified Molecular Input Line Entry System) is a line notation for representing molecules. Example: `CCO` for ethanol.")
+    embed = discord.Embed(title="SMILES Syntax", description="Quick guide to SMILES", color=0x2f3136)
+    embed.add_field(name="Bonds",
+                    value="` . ` Disconnected structures such as ionic bonds and multiple compounds in an image.", inline=False)
+    embed.add_field(name="",
+                    value="` - ` Single bonds (optional/usually omitted).", inline=False)
+    embed.add_field(name="",
+                    value="` = ` Double bonds.", inline=False)
+    embed.add_field(name="",
+                    value="` # ` Tripple bonds.", inline=False)
+    embed.add_field(name="",
+                    value="` $ ` Quadruple bonds.", inline=False)
+    embed.add_field(name="",
+                    value="` : ` Aromatic 'one and a half' bonds.", inline=False)
+    embed.add_field(name="",
+                    value="` / ` Single bond (directional) use for cis-trans stereochemistry.", inline=False)
+    embed.add_field(name="",
+                    value="` \ ` Single bond (directional) use for cis-trans stereochemistry.", inline=False)
+    embed.add_field(name="Branching",
+                    value="`( )` are used to denote branches, for example Isopropyl Alcohol is `CC(O)C`. Bond type is put __inside__ the parentheses like `CCC(=O)O`.", inline=False)
+    embed.add_field(name="Stereochemistry",
+                    value="` / and \` are used for cis-trans stereochemistry, for example (E)-1,2-Dichloroethene is `Cl/C=C/Cl`.", inline=False)
+    embed.add_field(name="",
+                    value="` @ and @@ ` are used to denote S (@) and R (@@) stereocenters.", inline=False)
+    embed.add_field(name="Isotopes and charges",
+                    value="`[]` are used for charges and isotopes, for example Carbon-14 is `[14C]` and Sodium Chloride is `[Na+].[Cl-]`")
+    await interaction.response.send_message(embed=embed)
 
 @tree.command(name="setprefix", description="Set a custom prefix for the server.")
 async def setprefix(interaction: discord.Interaction, new_prefix: str):
@@ -102,12 +130,25 @@ async def smiles(interaction: discord.Interaction, smiles_str: str):
         mol = Chem.MolFromSmiles(smiles_str)
         loop = asyncio.get_running_loop()
         img = await loop.run_in_executor(None, create_molecule_image, mol)
-        
+
         embed = discord.Embed(title=f"SMILES: `{smiles_str}`", color=0x2f3136)
         embed.set_image(url="attachment://molecule.png")
         await interaction.response.send_message(embed=embed, file=discord.File(img, filename="molecule.png"))
+        d2d.ClearDrawing()
     else:
-        await interaction.response.send_message("Invalid SMILES string. Please provide a valid format.")
+        try:
+            resolve = cirpy.resolve(smiles_str, 'smiles')
+            mol_resolve = Chem.MolFromSmiles(resolve)
+            loop = asyncio.get_running_loop()
+            img = await loop.run_in_executor(None, create_molecule_image, mol_resolve)
+
+            embed = discord.Embed(title=f"SMILES: `{smiles_str}`", color=0x2f3136)
+            embed.set_image(url="attachment://molecule.png")
+            await interaction.response.send_message(embed=embed, file=discord.File(img, filename="molecule.png"))
+            d2d.ClearDrawing()
+        except:
+            await interaction.response.send_message("Invalid SMILES string. Please provide a valid format.")
+
 
 @tree.command(name="auto_detect", description="Enable or disable automatic smile[...] message detection.")
 async def auto_detect(interaction: discord.Interaction, option: str):
