@@ -137,7 +137,7 @@ async def smiles(interaction: discord.Interaction, smiles_str: str):
         d2d.ClearDrawing()
     else:
         try:
-            resolve = cirpy.resolve(smiles_str, 'smiles')
+            resolve = cirpy.resolve(smiles_str, 'smiles', ['cas_number', 'name_by_cir', 'name_by_opsin'])
             mol_resolve = Chem.MolFromSmiles(resolve)
             loop = asyncio.get_running_loop()
             img = await loop.run_in_executor(None, create_molecule_image, mol_resolve)
@@ -147,7 +147,7 @@ async def smiles(interaction: discord.Interaction, smiles_str: str):
             await interaction.response.send_message(embed=embed, file=discord.File(img, filename="molecule.png"))
             d2d.ClearDrawing()
         except:
-            await interaction.response.send_message("Invalid SMILES string. Please provide a valid format.")
+            await interaction.response.send_message(f"Error rendering {smiles_str}")
 
 
 @tree.command(name="auto_detect", description="Enable or disable automatic smile[...] message detection.")
