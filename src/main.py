@@ -63,17 +63,17 @@ def get_prefix(bot, message):
     print(get_server_config(guild_id))
     return get_server_config(guild_id).get("prefix", "/")
 
-@tree.command(name="help", description="Displays help menu")
-async def help(interaction: discord.Interaction):
+@bot.hybrid_command(name="help", description="Displays help menu")
+async def help(ctx):
     embed = discord.Embed(title="Help Menu", description="List of available commands:", color=0x2f3136)
     embed.add_field(name="`/help`", value="Show this help menu.", inline=False)
     embed.add_field(name="`/smileshelp`", value="Quick guide to SMILES.", inline=False)
     embed.add_field(name="`/smiles <SMILES string>`", value="Generate a molecular structure image from a SMILES string.", inline=False)
     embed.add_field(name="`/auto_detect <enable|disable>`", value="Enable or disable auto-detection of `smile[...]` messages.", inline=False)
-    await interaction.response.send_message(embed=embed)
+    await ctx.send(embed=embed)
 
-@tree.command(name="smileshelp", description="Quick guide to SMILES.")
-async def smileshelp(interaction: discord.Interaction):
+@bot.hybrid_command(name="smileshelp", description="Quick guide to SMILES.")
+async def smileshelp(ctx):
     embed = discord.Embed(title="SMILES Syntax", description="Quick guide to SMILES", color=0x2f3136)
     embed.add_field(name="Bonds",
                     value="` . ` Disconnected structures such as ionic bonds and multiple compounds in an image.", inline=False)
@@ -99,25 +99,25 @@ async def smileshelp(interaction: discord.Interaction):
                     value="` @ and @@ ` are used to denote S (@) and R (@@) stereocenters.", inline=False)
     embed.add_field(name="Isotopes and charges",
                     value="`[]` are used for charges and isotopes, for example Carbon-14 is `[14C]` and Sodium Chloride is `[Na+].[Cl-]`")
-    await interaction.response.send_message(embed=embed)
+    await ctx.send(embed=embed)
 
-@tree.command(name="setprefix", description="Set a custom prefix for the server.")
-async def setprefix(interaction: discord.Interaction, new_prefix: str):
-    guild_id = str(interaction.guild.id)
+@bot.hybrid_command(name="setprefix", description="Set a custom prefix for the server.")
+async def setprefix(ctx, new_prefix: str):
+    guild_id = str(ctx.guild.id)
     
     # if not interaction.user.guild_permissions.administrator:
     #     await interaction.response.send_message("You need to be an administrator to use this command!", ephemeral=False)
     #     return
 
     if set_server_config(guild_id, "prefix", new_prefix):
-        await interaction.response.send_message(f"The command prefix has been updated to `{new_prefix}`.", ephemeral=False)
+        await ctx.send(f"The command prefix has been updated to `{new_prefix}`.", ephemeral=False)
     else:
-        await interaction.response.send_message("An error occurred while setting the prefix.", ephemeral=True)
+        await ctx.send("An error occurred while setting the prefix.", ephemeral=True)
 
 
-@tree.command(name="settings", description="Settings")
-async def settings(interaction: discord.Interaction):
-    guild_id = str(interaction.guild.id)
+@bot.hybrid_command(name="settings", description="Settings")
+async def settings(ctx: discord.Interaction):
+    guild_id = str(ctx.guild.id)
 
     # Fetch server config for the given guild
     server_config = get_server_config(guild_id)
@@ -127,11 +127,11 @@ async def settings(interaction: discord.Interaction):
         message += f"- {key}: {value}\n"
     
     # Send the settings message to the server
-    await interaction.response.send_message(message)
+    await ctx.send(message)
 
 
-@tree.command(name="smiles", description="Generate a molecular structure image from a SMILES string.")
-async def smiles(interaction: discord.Interaction, smiles_str: str):
+@bot.hybrid_command(name="smiles", description="Generate a molecular structure image from a SMILES string.")
+async def smiles(ctx, smiles_str: str):
     if is_valid_smiles(smiles_str):
         mol = Chem.MolFromSmiles(smiles_str)
         loop = asyncio.get_running_loop()
@@ -139,7 +139,7 @@ async def smiles(interaction: discord.Interaction, smiles_str: str):
 
         embed = discord.Embed(title=f"`{smiles_str}`", color=0x2f3136)
         embed.set_image(url="attachment://molecule.png")
-        await interaction.response.send_message(embed=embed, file=discord.File(img, filename="molecule.png"))
+        await ctx.send(embed=embed, file=discord.File(img, filename="molecule.png"))
         d2d.ClearDrawing()
     else:
         try:
@@ -150,24 +150,24 @@ async def smiles(interaction: discord.Interaction, smiles_str: str):
 
             embed = discord.Embed(title=f"`{smiles_str}`", color=0x2f3136)
             embed.set_image(url="attachment://molecule.png")
-            await interaction.response.send_message(embed=embed, file=discord.File(img, filename="molecule.png"))
+            await ctx.send(embed=embed, file=discord.File(img, filename="molecule.png"))
             d2d.ClearDrawing()
         except:
-            await interaction.response.send_message(f"{smiles_str} is invalid, please try with a different compound ID or check for typos/erros!")
+            await ctx.send(f"{smiles_str} is invalid, please try with a different compound ID or check for typos/erros!")
 
-@tree.command(name="auto_detect", description="Enable or disable automatic smile[...] message detection.")
-async def auto_detect(interaction: discord.Interaction, option: str):
+@bot.hybrid_command(name="auto_detect", description="Enable or disable automatic smile[...] message detection.")
+async def auto_detect(ctx: discord.Interaction, option: str):
     global server_configs
-    if not interaction.user.guild_permissions.administrator:
-        await interaction.response.send_message("You need to be an administrator to use this command!", ephemeral=False)
+    if not ctx.user.guild_permissions.administrator:
+        await ctx.response.send_message("You need to be an administrator to use this command!", ephemeral=False)
         return
     
-    guild_id = str(interaction.guild.id)
+    guild_id = str(ctx.guild.id)
 
     if set_server_config(guild_id, "auto_detect", option):
-        await interaction.response.send_message(f"Auto-detection has been set to `{option}`.", ephemeral=False)
+        await ctx.send(f"Auto-detection has been set to `{option}`.", ephemeral=False)
     else:
-        await interaction.response.send_message("Invalid option. Please use `true` or `false` for auto_detect.", ephemeral=True)
+        await ctx.send("Invalid option. Please use `true` or `false` for auto_detect.", ephemeral=True)
 
 @bot.event
 async def on_message(message):
