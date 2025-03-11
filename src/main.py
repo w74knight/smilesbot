@@ -153,7 +153,7 @@ async def smiles(interaction: discord.Interaction, smiles_str: str):
             await interaction.response.send_message(embed=embed, file=discord.File(img, filename="molecule.png"))
             d2d.ClearDrawing()
         except:
-            await interaction.response.send_message(f"Error rendering {smiles_str}")
+            await interaction.response.send_message(f"{smiles_str} is invalid, please try with a different compound ID or check for typos/erros!")
 
 @tree.command(name="auto_detect", description="Enable or disable automatic smile[...] message detection.")
 async def auto_detect(interaction: discord.Interaction, option: str):
