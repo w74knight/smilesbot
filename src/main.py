@@ -137,7 +137,7 @@ async def smiles(interaction: discord.Interaction, smiles_str: str):
         loop = asyncio.get_running_loop()
         img = await loop.run_in_executor(None, create_molecule_image, mol)
 
-        embed = discord.Embed(title=f"SMILES: `{smiles_str}`", color=0x2f3136)
+        embed = discord.Embed(title=f"`{smiles_str}`", color=0x2f3136)
         embed.set_image(url="attachment://molecule.png")
         await interaction.response.send_message(embed=embed, file=discord.File(img, filename="molecule.png"))
         d2d.ClearDrawing()
@@ -148,7 +148,7 @@ async def smiles(interaction: discord.Interaction, smiles_str: str):
             loop = asyncio.get_running_loop()
             img = await loop.run_in_executor(None, create_molecule_image, mol_resolve)
 
-            embed = discord.Embed(title=f"SMILES: `{smiles_str}`", color=0x2f3136)
+            embed = discord.Embed(title=f"`{smiles_str}`", color=0x2f3136)
             embed.set_image(url="attachment://molecule.png")
             await interaction.response.send_message(embed=embed, file=discord.File(img, filename="molecule.png"))
             d2d.ClearDrawing()
