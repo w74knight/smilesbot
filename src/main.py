@@ -7,6 +7,7 @@ from util import load_configs, save_configs, get_server_config, set_server_confi
 from rdkit.Chem import AllChem as Chem
 from rdkit.Chem import Draw
 import cirpy
+from cirpy import Molecule
 from stdnum import casrn
 
 from dotenv import load_dotenv
@@ -153,21 +154,6 @@ async def smiles(interaction: discord.Interaction, smiles_str: str):
             d2d.ClearDrawing()
         except:
             await interaction.response.send_message(f"Error rendering {smiles_str}")
-
-@tree.command(name="cas", description="Generate a molecular structure image from a CAS number.")
-async def cas(interaction: discord.Interaction, cas_number: str):
-    if is_valid_cas(cas_number):
-        resolve_cas = cirpy.resolve(cas_number, 'smiles')
-        mol_resolve_cas = Chem.MolFromSmiles(resolve_cas)
-        loop = asyncio.get_running_loop()
-        img = await loop.run_in_executor(None, create_molecule_image, mol_resolve_cas)
-
-        embed = discord.Embed(title=f"SMILES: `{cas_number}`", color=0x2f3136)
-        embed.set_image(url="attachment://molecule.png")
-        await interaction.response.send_message(embed=embed, file=discord.File(img, filename="molecule.png"))
-        d2d.ClearDrawing()
-    else:
-        await interaction.response.send_message(f"Error rendering {cas_number}")
 
 @tree.command(name="auto_detect", description="Enable or disable automatic smile[...] message detection.")
 async def auto_detect(interaction: discord.Interaction, option: str):
