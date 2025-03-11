@@ -210,9 +210,12 @@ async def on_message(message):
 
 
 ### **Bot Ready Event** ###
+#set presence as "watching /smiles"
+
 @bot.event
 async def on_ready():
     await tree.sync()
+    await bot.change_presence(status=discord.Status.online, activity=discord.Activity(type=discord.ActivityType.watching, name="/smiles"))
 
 # Run Bot
 bot.run(TOKEN)
