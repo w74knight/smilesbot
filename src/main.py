@@ -4,7 +4,7 @@ import asyncio
 import re
 import io
 from util import load_configs, save_configs, get_server_config, set_server_config
-from rdkit.Chem import AllChem as Chem
+from rdkit.Chem import AllChem as Chem, rdChemReactions
 from rdkit.Chem import Draw
 import cirpy
 from stdnum import casrn
@@ -34,7 +34,7 @@ def is_valid_smiles(smiles: str):
 
 def is_valid_smarts(smarts: str):
     try:
-        return Chem.ReactionFromSmarts(smarts) is not None
+        return Chem.ReactionFromSmarts(smarts, useSMILES = True) is not None
     except:
         return False
 
@@ -67,8 +67,9 @@ async def help(ctx):
     embed = discord.Embed(title="Help Menu", description="List of available commands:", color=0x2f3136)
     embed.add_field(name="`/help`", value="Show this help menu.", inline=False)
     embed.add_field(name="`/smileshelp`", value="Quick guide to SMILES.", inline=False)
-    embed.add_field(name="`/smiles <SMILES string>`", value="Generate a molecular structure image from a SMILES string.", inline=False)
-    embed.add_field(name="`/auto_detect <enable|disable>`", value="Enable or disable auto-detection of `smile[...]` messages.", inline=False)
+    embed.add_field(name="`/render <render_string>`", value="Generate a molecular structure image from a molecume name, ID, or SMILES string.", inline=False)
+    embed.add_field(name="`/rxn <rxn_string>`", value=":construction: UNDER CONSTRUCTION :construction:", inline=False)
+    embed.add_field(name="`/auto_detect <True|False>`", value=":construction: UNDER CONSTRUCTION :construction:", inline=False)
     await ctx.send(embed=embed)
 
 @bot.hybrid_command(name="smileshelp", description="Quick guide to SMILES.")
@@ -129,44 +130,30 @@ async def settings(ctx: discord.Interaction):
     await ctx.send(message)
 
 
-@bot.hybrid_command(name="mol", description="Render a molecule.")
-async def mol(ctx, smiles_str: str):
-    if is_valid_smiles(smiles_str):
-        mol = Chem.MolFromSmiles(smiles_str)
+@bot.hybrid_command(name="render", description="Render a molecule.")
+async def render(ctx, molecule_ID: str):
+    if is_valid_smiles(molecule_ID):
+        mol = Chem.MolFromSmiles(molecule_ID)
         loop = asyncio.get_running_loop()
         img = await loop.run_in_executor(None, create_molecule_image, mol)
 
-        embed = discord.Embed(title=f"`{smiles_str}`", color=0x2f3136)
+        embed = discord.Embed(title=f"`{molecule_ID}`", color=0x2f3136)
         embed.set_image(url="attachment://molecule.png")
         await ctx.send(embed=embed, file=discord.File(img, filename="molecule.png"))
         d2d.ClearDrawing()
     else:
         try:
-            resolve = cirpy.resolve(smiles_str, 'smiles')
+            resolve = cirpy.resolve(molecule_ID, 'smiles')
             mol_resolve = Chem.MolFromSmiles(resolve)
             loop = asyncio.get_running_loop()
             img = await loop.run_in_executor(None, create_molecule_image, mol_resolve)
 
-            embed = discord.Embed(title=f"`{smiles_str}`", color=0x2f3136)
+            embed = discord.Embed(title=f"`{molecule_ID}`", color=0x2f3136)
             embed.set_image(url="attachment://molecule.png")
             await ctx.send(embed=embed, file=discord.File(img, filename="molecule.png"))
             d2d.ClearDrawing()
         except:
-            await ctx.send(f"{smiles_str} is invalid, please try with a different compound ID or check for typos/erros!")
-
-@bot.hybrid_command(name="rxn", description="Generate a reaction from a SMILES string.")
-async def rxn(ctx, rxn_str: str):
-    if is_valid_smarts(rxn_str):
-        rmol = Chem.ReactionFromSmarts('rxn_str')
-        loop = asyncio.get_running_loop()
-        img = await loop.run_in_executor(None, create_molecule_image, rmol)
-
-        embed = discord.Embed(title=f"`{rxn_str}`", color=0x2f3136)
-        embed.set_image(url="attachment://molecule.png")
-        await ctx.send(embed=embed, file=discord.File(img, filename="molecule.png"))
-        d2d.ClearDrawing()
-    else:
-        await ctx.send(f"{rxn_str} is invalid, please check for typos/erros!")
+            await ctx.send(f"{molecule_ID} is invalid, please try with a different compound ID or check for typos/erros!")
 
 @bot.hybrid_command(name="auto_detect", description="Enable or disable automatic smile[...] message detection.")
 async def auto_detect(ctx: discord.Interaction, option: str):
@@ -186,11 +173,8 @@ async def auto_detect(ctx: discord.Interaction, option: str):
 async def on_message(message):
     if message.author.bot:
         return  # Ignore bot messages
-
     guild_id = str(message.guild.id)
     server_config = get_server_config(guild_id)
-
-
     # Check if auto-detection is enabled for the server
     if server_config.get("auto_detect", False):
         match = pattern.search(message.content)
@@ -201,7 +185,6 @@ async def on_message(message):
                 mol = Chem.MolFromSmiles(smiles_str)
                 loop = asyncio.get_running_loop()
                 img = await loop.run_in_executor(None, create_molecule_image, mol)
-
                 embed = discord.Embed(title=f"SMILES: `{smiles_str}`", color=0x2f3136)
                 embed.set_image(url="attachment://molecule.png")
                 await message.channel.send(embed=embed, file=discord.File(img, filename="molecule.png"))
@@ -212,7 +195,6 @@ async def on_message(message):
                     mol_resolve = Chem.MolFromSmiles(resolve)
                     loop = asyncio.get_running_loop()
                     img = await loop.run_in_executor(None, create_molecule_image, mol_resolve)
-
                     embed = discord.Embed(title=f"SMILES: `{smiles_str}`", color=0x2f3136)
                     embed.set_image(url="attachment://molecule.png")
                     await message.channel.send(embed=embed, file=discord.File(img, filename="molecule.png"))
@@ -220,15 +202,11 @@ async def on_message(message):
                 except:
                     await message.channel.send(f"Error rendering {smiles_str}")
     await bot.process_commands(message)
-
-
 ### **Bot Ready Event** ###
 #set presence as "watching /smiles"
-
 @bot.event
 async def on_ready():
     await tree.sync()
     await bot.change_presence(status=discord.Status.online, activity=discord.Activity(type=discord.ActivityType.watching, name="/smiles"))
-
 # Run Bot
 bot.run(TOKEN)
