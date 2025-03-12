@@ -7,7 +7,6 @@ from util import load_configs, save_configs, get_server_config, set_server_confi
 from rdkit.Chem import AllChem as Chem
 from rdkit.Chem import Draw
 import cirpy
-from cirpy import Molecule
 from stdnum import casrn
 
 from dotenv import load_dotenv
@@ -33,9 +32,9 @@ def is_valid_smiles(smiles: str):
     except:
         return False
 
-def is_valid_cas(cas_number: str):
+def is_valid_smarts(smarts: str):
     try:
-        return casrn.validate(cas_number) is not None
+        return Chem.ReactionFromSmarts(smarts) is not None
     except:
         return False
 
@@ -130,8 +129,8 @@ async def settings(ctx: discord.Interaction):
     await ctx.send(message)
 
 
-@bot.hybrid_command(name="smiles", description="Generate a molecular structure image from a SMILES string.")
-async def smiles(ctx, smiles_str: str):
+@bot.hybrid_command(name="mol", description="Render a molecule.")
+async def mol(ctx, smiles_str: str):
     if is_valid_smiles(smiles_str):
         mol = Chem.MolFromSmiles(smiles_str)
         loop = asyncio.get_running_loop()
@@ -154,6 +153,20 @@ async def smiles(ctx, smiles_str: str):
             d2d.ClearDrawing()
         except:
             await ctx.send(f"{smiles_str} is invalid, please try with a different compound ID or check for typos/erros!")
+
+@bot.hybrid_command(name="rxn", description="Generate a reaction from a SMILES string.")
+async def rxn(ctx, rxn_str: str):
+    if is_valid_smarts(rxn_str):
+        rmol = Chem.ReactionFromSmarts('rxn_str')
+        loop = asyncio.get_running_loop()
+        img = await loop.run_in_executor(None, create_molecule_image, rmol)
+
+        embed = discord.Embed(title=f"`{rxn_str}`", color=0x2f3136)
+        embed.set_image(url="attachment://molecule.png")
+        await ctx.send(embed=embed, file=discord.File(img, filename="molecule.png"))
+        d2d.ClearDrawing()
+    else:
+        await ctx.send(f"{rxn_str} is invalid, please check for typos/erros!")
 
 @bot.hybrid_command(name="auto_detect", description="Enable or disable automatic smile[...] message detection.")
 async def auto_detect(ctx: discord.Interaction, option: str):
