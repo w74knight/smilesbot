@@ -22,8 +22,6 @@ pattern = re.compile(r"&([^&]+)&")
 # RDKit molecule drawing setup
 d2d = Draw.MolDraw2DCairo(350, 300)
 opts = d2d.drawOptions()
-opts.updateAtomPalette({6: (1, 1, 1)})  # Color customization
-opts.setBackgroundColour((44 / 255, 45 / 255, 49 / 255))  # Dark theme
 
 # Function to validate a SMILES string
 def is_valid_smiles(smiles: str):
@@ -37,6 +35,7 @@ def is_valid_smarts(smarts: str):
         return Chem.ReactionFromSmarts(smarts, useSMILES = True) is not None
     except:
         return False
+
 
 # Function to create a molecule image
 def create_molecule_image(mol):
@@ -129,6 +128,25 @@ async def settings(ctx: discord.Interaction):
     # Send the settings message to the server
     await ctx.send(message)
 
+@bot.hybrid_command(name="setwidth", description="Set a custom prefix for the server.")
+async def setprefix(ctx, new_width: str):
+    guild_id = str(ctx.guild.id)
+
+    # if not interaction.user.guild_permissions.administrator:
+    #     await interaction.response.send_message("You need to be an administrator to use this command!", ephemeral=False)
+    #     return
+
+    if set_server_config(guild_id, "width", new_width):
+        await ctx.send(f"The command prefix has been updated to `{new_width}`.", ephemeral=False)
+    else:
+        await ctx.send("An error occurred while setting the prefix.", ephemeral=True)
+
+# Custom pallate: Discord Dark Mode
+def Dark_Mode():
+    opts.bondLineWidth = setprefix
+    opts.updateAtomPalette({6: (1, 1, 1)})  # Changed Carbon to White
+    opts.updateAtomPalette({6: (1, 1, 1)})
+    opts.setBackgroundColour((44 / 255, 45 / 255, 49 / 255))  # Sets render background to Discord Dark theme
 
 @bot.hybrid_command(name="render", description="Render a molecule.")
 async def render(ctx, molecule_ID: str):
