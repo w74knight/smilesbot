@@ -129,7 +129,7 @@ async def settings(ctx: discord.Interaction):
     await ctx.send(message)
 
 @bot.hybrid_command(name="setwidth", description="Set a custom prefix for the server.")
-async def setprefix(ctx, new_width: str):
+async def setwidth(ctx, new_width: str):
     guild_id = str(ctx.guild.id)
 
     # if not interaction.user.guild_permissions.administrator:
