@@ -1,5 +1,6 @@
 import discord
 from discord.ext import commands
+from typing import Literal, Optional
 import asyncio
 import re
 import io
@@ -14,7 +15,9 @@ import os
 
 load_dotenv()
 
+OWNER = os.getenv("OWNER")
 TOKEN = os.getenv("TOKEN")
+
 print(TOKEN)
 
 pattern = re.compile(r"&([^&]+)&")
@@ -142,29 +145,29 @@ async def settings(ctx: discord.Interaction):
 
 
 @bot.hybrid_command(name="render", description="Render a molecule.")
-async def render(ctx, molecule_ID: str):
-    if is_valid_smiles(molecule_ID):
-        mol = Chem.MolFromSmiles(molecule_ID)
+async def render(ctx, molecule_id: str):
+    if is_valid_smiles(molecule_id):
+        mol = Chem.MolFromSmiles(molecule_id)
         loop = asyncio.get_running_loop()
         img = await loop.run_in_executor(None, create_molecule_image, mol)
 
-        embed = discord.Embed(title=f"`{molecule_ID}`", color=0x2c2d31)
+        embed = discord.Embed(title=f"`{molecule_id}`", color=0x2c2d31)
         embed.set_image(url="attachment://molecule.png")
         await ctx.send(embed=embed, file=discord.File(img, filename="molecule.png"))
         d2d.ClearDrawing()
     else:
         try:
-            resolve = cirpy.resolve(molecule_ID, 'smiles')
+            resolve = cirpy.resolve(molecule_id, 'smiles')
             mol_resolve = Chem.MolFromSmiles(resolve)
             loop = asyncio.get_running_loop()
             img = await loop.run_in_executor(None, create_molecule_image, mol_resolve)
 
-            embed = discord.Embed(title=f"`{molecule_ID}`", color=0x2c2d31)
+            embed = discord.Embed(title=f"`{molecule_id}`", color=0x2c2d31)
             embed.set_image(url="attachment://molecule.png")
             await ctx.send(embed=embed, file=discord.File(img, filename="molecule.png"))
             d2d.ClearDrawing()
         except:
-            await ctx.send(f"{molecule_ID} is invalid, please try with a different compound ID or check for typos/erros!")
+            await ctx.send(f"{molecule_id} is invalid, please try with a different compound ID or check for typos/erros!")
 
 @bot.hybrid_command(name="auto_detect", description="Enable or disable automatic smile[...] message detection.")
 async def auto_detect(ctx: discord.Interaction, option: str):
@@ -213,11 +216,44 @@ async def on_message(message):
                 except:
                     await message.channel.send(f"Error rendering {smiles_str}")
     await bot.process_commands(message)
+
+@bot.command()
+@commands.guild_only()
+@commands.is_owner()
+async def sync(ctx: commands.Context, guilds: commands.Greedy[discord.Object], spec: Optional[Literal["~", "*", "^"]] = None) -> None:
+    if not guilds:
+        if spec == "~":
+            synced = await ctx.bot.tree.sync(guild=ctx.guild)
+        elif spec == "*":
+            ctx.bot.tree.copy_global_to(guild=ctx.guild)
+            synced = await ctx.bot.tree.sync(guild=ctx.guild)
+        elif spec == "^":
+            ctx.bot.tree.clear_commands(guild=ctx.guild)
+            await ctx.bot.tree.sync(guild=ctx.guild)
+            synced = []
+        else:
+            synced = await ctx.bot.tree.sync()
+
+        await ctx.send(
+            f"Synced {len(synced)} commands {'globally' if spec is None else 'to the current guild.'}"
+        )
+        return
+
+    ret = 0
+    for guild in guilds:
+        try:
+            await ctx.bot.tree.sync(guild=guild)
+        except discord.HTTPException:
+            pass
+        else:
+            ret += 1
+
+    await ctx.send(f"Synced the tree to {ret}/{len(guilds)}.")
+
 ### **Bot Ready Event** ###
 #set presence as "watching /smiles"
 @bot.event
 async def on_ready():
-    await tree.sync()
     await bot.change_presence(status=discord.Status.online, activity=discord.Activity(type=discord.ActivityType.watching, name="/smiles"))
 # Run Bot
 bot.run(TOKEN)
