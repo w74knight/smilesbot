@@ -37,19 +37,6 @@ def is_valid_smarts(smarts: str):
         return False
 
 
-# Function to create a molecule image
-def create_molecule_image(mol):
-    try:
-        Chem.Kekulize(mol, clearAromaticFlags=True)
-    except:
-        print("Kekulization failed, skipping.")
-
-    d2d.DrawMolecule(mol)
-    d2d.FinishDrawing()
-    bio = io.BytesIO(d2d.GetDrawingText())
-    bio.seek(0)
-    return bio
-
 # Discord Bot Setup
 intents = discord.Intents.default()
 intents.message_content = True  # Required for message detection
@@ -137,16 +124,25 @@ async def setwidth(ctx, new_width: str):
     #     return
 
     if set_server_config(guild_id, "width", new_width):
-        await ctx.send(f"The command prefix has been updated to `{new_width}`.", ephemeral=False)
+        await ctx.send(f"The render width has been changed to `{new_width}`.", ephemeral=False)
     else:
         await ctx.send("An error occurred while setting the prefix.", ephemeral=True)
 
-# Custom pallate: Discord Dark Mode
-def Dark_Mode():
+# Function to create a molecule image
+def create_molecule_image(mol):
+    try:
+        Chem.Kekulize(mol, clearAromaticFlags=True)
+    except:
+        print("Kekulization failed, skipping.")
     opts.bondLineWidth = setprefix
     opts.updateAtomPalette({6: (1, 1, 1)})  # Changed Carbon to White
     opts.updateAtomPalette({6: (1, 1, 1)})
     opts.setBackgroundColour((44 / 255, 45 / 255, 49 / 255))  # Sets render background to Discord Dark theme
+    d2d.DrawMolecule(mol)
+    d2d.FinishDrawing()
+    bio = io.BytesIO(d2d.GetDrawingText())
+    bio.seek(0)
+    return bio
 
 @bot.hybrid_command(name="render", description="Render a molecule.")
 async def render(ctx, molecule_ID: str):
