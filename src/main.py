@@ -140,19 +140,6 @@ async def settings(ctx: discord.Interaction):
     # Send the settings message to the server
     await ctx.send(message)
 
-@bot.hybrid_command(name="setwidth", description="Set a custom prefix for the server.")
-async def setwidth(ctx, new_width: str):
-    guild_id = str(ctx.guild.id)
-
-    # if not interaction.user.guild_permissions.administrator:
-    #     await interaction.response.send_message("You need to be an administrator to use this command!", ephemeral=False)
-    #     return
-
-    if set_server_config(guild_id, "width", new_width):
-        await ctx.send(f"The render width has been changed to `{new_width}`.", ephemeral=False)
-    else:
-        await ctx.send("An error occurred while setting the prefix.", ephemeral=True)
-
 
 @bot.hybrid_command(name="render", description="Render a molecule.")
 async def render(ctx, molecule_ID: str):
