@@ -20,7 +20,7 @@ print(TOKEN)
 pattern = re.compile(r"&([^&]+)&")
 
 # RDKit molecule drawing setup
-d2d = Draw.MolDraw2DCairo(350, 300)
+d2d = Draw.MolDraw2DCairo(500, 500)
 opts = d2d.drawOptions()
 
 # Function to validate a SMILES string
@@ -42,6 +42,25 @@ intents = discord.Intents.default()
 intents.message_content = True  # Required for message detection
 bot = commands.Bot(command_prefix=lambda bot, message: get_prefix(bot, message), intents=intents, help_command=None)
 tree = bot.tree  # Slash command tree
+
+# Function to create a molecule image
+def create_molecule_image(mol):
+    try:
+        Chem.Kekulize(mol, clearAromaticFlags=True)
+    except:
+        print("Kekulization failed, skipping.")
+    opts.bondLineWidth = 2.
+    opts.updateAtomPalette({6: (1, 1, 1)})  # Changed Carbon to White
+    opts.updateAtomPalette({8: (236 / 255, 66 / 255, 69 / 255)}) # change Oxygen to a discord red
+    opts.updateAtomPalette({7: (88 / 255, 101 / 255, 242 / 255)}) #change Nitrogen to discord blue
+    opts.updateAtomPalette({5: (238 / 255, 68 / 255, 157 / 255)}) #change Boron to discord pink
+    opts.updateAtomPalette({17: (89 / 255, 242 / 255, 134 / 255)}) # change Chlorine to discord green
+    opts.setBackgroundColour((44/255, 45/255, 49/255))  # Sets render background to Discord Dark theme
+    d2d.DrawMolecule(mol)
+    d2d.FinishDrawing()
+    bio = io.BytesIO(d2d.GetDrawingText())
+    bio.seek(0)
+    return bio
 
 def get_prefix(bot, message):
     guild_id = str(message.guild.id)
@@ -128,21 +147,6 @@ async def setwidth(ctx, new_width: str):
     else:
         await ctx.send("An error occurred while setting the prefix.", ephemeral=True)
 
-# Function to create a molecule image
-def create_molecule_image(mol):
-    try:
-        Chem.Kekulize(mol, clearAromaticFlags=True)
-    except:
-        print("Kekulization failed, skipping.")
-    opts.bondLineWidth = setprefix
-    opts.updateAtomPalette({6: (1, 1, 1)})  # Changed Carbon to White
-    opts.updateAtomPalette({6: (1, 1, 1)})
-    opts.setBackgroundColour((44 / 255, 45 / 255, 49 / 255))  # Sets render background to Discord Dark theme
-    d2d.DrawMolecule(mol)
-    d2d.FinishDrawing()
-    bio = io.BytesIO(d2d.GetDrawingText())
-    bio.seek(0)
-    return bio
 
 @bot.hybrid_command(name="render", description="Render a molecule.")
 async def render(ctx, molecule_ID: str):
@@ -151,7 +155,7 @@ async def render(ctx, molecule_ID: str):
         loop = asyncio.get_running_loop()
         img = await loop.run_in_executor(None, create_molecule_image, mol)
 
-        embed = discord.Embed(title=f"`{molecule_ID}`", color=0x2f3136)
+        embed = discord.Embed(title=f"`{molecule_ID}`", color=0x2c2d31)
         embed.set_image(url="attachment://molecule.png")
         await ctx.send(embed=embed, file=discord.File(img, filename="molecule.png"))
         d2d.ClearDrawing()
@@ -162,7 +166,7 @@ async def render(ctx, molecule_ID: str):
             loop = asyncio.get_running_loop()
             img = await loop.run_in_executor(None, create_molecule_image, mol_resolve)
 
-            embed = discord.Embed(title=f"`{molecule_ID}`", color=0x2f3136)
+            embed = discord.Embed(title=f"`{molecule_ID}`", color=0x2c2d31)
             embed.set_image(url="attachment://molecule.png")
             await ctx.send(embed=embed, file=discord.File(img, filename="molecule.png"))
             d2d.ClearDrawing()
