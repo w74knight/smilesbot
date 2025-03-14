@@ -8,7 +8,7 @@ from util import load_configs, save_configs, get_server_config, set_server_confi
 from rdkit.Chem import AllChem as Chem, rdChemReactions
 from rdkit.Chem import Draw
 import cirpy
-from stdnum import casrn
+from palette import Default
 
 from dotenv import load_dotenv
 import os
@@ -46,14 +46,10 @@ intents.message_content = True  # Required for message detection
 bot = commands.Bot(command_prefix=lambda bot, message: get_prefix(bot, message), intents=intents, help_command=None)
 tree = bot.tree  # Slash command tree
 
-discordDark = {
-    5: (238 / 255, 68 / 255, 157 / 255),
-    6: (1, 1, 1),
-    7: (88 / 255, 101 / 255, 242 / 255),
-    8: (236 / 255, 66 / 255, 69 / 255),
-    9: (0, 1, 1),
-    17: (89 / 255, 242 / 255, 134 / 255),
-    }
+
+#@bot.hybrid_command(name="setPalette", description="Set render palette.")
+#async def setPallete(ctx)
+#embed = discord.Embed(title= "Palette Set-Up", description="React bellow to set palette.")
 
 
 # Function to create a molecule image
@@ -63,7 +59,7 @@ def create_molecule_image(mol):
     except:
         print("Kekulization failed, skipping.")
     opts.bondLineWidth = 2.
-    opts.setAtomPalette(discordDark)
+    opts.setAtomPalette(Default)
     opts.setBackgroundColour((44/255, 45/255, 49/255))  # Sets render background to Discord Dark theme
     d2d.DrawMolecule(mol)
     d2d.FinishDrawing()
@@ -78,7 +74,7 @@ def get_prefix(bot, message):
 
 @bot.hybrid_command(name="help", description="Displays help menu")
 async def help(ctx):
-    embed = discord.Embed(title="Help Menu", description="List of available commands:", color=0x2f3136)
+    embed = discord.Embed(title="Help Menu", description="List of available commands:")
     embed.add_field(name="`/help`", value="Show this help menu.", inline=False)
     embed.add_field(name="`/smileshelp`", value="Quick guide to SMILES.", inline=False)
     embed.add_field(name="`/render <render_string>`", value="Generate a molecular structure image from a molecume name, ID, or SMILES string.", inline=False)
@@ -88,7 +84,7 @@ async def help(ctx):
 
 @bot.hybrid_command(name="smileshelp", description="Quick guide to SMILES.")
 async def smileshelp(ctx):
-    embed = discord.Embed(title="SMILES Syntax", description="Quick guide to SMILES", color=0x2f3136)
+    embed = discord.Embed(title="SMILES Syntax", description="Quick guide to SMILES")
     embed.add_field(name="Bonds",
                     value="` . ` Disconnected structures such as ionic bonds and multiple compounds in an image.", inline=False)
     embed.add_field(name="",
@@ -151,7 +147,7 @@ async def render(ctx, molecule_id: str):
         loop = asyncio.get_running_loop()
         img = await loop.run_in_executor(None, create_molecule_image, mol)
 
-        embed = discord.Embed(title=f"`{molecule_id}`", color=0x2c2d31)
+        embed = discord.Embed(title=f"`{molecule_id}`")
         embed.set_image(url="attachment://molecule.png")
         await ctx.send(embed=embed, file=discord.File(img, filename="molecule.png"))
         d2d.ClearDrawing()
@@ -162,7 +158,7 @@ async def render(ctx, molecule_id: str):
             loop = asyncio.get_running_loop()
             img = await loop.run_in_executor(None, create_molecule_image, mol_resolve)
 
-            embed = discord.Embed(title=f"`{molecule_id}`", color=0x2c2d31)
+            embed = discord.Embed(title=f"`{molecule_id}`")
             embed.set_image(url="attachment://molecule.png")
             await ctx.send(embed=embed, file=discord.File(img, filename="molecule.png"))
             d2d.ClearDrawing()
@@ -199,7 +195,7 @@ async def on_message(message):
                 mol = Chem.MolFromSmiles(smiles_str)
                 loop = asyncio.get_running_loop()
                 img = await loop.run_in_executor(None, create_molecule_image, mol)
-                embed = discord.Embed(title=f"SMILES: `{smiles_str}`", color=0x2f3136)
+                embed = discord.Embed(title=f"SMILES: `{smiles_str}`")
                 embed.set_image(url="attachment://molecule.png")
                 await message.channel.send(embed=embed, file=discord.File(img, filename="molecule.png"))
                 d2d.ClearDrawing()
@@ -209,7 +205,7 @@ async def on_message(message):
                     mol_resolve = Chem.MolFromSmiles(resolve)
                     loop = asyncio.get_running_loop()
                     img = await loop.run_in_executor(None, create_molecule_image, mol_resolve)
-                    embed = discord.Embed(title=f"SMILES: `{smiles_str}`", color=0x2f3136)
+                    embed = discord.Embed(title=f"SMILES: `{smiles_str}`")
                     embed.set_image(url="attachment://molecule.png")
                     await message.channel.send(embed=embed, file=discord.File(img, filename="molecule.png"))
                     d2d.ClearDrawing()
