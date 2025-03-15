@@ -8,18 +8,24 @@ from util import load_configs, save_configs, get_server_config, set_server_confi
 from rdkit.Chem import AllChem as Chem, rdChemReactions
 from rdkit.Chem import Draw
 import cirpy
-from palette import Default
+import palette
 
 from dotenv import load_dotenv
 import os
 
+# call pickle database from palette.py
+discord_dark = palette.db['discord_dark']
+
 load_dotenv()
 
+# set sensitive info in .env as variables
 OWNER = os.getenv("OWNER")
 TOKEN = os.getenv("TOKEN")
 
+
 print(TOKEN)
 
+# set pattern for auto_detect
 pattern = re.compile(r"&([^&]+)&")
 
 # RDKit molecule drawing setup
@@ -51,6 +57,18 @@ tree = bot.tree  # Slash command tree
 #async def setPallete(ctx)
 #embed = discord.Embed(title= "Palette Set-Up", description="React bellow to set palette.")
 
+@bot.hybrid_command(name="setpalette", description="Set a custom prefix for the server.")
+async def setprefix(ctx, new_palette: str):
+    guild_id = str(ctx.guild.id)
+    embed = discord.Embed(title="Set render palette.", description="list of palette presets:")
+    embed.add_field(name="`Default`", value="Default `RDKit` render settings.", inline=False)
+    embed.add_field(name="`Black and White`", value="Black and white render option (no colored atoms)", inline=False)
+    embed.add_field(name="`Dark Mode`", value="Palette render settings designed to match Discord's dark mode.", inline=False)
+    embed.add_field(name="`Light Mode`", value="Palette render settings designed to match Discord's light mode.", inline=False)
+
+
+
+
 
 # Function to create a molecule image
 def create_molecule_image(mol):
@@ -59,7 +77,7 @@ def create_molecule_image(mol):
     except:
         print("Kekulization failed, skipping.")
     opts.bondLineWidth = 2.
-    opts.setAtomPalette(Default)
+    opts.setAtomPalette(discord_dark)
     opts.setBackgroundColour((44/255, 45/255, 49/255))  # Sets render background to Discord Dark theme
     d2d.DrawMolecule(mol)
     d2d.FinishDrawing()
