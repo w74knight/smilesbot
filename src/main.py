@@ -8,17 +8,19 @@ from util import load_configs, save_configs, get_server_config, set_server_confi
 from rdkit.Chem import AllChem as Chem, rdChemReactions
 from rdkit.Chem import Draw
 import cirpy
+import pickle
 import palette
-
 from dotenv import load_dotenv
 import os
 
 # call pickle database from palette.py
 discord_dark = palette.db['discord_dark']
+print (discord_dark)
 
+# load sensitive data .env
 load_dotenv()
 
-# set sensitive info in .env as variables
+# set sensitive data from .env as variables
 OWNER = os.getenv("OWNER")
 TOKEN = os.getenv("TOKEN")
 
