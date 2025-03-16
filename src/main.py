@@ -8,13 +8,13 @@ from util import load_configs, save_configs, get_server_config, set_server_confi
 from rdkit.Chem import AllChem as Chem, rdChemReactions
 from rdkit.Chem import Draw
 import cirpy
-import palette
 from dotenv import load_dotenv
 import os
+import pickle
 
 # call pickle database from palette.py
-discord_dark = palette.db['discord_dark']
-print (discord_dark)
+with open('palette.pkl', 'rb') as pal:
+    pal_dsr = pickle.load(pal)
 
 # load sensitive data .env
 load_dotenv()
@@ -22,7 +22,6 @@ load_dotenv()
 # set sensitive data from .env as variables
 OWNER = os.getenv("OWNER")
 TOKEN = os.getenv("TOKEN")
-
 
 print(TOKEN)
 
@@ -46,7 +45,6 @@ def is_valid_smarts(smarts: str):
     except:
         return False
 
-
 # Discord Bot Setup
 intents = discord.Intents.default()
 intents.message_content = True  # Required for message detection
@@ -67,10 +65,6 @@ async def setprefix(ctx, new_palette: str):
     embed.add_field(name="`Dark Mode`", value="Palette render settings designed to match Discord's dark mode.", inline=False)
     embed.add_field(name="`Light Mode`", value="Palette render settings designed to match Discord's light mode.", inline=False)
 
-
-
-
-
 # Function to create a molecule image
 def create_molecule_image(mol):
     try:
@@ -78,7 +72,7 @@ def create_molecule_image(mol):
     except:
         print("Kekulization failed, skipping.")
     opts.bondLineWidth = 2.
-    opts.setAtomPalette(discord_dark)
+    opts.setAtomPalette(pal_dsr['pdd'])
     opts.setBackgroundColour((44/255, 45/255, 49/255))  # Sets render background to Discord Dark theme
     d2d.DrawMolecule(mol)
     d2d.FinishDrawing()
