@@ -32,3 +32,7 @@ Generate a molecular structure image from a SMILES string.
 
 `/auto_detect <enable|disable>`\
 Enable or disable auto-detection SMILES strings within `&...&`.
+
+# DEV
+create env: python -m venv .env
+activate env: .\.env\Scripts\activate
