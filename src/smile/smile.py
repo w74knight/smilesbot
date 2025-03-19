@@ -14,7 +14,6 @@ class Smile(object):
         self.opts = self.d2d.drawOptions()
         self.opts.setBackgroundColour(SMILE_BG)
 
-
     def __is_valid_smiles(self, smiles: str):
         try:
             return Chem.MolFromSmiles(smiles) is not None
@@ -26,17 +25,16 @@ class Smile(object):
             return rdChemReactions.ReactionFromSmarts(smarts, useSMILES = True) is not None
         except:
             return False
-        
+
+
     def loadAtomPalette(self, ctx):
-        if ("server_id") in self.bot.db_handler.check_color_settings(str(ctx.guild.id, "server_id")):
-            p = self.bot.db_handler.get_element_colors(str(ctx.guild.id))
-            p2 = discord_dark | p
+        palette = self.bot.db_handler.get_element_colors(str(ctx.guild.id))
+        if not palette:
+            palette = discord_dark
         else:
-            p2 = src.constants.discord_dark
-        palette = self.opts.setAtomPalette(p2)
+            palette = palette | discord_dark
         return palette
 
-        
     async def __render(self, ctx, title, img):
         embed = discord.Embed(title=f"`{title}`")
         embed.set_image(url="attachment://molecule.png")
@@ -69,8 +67,9 @@ class Smile(object):
         bio.seek(0)
         return bio
 
-    async def render_molecule(self, ctx, molecule, palette=None):
+    async def render_molecule(self, ctx, molecule, palette):
         molecule = molecule.strip()
+        self.opts.setAtomPalette(self.loadAtomPalette(ctx))
 
         if not self.__is_valid_smiles(molecule):
             # check if molecule is identified by name
@@ -78,10 +77,6 @@ class Smile(object):
                 molecule = cirpy.resolve(molecule, 'smiles')
             except:
                 await ctx.send(f"{molecule} is invalid, please try with a different compound ID or check for typos/erros!")
-        
-        if palette:
-            print(palette)
-            self.loadAtomPalette(palette)
 
         mol = Chem.MolFromSmiles(molecule)
         loop = asyncio.get_running_loop()
@@ -89,14 +84,10 @@ class Smile(object):
 
         await self.__render(ctx, molecule, img)
 
-    async def render_reaction(self, ctx, reaction, palette = None):
+    async def render_reaction(self, ctx, reaction, palette):
         if not self.__is_valid_smarts(reaction):
             await f"{reaction} is invalid, please try with a different compound ID or check for typos/erros!"
             return
-
-        if palette:
-            print(palette)
-            self.loadAtomPalette(palette)
 
         rxn = Chem.ReactionFromSmarts(reaction, useSMILES = True)
         loop = asyncio.get_running_loop()

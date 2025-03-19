@@ -20,7 +20,6 @@ class DatabaseHandler:
                 server_id TEXT,
                 element TEXT,
                 color TEXT,
-                background TEXT,
                 PRIMARY KEY (server_id, element)
             )
         ''')

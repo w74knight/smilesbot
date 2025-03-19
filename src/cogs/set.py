@@ -11,6 +11,8 @@ class SetCommand(commands.Cog):
 
     def __init__(self, bot):
         self.bot = bot
+        self.pt = Chem.GetPeriodicTable()
+
 
     @commands.hybrid_group()
     async def set(self, name):
@@ -26,27 +28,27 @@ class SetCommand(commands.Cog):
 
     @set.command(name="color", description="Set the rgb color for an element when rendering.")
     async def color(self, ctx, element: int, color: str):
-        if ctx.author.guild_permissions.administrator:
-            if element < 0 or element > 118:
-                await ctx.send("Invalid element number. Must be between 0 and 118.")
-                return
-            # Convert color from '255 255 255' to '#FFFFFF'
-            rgb = tuple(map(int, color.split(', ')))
-            hex_color = rgb_to_hex(rgb)
+        if element < 0 or element > 118:
+            await ctx.send("Invalid element number. Must be between 0 and 118.")
+            return
 
-            self.bot.db_handler.set_element_color(str(ctx.guild.id), element, color)
+        # Convert color from '255 255 255' to '#FFFFFF'
+        rgb = tuple(map(int, color.split(' ')))
+        hex_color = rgb_to_hex(rgb)
 
-            # Create an embed to display the color
-            embed = discord.Embed(
-                title=f"Color for element {self.pt.GetElementName(element)} set to #{hex_color}",
-                color=discord.Color.from_rgb(*rgb)
-            )
-            embed.add_field(name="Element", value=self.pt.GetElementName(element))
-            embed.add_field(name="Color", value=hex_color)
-            embed.set_thumbnail(url=f"https://dummyimage.com/100x100/{hex_color}/ffffff")
+        self.bot.db_handler.set_element_color(str(ctx.guild.id), element, color)
 
-            return await ctx.send(embed=embed)
-        await ctx.send("You don't have the permissions for this command!")
+        # Create an embed to display the color
+        embed = discord.Embed(
+            title=f"Color for element {self.pt.GetElementName(element)} set to {hex_color}",
+            color=discord.Color.from_rgb(*rgb)
+        )
+        embed.add_field(name="Element", value=self.pt.GetElementName(element))
+        embed.add_field(name="Color", value=hex_color)
+        embed.set_thumbnail(url=f"https://dummyimage.com/100x100/{hex_color[1:]}/ffffff")
+
+        await ctx.send(embed=embed)
+
 
 async def setup(bot):
     await bot.add_cog(SetCommand(bot))
