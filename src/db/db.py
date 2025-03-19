@@ -34,6 +34,8 @@ class DatabaseHandler:
         ''', (server_id, prefix))
         self.connection.commit()
 
+
+
     def update_server_setting(self, server_id, key, value):
         self.cursor.execute(f'''
             UPDATE server_settings
@@ -63,13 +65,29 @@ class DatabaseHandler:
             SELECT element, color FROM element_colors WHERE server_id=?
         ''', (server_id,))
         results = self.cursor.fetchall()
-        return {int(row['element']): tuple(map(int, row['color'].split(' '))) for row in results} if results else {}
+        atom_palette = {}
+        if results:
+            for row in results:
+                atom_palette[int(row["element"])] = tuple(int(rgb) / 255 for rgb in row["color"].split(', '))
+        return atom_palette
     
     def create_server_table(self, server_id):
         self.cursor.execute('''
             INSERT OR IGNORE INTO server_settings (server_id, prefix, auto_smile)
             VALUES (?, ?, ?)
         ''', (server_id, '/', False))
+        self.connection.commit()
+
+    def clear_color(self, server_id):
+        self.cursor.execute('''
+        DELETE FROM element_colors WHERE server_id = ?;
+        ''', (server_id,))
+        self.connection.commit()
+
+    def clear_settings(self, server_id):
+        self.cursor.execute('''
+        DELETE FROM server_settings WHERE server_id = ?;
+        ''', (server_id,))
         self.connection.commit()
 
     def close(self):

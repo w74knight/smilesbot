@@ -10,10 +10,11 @@ class PrefixCommand(commands.Cog):
 
     @commands.hybrid_command(name="setprefix", description="Set a custom prefix for the server.")
     async def setprefix(self, ctx, prefix: str):
-        self.bot.db_handler.set_server_setting(str(ctx.guild.id), prefix)
-
-        self.bot.command_prefix = prefix
-        await ctx.send(f"Prefix set to: {prefix}")
+        if ctx.author.guild_permissions.administrator:
+          self.bot.db_handler.set_server_setting(str(ctx.guild.id), prefix)
+          self.bot.command_prefix = prefix
+          return await ctx.send(f"Prefix set to: {prefix}")
+        await ctx.send("You don't have the permissions for this command!")
 
     @commands.hybrid_command(name="getprefix", description="Get the command prefix for this server.")
     async def getprefix(self, ctx):

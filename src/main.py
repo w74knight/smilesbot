@@ -8,6 +8,8 @@ from db.db import DatabaseHandler
 from util import get_prefix
 from smile.smile import Smile
 
+print(TOKEN)
+
 class Bot(commands.Bot):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -22,7 +24,7 @@ class Bot(commands.Bot):
             status=discord.Status.online, 
             activity=discord.Activity(
                     type=discord.ActivityType.watching,
-                    name="/smiles"
+                    name="/render"
                 )
             )
         await self.tree.sync()
