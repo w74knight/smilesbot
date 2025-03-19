@@ -30,7 +30,7 @@ class Bot(commands.Bot):
         await self.tree.sync()
 
         print(f"Logged in as {self.user}")
-        
+
     async def setup_hook(self):
         for module_name in command_modules:
             await self.load_extension(f'cogs.{module_name}')
@@ -42,7 +42,7 @@ class Bot(commands.Bot):
         settings = self.db_handler.get_server_setting(str(message.guild.id))
         if settings.get('auto_smile', False) and (match := AUTO_DETECT_PATTERN.search(message.content)):
             await self.smile.render_molecule(message.channel, match.group(1))
-        
+
         await self.process_commands(message)
 
     async def close(self):

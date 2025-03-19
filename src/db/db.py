@@ -20,6 +20,7 @@ class DatabaseHandler:
                 server_id TEXT,
                 element TEXT,
                 color TEXT,
+                background TEXT,
                 PRIMARY KEY (server_id, element)
             )
         ''')
@@ -33,8 +34,6 @@ class DatabaseHandler:
             prefix=excluded.prefix
         ''', (server_id, prefix))
         self.connection.commit()
-
-
 
     def update_server_setting(self, server_id, key, value):
         self.cursor.execute(f'''

@@ -1,5 +1,7 @@
 from discord.ext import commands
 
+import src.constants
+
 
 class RenderCommand(commands.Cog):
     name = "/render"
@@ -12,8 +14,6 @@ class RenderCommand(commands.Cog):
     async def render(self, ctx, mlcl: str):
         palette = self.bot.db_handler.get_element_colors(str(ctx.guild.id))
         await self.bot.smile.render_molecule(ctx, mlcl, palette)
-
-
 
 async def setup(bot):
     await bot.add_cog(RenderCommand(bot))

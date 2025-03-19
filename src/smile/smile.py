@@ -4,6 +4,8 @@ import asyncio
 import cirpy
 import discord
 import io
+
+import src.constants
 from src.constants import SMILE_BG, discord_dark
 
 class Smile(object):
@@ -26,8 +28,11 @@ class Smile(object):
             return False
         
     def loadAtomPalette(self, ctx):
-        p = self.bot.db_handler.get_element_colors(str(ctx.guild.id))
-        p2 = discord_dark | p
+        if ("server_id") in self.bot.db_handler.check_color_settings(str(ctx.guild.id, "server_id")):
+            p = self.bot.db_handler.get_element_colors(str(ctx.guild.id))
+            p2 = discord_dark | p
+        else:
+            p2 = src.constants.discord_dark
         palette = self.opts.setAtomPalette(p2)
         return palette
 
