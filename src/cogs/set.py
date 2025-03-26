@@ -33,7 +33,7 @@ class SetCommand(commands.Cog):
             return
 
         # Convert color from '255 255 255' to '#FFFFFF'
-        rgb = tuple(map(int, color.split(' ')))
+        rgb = tuple(map(int, color.split(',')))
         hex_color = rgb_to_hex(rgb)
 
         self.bot.db_handler.set_element_color(str(ctx.guild.id), element, color)

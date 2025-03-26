@@ -8,8 +8,6 @@ from db.db import DatabaseHandler
 from util import get_prefix
 from smile.smile import Smile
 
-print(TOKEN)
-
 class Bot(commands.Bot):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)

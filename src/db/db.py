@@ -47,7 +47,7 @@ class DatabaseHandler:
             SELECT * FROM server_settings WHERE server_id=?
         ''', (server_id,))
         result = self.cursor.fetchone()
-        return dict(result) if result else None
+        return dict(result) if result else {}
     
     def set_element_color(self, server_id, element, color):
         self.cursor.execute('''

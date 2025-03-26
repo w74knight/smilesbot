@@ -1,8 +1,5 @@
 from discord.ext import commands
 
-import src.constants
-
-
 class RenderCommand(commands.Cog):
     name = "/render"
     description = "Render a molecule."

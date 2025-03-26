@@ -5,8 +5,8 @@ import cirpy
 import discord
 import io
 
-import src.constants
-from src.constants import SMILE_BG, discord_dark
+from constants import SMILE_BG
+from .pallette import DISCORD_DARK
 
 class Smile(object):
     def __init__(self):
@@ -27,13 +27,8 @@ class Smile(object):
             return False
 
 
-    def loadAtomPalette(self, ctx):
-        palette = self.bot.db_handler.get_element_colors(str(ctx.guild.id))
-        if not palette:
-            palette = discord_dark
-        else:
-            palette = palette | discord_dark
-        return palette
+    def loadAtomPalette(self, pallette):
+        self.opts.setAtomPalette(pallette)
 
     async def __render(self, ctx, title, img):
         embed = discord.Embed(title=f"`{title}`")
@@ -69,7 +64,6 @@ class Smile(object):
 
     async def render_molecule(self, ctx, molecule, palette):
         molecule = molecule.strip()
-        self.opts.setAtomPalette(self.loadAtomPalette(ctx))
 
         if not self.__is_valid_smiles(molecule):
             # check if molecule is identified by name
@@ -77,6 +71,13 @@ class Smile(object):
                 molecule = cirpy.resolve(molecule, 'smiles')
             except:
                 await ctx.send(f"{molecule} is invalid, please try with a different compound ID or check for typos/erros!")
+
+        if palette:
+            palette = DISCORD_DARK | palette
+        else:
+            palette = DISCORD_DARK
+
+        self.loadAtomPalette(palette)
 
         mol = Chem.MolFromSmiles(molecule)
         loop = asyncio.get_running_loop()
