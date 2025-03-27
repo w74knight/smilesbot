@@ -1,5 +1,6 @@
 from rdkit.Chem import AllChem as Chem
-from rdkit.Chem import Draw, rdChemReactions
+from rdkit.Chem import rdChemReactions as Reactions
+from rdkit.Chem import Draw
 import asyncio
 import cirpy
 import discord
@@ -19,13 +20,6 @@ class Smile(object):
             return Chem.MolFromSmiles(smiles) is not None
         except:
             return False
-    
-    def __is_valid_smarts(self, smarts: str):
-        try:
-            return rdChemReactions.ReactionFromSmarts(smarts, useSMILES = True) is not None
-        except:
-            return False
-
 
     def loadAtomPalette(self, pallette):
         self.opts.setAtomPalette(pallette)
@@ -49,14 +43,11 @@ class Smile(object):
         bio.seek(0)
         return bio
 
-    def create_rxn_image(self, mol):
-        try:
-            Chem.Kekulize(mol, clearAromaticFlags=True)
-        except:
-            print("Kekulization failed, skipping.")
+    def create_rxn_image(self, rxn):
+
         self.opts.bondLineWidth = 2.
         self.opts.setBackgroundColour(SMILE_BG)
-        self.d2d.DrawMolecule(mol)
+        self.d2d.DrawReaction(rxn)
         self.d2d.FinishDrawing()
         bio = io.BytesIO(self.d2d.GetDrawingText())
         bio.seek(0)
@@ -64,14 +55,6 @@ class Smile(object):
 
     async def render_molecule(self, ctx, molecule, palette):
         molecule = molecule.strip()
-
-        if not self.__is_valid_smiles(molecule):
-            # check if molecule is identified by name
-            try:
-                molecule = cirpy.resolve(molecule, 'smiles')
-            except:
-                await ctx.send(f"{molecule} is invalid, please try with a different compound ID or check for typos/erros!")
-
         if palette:
             palette = DISCORD_DARK | palette
         else:
@@ -86,11 +69,13 @@ class Smile(object):
         await self.__render(ctx, molecule, img)
 
     async def render_reaction(self, ctx, reaction, palette):
-        if not self.__is_valid_smarts(reaction):
-            await f"{reaction} is invalid, please try with a different compound ID or check for typos/erros!"
-            return
+        reaction = reaction.strip()
+        if palette:
+            palette = DISCORD_DARK | palette
+        else:
+            palette = DISCORD_DARK
 
-        rxn = Chem.ReactionFromSmarts(reaction, useSMILES = True)
+        rxn = Reactions.ReactionFromSmarts('reaction', useSMILES = True)
         loop = asyncio.get_running_loop()
         img = await loop.run_in_executor(None, self.create, rxn)
 

@@ -1,10 +1,11 @@
 import re
 import os
-from dotenv import load_dotenv
+from dotenv import load_dotenv, find_dotenv
 from util import smile_rgb
 
 # load sensitive data .env
-load_dotenv("env")
+load_dotenv(find_dotenv())
+
 
 # set sensitive data from .env as variables
 OWNER_ID = os.getenv("OWNER")
