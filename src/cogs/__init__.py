@@ -7,6 +7,5 @@ __all__ = [
     'settings',
     'auto_smile',
     'render',
-    'rxn',
     'element_info'
 ]

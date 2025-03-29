@@ -5,13 +5,12 @@ import asyncio
 import cirpy
 import discord
 import io
-
 from constants import SMILE_BG
 from .pallette import DISCORD_DARK
 
 class Smile(object):
     def __init__(self):
-        self.d2d = Draw.MolDraw2DCairo(500, 500)
+        self.d2d = Draw.MolDraw2DCairo(-1, -1)
         self.opts = self.d2d.drawOptions()
         self.opts.setBackgroundColour(SMILE_BG)
 
@@ -20,6 +19,13 @@ class Smile(object):
             return Chem.MolFromSmiles(smiles) is not None
         except:
             return False
+
+    def __is_valid_smarts(self, rxn: str):
+        try:
+            return Chem.ReactionFromSmarts(rxn, useSmiles=True) is not None
+        except:
+            return False
+
 
     def loadAtomPalette(self, pallette):
         self.opts.setAtomPalette(pallette)
@@ -35,6 +41,9 @@ class Smile(object):
             Chem.Kekulize(mol, clearAromaticFlags=True)
         except:
             print("Kekulization failed, skipping.")
+        self.opts.drawMolsSameScale = False
+        self.opts.scalingFactor = 50
+        self.opts.fixedFontSize = 20
         self.opts.bondLineWidth = 2.
         self.opts.setBackgroundColour(SMILE_BG)
         self.d2d.DrawMolecule(mol)
@@ -44,9 +53,13 @@ class Smile(object):
         return bio
 
     def create_rxn_image(self, rxn):
-
+        self.opts.drawMolsSameScale = False
+        self.opts.scalingFactor = 50
+        self.opts.fixedFontSize = 20
         self.opts.bondLineWidth = 2.
         self.opts.setBackgroundColour(SMILE_BG)
+        self.opts.setSymbolColour((1, 1, 1))
+        self.opts.setAnnotationColour((1,1,1))
         self.d2d.DrawReaction(rxn)
         self.d2d.FinishDrawing()
         bio = io.BytesIO(self.d2d.GetDrawingText())
@@ -55,6 +68,15 @@ class Smile(object):
 
     async def render_molecule(self, ctx, molecule, palette):
         molecule = molecule.strip()
+
+        if not self.__is_valid_smiles(molecule):
+            # check if molecule is identified by name
+            try:
+                molecule = cirpy.resolve(molecule, 'smiles')
+            except:
+                await ctx.send(
+                    f"{molecule} is invalid, please try with a different compound ID or check for typos/erros!")
+
         if palette:
             palette = DISCORD_DARK | palette
         else:
@@ -70,13 +92,19 @@ class Smile(object):
 
     async def render_reaction(self, ctx, reaction, palette):
         reaction = reaction.strip()
+        if not self.__is_valid_smarts(reaction):
+            await ctx.send(
+                f"{reaction} is an invalid reaction, please check for typos/erros!")
+
         if palette:
             palette = DISCORD_DARK | palette
         else:
             palette = DISCORD_DARK
 
-        rxn = Reactions.ReactionFromSmarts('reaction', useSMILES = True)
+        self.loadAtomPalette(palette)
+
+        rxn = Reactions.ReactionFromSmarts(f'{reaction}', useSmiles=True)
         loop = asyncio.get_running_loop()
-        img = await loop.run_in_executor(None, self.create, rxn)
+        img = await loop.run_in_executor(None, self.create_rxn_image, rxn)
 
         await self.__render(ctx, reaction, img)
