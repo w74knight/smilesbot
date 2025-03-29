@@ -28,6 +28,11 @@ class Smile(object):
 
 
     def loadAtomPalette(self, pallette):
+        if palette:
+            palette = DISCORD_DARK | palette
+        else:
+            palette = DISCORD_DARK
+
         self.opts.setAtomPalette(pallette)
 
     async def __render(self, ctx, title, img):
@@ -77,11 +82,6 @@ class Smile(object):
                 await ctx.send(
                     f"{molecule} is invalid, please try with a different compound ID or check for typos/erros!")
 
-        if palette:
-            palette = DISCORD_DARK | palette
-        else:
-            palette = DISCORD_DARK
-
         self.loadAtomPalette(palette)
 
         mol = Chem.MolFromSmiles(molecule)
@@ -95,11 +95,6 @@ class Smile(object):
         if not self.__is_valid_smarts(reaction):
             await ctx.send(
                 f"{reaction} is an invalid reaction, please check for typos/erros!")
-
-        if palette:
-            palette = DISCORD_DARK | palette
-        else:
-            palette = DISCORD_DARK
 
         self.loadAtomPalette(palette)
 
