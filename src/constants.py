@@ -4,7 +4,7 @@ from dotenv import load_dotenv, find_dotenv
 from util import smile_rgb
 
 # load sensitive data .env
-load_dotenv(find_dotenv("env"))
+load_dotenv()
 
 
 # set sensitive data from .env as variables
