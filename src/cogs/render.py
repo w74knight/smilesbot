@@ -18,10 +18,8 @@ class RenderCommand(commands.Cog):
         await self.bot.smile.render_molecule(ctx, mlcl, str(ctx.guild.id), highlightAtoms=highlightatoms)
 
     @render.command(name="rxn", description="Render a reaction equation.")
-    async def rxn(self, ctx, rxn: str, highlightatoms: str = ""):
-        highlightatoms = tuple(map(int, highlightatoms.split(","))) if highlightatoms else ()
-
-        await self.bot.smile.render_reaction(ctx, rxn, str(ctx.guild.id), highlightAtoms=highlightatoms)
+    async def rxn(self, ctx, rxn: str):
+        await self.bot.smile.render_reaction(ctx, rxn, str(ctx.guild.id))
 
 async def setup(bot):
     await bot.add_cog(RenderCommand(bot))

@@ -1,5 +1,8 @@
 import discord
 from discord.ext import commands
+from db.db import DatabaseHandler
+from rdkit import Chem
+from constants import SMILE_BG
 
 class SettingsCommand(commands.Cog):
     name = "/settings"
@@ -7,23 +10,45 @@ class SettingsCommand(commands.Cog):
 
     def __init__(self, bot):
         self.bot = bot
+        self.periodic_table = Chem.GetPeriodicTable()
+        self.db_handler:DatabaseHandler = self.bot.db_handler
 
     @commands.hybrid_command(name="settings", description="display the current settings for the server.")
     async def settings(self, ctx):
         guild_id = str(ctx.guild.id)
 
-        server_config = self.bot.db_handler.get_server_setting(guild_id)
+        server_config = self.db_handler.get_server_setting(guild_id)
+        render_config = self.db_handler.get_render_option(guild_id)
+        element_colors = self.db_handler.get_element_colors(guild_id)
 
-        if not server_config:
-            self.bot.db_handler.create_server_table(guild_id)
-            server_config = self.bot.db_handler.get_server_setting(guild_id)
+        embed = discord.Embed(title="Settings", color=discord.Color.blue())
 
-        message = "**Settings**\n"
-        print(server_config)
-        for key, value in server_config.items():
-            message += f"- {key}: {value}\n"
+        # Server settings
+        embed.add_field(name="Server Settings", value=" ", inline=False)
+        embed.add_field(name="Prefix", value=server_config.get("prefix", "/"))
+        embed.add_field(name="Auto Smile", value=bool(server_config.get("auto_smile")))
+
+        # Render options
+        bg_color = render_config.get("background_color") or SMILE_BG
+
+        embed.add_field(name="Render Options", value=" ", inline=False)
+        embed.add_field(name="Background Color", value=bg_color)
+        embed.add_field(name="Color Bonds", value=bool(render_config.get("colorBonds")))
+        embed.add_field(name="Include Atom Numbers", value=bool(render_config.get("includeAtomNumbers")), inline=False)
+        embed.add_field(name="No Carbon Symbols", value=bool(render_config.get("noCarbonSymbols")))
+        embed.add_field(name="Wedge Dashed Bonds", value=bool(render_config.get("wedgeDashedBonds")), inline=False)
+
+        atom_colors = ""
+
+        # Element colors
+        for element, color in element_colors.items():
+            element_name = self.periodic_table.GetElementName(element)
+            atom_colors += f"{element_name}: {color}\n"
+
+        if atom_colors:
+            embed.add_field(name="Element Colors", value=atom_colors, inline=False)
         
-        await ctx.send(message)
+        await ctx.send(embed=embed)
 
 async def setup(bot):
     await bot.add_cog(SettingsCommand(bot))

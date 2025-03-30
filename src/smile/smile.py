@@ -8,10 +8,13 @@ import io
 from constants import SMILE_BG, smile_rgb
 from .pallette import DISCORD_DARK
 import functools
+from util import transform_rgb_to_smile
+
+from db.db import DatabaseHandler
 
 class Smile(object):
-    def __init__(self, database_handler):
-        self.db_handler = database_handler
+    def __init__(self, database_handler: DatabaseHandler):
+        self.db_handler:DatabaseHandler = database_handler
 
         self.d2d = Draw.MolDraw2DCairo(-1, -1)
         self.opts = self.d2d.drawOptions()
@@ -52,9 +55,16 @@ class Smile(object):
         self.d2d.ClearDrawing()
 
     def __draw(self, drawFunc, mol, server_id, **drawFuncArgs):
-        bg_color = self.db_handler.get_bgcolor(server_id)
+        bg_color = self.db_handler.render_options.get_bgcolor(server_id)
+        render_options = self.db_handler.get_render_option(server_id)
+
+        # convert rgb to ratio
+        bg_color = tuple(c / 255 for c in bg_color)
+        
         self.opts.setBackgroundColour(bg_color)
         self.opts.setHighlightColour((0, 0, 1.0, 0.1))
+        for key, value in render_options.items():
+            setattr(self.opts, key, bool(value))
 
         self.loadAtomPalette(server_id)
 
@@ -67,8 +77,9 @@ class Smile(object):
         return bio
 
     def loadAtomPalette(self, server_id):
-        pallette = self.db_handler.get_element_colors(server_id)
+        pallette = self.db_handler.element_colors.get_element_colors(server_id)
         if pallette:
+            pallette = transform_rgb_to_smile(pallette)
             pallette = DISCORD_DARK | pallette
         else:
             pallette = DISCORD_DARK

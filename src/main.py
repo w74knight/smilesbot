@@ -38,7 +38,6 @@ class Bot(commands.Bot):
             return
         
         settings = self.db_handler.get_server_setting(str(message.guild.id))
-
         if bool(settings.get('auto_smile', 0)) and (match := AUTO_DETECT_PATTERN.search(message.content)):
             if ">>" in message.content:
                 await self.smile.render_reaction(message.channel, match.group(1), str(message.guild.id))
