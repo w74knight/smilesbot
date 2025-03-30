@@ -1,6 +1,7 @@
 import discord
 from discord.ext import commands
 from rdkit import Chem
+from util import rgb_to_hex
 
 class SetCommand(commands.Cog):
     name = "/set"
@@ -27,8 +28,7 @@ class SetCommand(commands.Cog):
     @set.command(name="color", description="Set the rgb color for an element when rendering.")
     async def color(self, ctx, element: int, color: str):
         if element < 0 or element > 118:
-            await ctx.send("Invalid element number. Must be between 0 and 118.")
-            return
+            return await ctx.send("Invalid element number. Must be between 0 and 118.")
 
         # Convert color from '255 255 255' to '#FFFFFF'
         rgb = tuple(map(int, color.split(',')))
@@ -43,7 +43,26 @@ class SetCommand(commands.Cog):
         )
         embed.add_field(name="Element", value=self.pt.GetElementName(element))
         embed.add_field(name="Color", value=hex_color)
-        embed.set_thumbnail(url=f"https://dummyimage.com/100x100/{hex_color[1:]}/ffffff")
+        embed.set_thumbnail(url=f"https://dummyimage.com/250/{hex_color}/ffffff")
+
+        await ctx.send(embed=embed)
+
+    @set.command(name="bgcolor", description="Set the background color for rendering.")
+    async def bgcolor(self, ctx, color: str):
+        # Convert color from '255 255 255' to '#FFFFFF'
+        rgb = tuple(map(int, color.split(',')))
+        hex_color = rgb_to_hex(rgb)
+
+        self.bot.db_handler.set_bgcolor(str(ctx.guild.id), color)
+
+        # Create an embed to display the color
+        embed = discord.Embed(
+            title=f"Background color set to {hex_color}",
+            color=discord.Color.from_rgb(*rgb)
+        )
+        embed.add_field(name="Background Color", value=hex_color)
+        print(hex_color)
+        embed.set_thumbnail(url=f"https://dummyimage.com/250/{hex_color}/ffffff&text=Background")
 
         await ctx.send(embed=embed)
 
