@@ -12,14 +12,16 @@ class RenderCommand(commands.Cog):
         pass
 
     @render.command(name="mlcl", description="Render a molecule.")
-    async def mlcl(self, ctx, mlcl: str):
-        palette = self.bot.db_handler.get_element_colors(str(ctx.guild.id))
-        await self.bot.smile.render_molecule(ctx, mlcl, palette)
+    async def mlcl(self, ctx, mlcl: str, highlightatoms: str = ""):
+        highlightatoms = tuple(map(int, highlightatoms.split(","))) if highlightatoms else ()
+
+        await self.bot.smile.render_molecule(ctx, mlcl, str(ctx.guild.id), highlightAtoms=highlightatoms)
 
     @render.command(name="rxn", description="Render a reaction equation.")
-    async def rxn(self, ctx, rxn: str):
-        palette = self.bot.db_handler.get_element_colors(str(ctx.guild.id))
-        await self.bot.smile.render_reaction(ctx, rxn, palette)
+    async def rxn(self, ctx, rxn: str, highlightatoms: str = ""):
+        highlightatoms = tuple(map(int, highlightatoms.split(","))) if highlightatoms else ()
+
+        await self.bot.smile.render_reaction(ctx, rxn, str(ctx.guild.id), highlightAtoms=highlightatoms)
 
 async def setup(bot):
     await bot.add_cog(RenderCommand(bot))

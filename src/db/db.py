@@ -1,8 +1,9 @@
 import sqlite3
+from constants import SMILE_BG
 
 class DatabaseHandler:
     def __init__(self, db_name='database.db'):
-        self.connection = sqlite3.connect(db_name)
+        self.connection = sqlite3.connect(db_name, check_same_thread=False)
         self.connection.row_factory = sqlite3.Row
         self.cursor = self.connection.cursor()
         self.create_table()
@@ -23,23 +24,48 @@ class DatabaseHandler:
                 PRIMARY KEY (server_id, element)
             )
         ''')
+        self.cursor.execute('''
+            CREATE TABLE IF NOT EXISTS render_options (
+                server_id TEXT PRIMARY KEY,
+                background_color TEXT,
+                highlight_by_reactant BOOLEAN
+            )
+        ''')
         self.connection.commit()
 
-    def set_server_setting(self, server_id, prefix):
+    def set_bgcolor(self, server_id, color):
         self.cursor.execute('''
-            INSERT INTO server_settings (server_id, prefix)
+            INSERT INTO render_options (server_id, background_color)
             VALUES (?, ?)
             ON CONFLICT(server_id) DO UPDATE SET
-            prefix=excluded.prefix
-        ''', (server_id, prefix))
+            background_color=excluded.background_color
+        ''', (server_id, color))
         self.connection.commit()
 
-    def update_server_setting(self, server_id, key, value):
-        self.cursor.execute(f'''
-            UPDATE server_settings
-            SET {key}=?
-            WHERE server_id=?
-        ''', (value, server_id))
+    def get_bgcolor(self, server_id):
+        self.cursor.execute('''
+            SELECT background_color FROM render_options WHERE server_id=?
+        ''', (server_id,))
+        result = self.cursor.fetchone()
+        return tuple(map(lambda x: int(x) / 255, result["background_color"].split(','))) if result else SMILE_BG
+
+    def get_render_option(self, server_id):
+        self.cursor.execute('''
+            SELECT * FROM render_options WHERE server_id=?
+        ''', (server_id,))
+        result = self.cursor.fetchone()
+        return dict(result) if result else {}
+
+    def set_server_setting(self, server_id, key, value):
+        query = f'''
+            INSERT INTO server_settings (server_id, {key})
+            VALUES (?, ?)
+            ON CONFLICT(server_id) DO UPDATE SET
+            {key}=excluded.{key}
+        '''
+
+        # Execute the query with the server_id and value
+        self.cursor.execute(query, (server_id, value))
         self.connection.commit()
 
     def get_server_setting(self, server_id):

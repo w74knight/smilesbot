@@ -15,7 +15,7 @@ class Bot(commands.Bot):
         self.help_command = None
 
         self.db_handler = DatabaseHandler()
-        self.smile = Smile()
+        self.smile = Smile(self.db_handler)
 
     async def on_ready(self):
         await self.change_presence(
@@ -38,10 +38,24 @@ class Bot(commands.Bot):
             return
         
         settings = self.db_handler.get_server_setting(str(message.guild.id))
-        if settings.get('auto_smile', False) and (match := AUTO_DETECT_PATTERN.search(message.content)):
-            await self.smile.render_molecule(message.channel, match.group(1))
+
+        if bool(settings.get('auto_smile', 0)) and (match := AUTO_DETECT_PATTERN.search(message.content)):
+            if ">>" in message.content:
+                await self.smile.render_reaction(message.channel, match.group(1), str(message.guild.id))
+            else:
+                await self.smile.render_molecule(message.channel, match.group(1), str(message.guild.id))
 
         await self.process_commands(message)
+
+    async def on_raw_reaction_add(self, payload):
+        if payload.user_id == self.user.id:
+            return
+
+        if payload.emoji.name == "❌":
+            channel = self.get_channel(payload.channel_id)
+            message = await channel.fetch_message(payload.message_id)
+            if message.author.id == self.user.id:
+                return await message.delete()
 
     async def close(self):
         self.db_handler.close()

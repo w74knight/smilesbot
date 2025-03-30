@@ -5,14 +5,26 @@ import asyncio
 import cirpy
 import discord
 import io
-from constants import SMILE_BG
+from constants import SMILE_BG, smile_rgb
 from .pallette import DISCORD_DARK
+import functools
 
 class Smile(object):
-    def __init__(self):
+    def __init__(self, database_handler):
+        self.db_handler = database_handler
+
         self.d2d = Draw.MolDraw2DCairo(-1, -1)
         self.opts = self.d2d.drawOptions()
-        self.opts.setBackgroundColour(SMILE_BG)
+        self.opts.setBackgroundColour(smile_rgb(*SMILE_BG))
+        self.opts.drawMolsSameScale = False
+
+        self.opts.scalingFactor = 50
+        self.opts.fixedFontSize = 20
+        self.opts.bondLineWidth = 2.
+
+        # rxn options
+        self.opts.setSymbolColour((1, 1, 1))
+        self.opts.setAnnotationColour((1,1,1))
 
     def __is_valid_smiles(self, smiles: str):
         try:
@@ -26,52 +38,64 @@ class Smile(object):
         except:
             return False
 
+    async def __render(self, ctx, mlcl, img):
+        embed = discord.Embed(
+            title=f'Render Complete!',
+            description=f"{mlcl}"
+        )
+        embed.set_image(url="attachment://molecule.png")
 
-    def loadAtomPalette(self, pallette):
-        if palette:
-            palette = DISCORD_DARK | palette
+        sent_message = await ctx.send(embed=embed, file=discord.File(img, filename="molecule.png"))
+        
+        await sent_message.add_reaction("❌")
+
+        self.d2d.ClearDrawing()
+
+    def __draw(self, drawFunc, mol, server_id, **drawFuncArgs):
+        bg_color = self.db_handler.get_bgcolor(server_id)
+        self.opts.setBackgroundColour(bg_color)
+        self.opts.setHighlightColour((0, 0, 1.0, 0.1))
+
+        self.loadAtomPalette(server_id)
+
+        drawFunc(mol, **drawFuncArgs)
+
+        self.d2d.FinishDrawing()
+
+        bio = io.BytesIO(self.d2d.GetDrawingText())
+        bio.seek(0)
+        return bio
+
+    def loadAtomPalette(self, server_id):
+        pallette = self.db_handler.get_element_colors(server_id)
+        if pallette:
+            pallette = DISCORD_DARK | pallette
         else:
-            palette = DISCORD_DARK
+            pallette = DISCORD_DARK
 
         self.opts.setAtomPalette(pallette)
 
-    async def __render(self, ctx, title, img):
-        embed = discord.Embed(title=f"`{title}`")
-        embed.set_image(url="attachment://molecule.png")
-        await ctx.send(embed=embed, file=discord.File(img, filename="molecule.png"))
-        self.d2d.ClearDrawing()
+    def create_molecule_image(self, mol, server_id, **drawFuncArgs):
+        # not sure why this is needed, but otherwise it'll error
+        self.d2d = Draw.MolDraw2DCairo(-1, -1)
+        self.opts = self.d2d.drawOptions()
 
-    def create_molecule_image(self, mol):
         try:
             Chem.Kekulize(mol, clearAromaticFlags=True)
         except:
             print("Kekulization failed, skipping.")
-        self.opts.drawMolsSameScale = False
-        self.opts.scalingFactor = 50
-        self.opts.fixedFontSize = 20
-        self.opts.bondLineWidth = 2.
-        self.opts.setBackgroundColour(SMILE_BG)
-        self.d2d.DrawMolecule(mol)
-        self.d2d.FinishDrawing()
-        bio = io.BytesIO(self.d2d.GetDrawingText())
-        bio.seek(0)
-        return bio
+    
+        return self.__draw(self.d2d.DrawMolecule, mol, server_id, **drawFuncArgs)
 
-    def create_rxn_image(self, rxn):
-        self.opts.drawMolsSameScale = False
-        self.opts.scalingFactor = 50
-        self.opts.fixedFontSize = 20
-        self.opts.bondLineWidth = 2.
-        self.opts.setBackgroundColour(SMILE_BG)
-        self.opts.setSymbolColour((1, 1, 1))
-        self.opts.setAnnotationColour((1,1,1))
-        self.d2d.DrawReaction(rxn)
-        self.d2d.FinishDrawing()
-        bio = io.BytesIO(self.d2d.GetDrawingText())
-        bio.seek(0)
-        return bio
+    def create_rxn_image(self, rxn, server_id, **drawFuncArgs):
+        # not sure why this is needed, but otherwise it'll error
+        self.d2d = Draw.MolDraw2DCairo(-1, -1)
+        self.opts = self.d2d.drawOptions()
 
-    async def render_molecule(self, ctx, molecule, palette):
+
+        return self.__draw(self.d2d.DrawReaction, rxn, server_id, **drawFuncArgs)
+
+    async def render_molecule(self, ctx, molecule, server_id, **drawFuncArgs):
         molecule = molecule.strip()
 
         if not self.__is_valid_smiles(molecule):
@@ -82,24 +106,35 @@ class Smile(object):
                 await ctx.send(
                     f"{molecule} is invalid, please try with a different compound ID or check for typos/erros!")
 
-        self.loadAtomPalette(palette)
-
         mol = Chem.MolFromSmiles(molecule)
         loop = asyncio.get_running_loop()
-        img = await loop.run_in_executor(None, self.create_molecule_image, mol)
+        img = await loop.run_in_executor(
+            None,
+            functools.partial(
+                self.create_molecule_image,
+                mol,
+                server_id, **drawFuncArgs
+            )
+        )
 
         await self.__render(ctx, molecule, img)
 
-    async def render_reaction(self, ctx, reaction, palette):
+    async def render_reaction(self, ctx, reaction, server_id, **drawFuncArgs):
         reaction = reaction.strip()
         if not self.__is_valid_smarts(reaction):
             await ctx.send(
-                f"{reaction} is an invalid reaction, please check for typos/erros!")
-
-        self.loadAtomPalette(palette)
+                f"{reaction} is an invalid reaction, please check for typos/erros!"
+            )
 
         rxn = Reactions.ReactionFromSmarts(f'{reaction}', useSmiles=True)
         loop = asyncio.get_running_loop()
-        img = await loop.run_in_executor(None, self.create_rxn_image, rxn)
+        img = await loop.run_in_executor(
+            None,
+            functools.partial(
+                self.create_rxn_image,
+                rxn,
+                server_id, **drawFuncArgs
+            )
+        )
 
         await self.__render(ctx, reaction, img)

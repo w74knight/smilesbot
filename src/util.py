@@ -7,3 +7,6 @@ def get_prefix(bot, message):
 
 def smile_rgb(r: int, g: int, b: int):
     return (r/255, g/255, b/255)
+
+def rgb_to_hex(rgb):
+    return '{:02x}{:02x}{:02x}'.format(*rgb)

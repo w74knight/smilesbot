@@ -2,9 +2,6 @@ import discord
 from discord.ext import commands
 from rdkit import Chem
 
-def rgb_to_hex(rgb):
-    return '{:02x}{:02x}{:02x}'.format(*rgb)
-
 class SetCommand(commands.Cog):
     name = "/set"
     description = "Set server settings."
@@ -21,7 +18,7 @@ class SetCommand(commands.Cog):
     @set.command(name="prefix", description="Set a custom prefix for the server.")
     async def prefix(self, ctx, prefix: str):
         if ctx.author.guild_permissions.administrator:
-            self.bot.db_handler.set_server_setting(str(ctx.guild.id), prefix)
+            self.bot.db_handler.set_server_setting(str(ctx.guild.id), "prefix", prefix)
             self.bot.command_prefix = prefix
             return await ctx.send(f"Prefix set to: {prefix}")
         
