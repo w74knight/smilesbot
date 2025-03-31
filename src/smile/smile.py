@@ -171,7 +171,7 @@ class Smile(object):
         return self.__draw(self.d2d.DrawReaction, rxn, server_id, **drawFuncArgs)
 
     async def render_molecule(self, ctx, molecule, server_id, legends, **drawFuncArgs) -> None:
-        self.logger.info(f"smile.render_molecule({ctx}, {molecule}, {server_id}, {legends})")
+        self.logger.info(f"smile.render_molecule(ctx, {molecule}, {server_id}, {legends})")
 
         molecules = [m.strip() for m in molecule.split(",")]
         mol_objects = []
@@ -214,7 +214,7 @@ class Smile(object):
 
 
     async def render_reaction(self, ctx, reaction, server_id) -> None:
-        self.logger.info(f"smile.render_reaction({ctx}, {reaction}, {server_id})")
+        self.logger.info(f"smile.render_reaction(ctx, {reaction}, {server_id})")
 
         reaction = reaction.strip()
         if not self.__is_valid_smarts(reaction):

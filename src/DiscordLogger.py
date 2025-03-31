@@ -1,33 +1,65 @@
 import logging
-import discord
 import aiohttp
+import discord
 from constants import WEBHOOK_URL
-import asyncio
+from discord.ext import tasks
+import threading
 
 class DiscordLoggerHandler(logging.Handler):
-    def __init__(self, level=logging.NOTSET):
+    def __init__(self, bot, level=logging.NOTSET):
         super().__init__(level)
         self.webhook_url = WEBHOOK_URL
+        self.log_queue = []
+        self.bot = bot
+        self.max_queue_size = 1000
 
-    async def send_log(self, message):
-        async with aiohttp.ClientSession() as session:
-            webhook = discord.Webhook.from_url(self.webhook_url, session=session)
+    async def send_log(self, message, session):
+        webhook = discord.Webhook.from_url(self.webhook_url, session=session)
+        try:
             await webhook.send(message)
+        except Exception as e:
+            print(f"Failed to send log: {e}")
 
     def emit(self, record):
-        """Format the log record and send it asynchronously."""
         try:
-            # Get the log message in a readable format
             log_message = self.format(record)
+            if len(self.log_queue) >= self.max_queue_size:
+                self.log_queue.pop(0)
+            self.log_queue.append(log_message)
 
-            # Use the running event loop if available, or create a new one
-            loop = asyncio.get_event_loop()
-
-            if loop.is_running():
-                # Use create_task to run the async function without blocking the event loop
-                loop.create_task(self.send_log(log_message))
-            else:
-                # If no event loop is running, start one
-                asyncio.run(self.send_log(log_message))
+            if not self.send_logs.is_running():
+                self.send_logs.start()
         except Exception as e:
+            print(f"Log emission failed: {e}")
             self.handleError(record)
+
+    @tasks.loop(seconds=10.0)
+    async def send_logs(self):
+        try:
+            if not self.log_queue:
+                return
+
+            async with aiohttp.ClientSession() as session:
+                while self.log_queue:  # Process until queue is empty
+                    batch = self._get_batch()
+                    if batch:  # In case all messages were too long
+                        await self.send_log(batch, session)
+        except Exception as e:
+            print(f"Error in send_logs task: {e}")
+
+    @send_logs.before_loop
+    async def before_send_logs(self):
+        await self.bot.wait_until_ready()
+
+    def _get_batch(self):
+        batch = ""
+        while self.log_queue:
+            next_log = self.log_queue[0]
+            if len(batch) + len(next_log) + 1 > 2000:
+                break
+            batch += self.log_queue.pop(0) + "\n"
+        return batch.strip()
+
+    def close(self):
+        self.send_logs.cancel()
+        super().close()

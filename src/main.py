@@ -8,6 +8,7 @@ from constants import AUTO_DETECT_PATTERN, OWNER_ID, TOKEN, NAME
 from db.db import DatabaseHandler
 from smile.smile import Smile
 from util import get_prefix
+import asyncio
 
 from DiscordLogger import DiscordLoggerHandler
 
@@ -18,14 +19,11 @@ class SmileBot(commands.Bot):
         self.help_command = None
         self.logger = logging.getLogger(NAME)
 
-        self.db_handler:DatabaseHandler = None
-        self.smile:Smile = None
+        self.db_handler:DatabaseHandler = DatabaseHandler()
+        self.smile:Smile = Smile(self.db_handler)
 
     async def on_ready(self):
         self.logger.info("SmileBot initialized.")
-
-        self.db_handler = DatabaseHandler()
-        self.smile = Smile(self.db_handler)
 
         await self.change_presence(
             status=discord.Status.online, 
@@ -87,6 +85,13 @@ if __name__ == "__main__":
     dt_fmt = '%Y-%m-%d %H:%M:%S'
     formatter = logging.Formatter('[{asctime}] [{levelname:<8}] {module}: {message}', dt_fmt, style='{')
 
+    intents = discord.Intents.default()
+    intents.message_content = True
+    smilebot = SmileBot(
+        command_prefix=get_prefix,
+        intents=intents
+    )
+
     # Handlers
     file_handler = logging.handlers.RotatingFileHandler(
         filename='smilebot.log',
@@ -94,7 +99,7 @@ if __name__ == "__main__":
         maxBytes=32 * 1024 * 1024,  # 32 MiB
         backupCount=5,  # Rotate through 5 files
     )
-    discord_handler = DiscordLoggerHandler(level=logging.INFO)
+    discord_handler = DiscordLoggerHandler(level=logging.INFO, bot=smilebot)
     console_handler = logging.StreamHandler()
 
     # Set formatter for handlers
@@ -111,9 +116,5 @@ if __name__ == "__main__":
     discord_logger.addHandler(file_handler)
     discord_logger.addHandler(discord_handler)
     discord_logger.addHandler(console_handler)
-
-    intents = discord.Intents.default()
-    intents.message_content = True
-    smilebot = SmileBot(command_prefix=get_prefix, intents=intents)
 
     smilebot.run(TOKEN, log_handler=None)
