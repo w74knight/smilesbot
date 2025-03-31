@@ -4,7 +4,7 @@ import re
 from dotenv import load_dotenv
 
 # load sensitive data .env
-load_dotenv("env")
+load_dotenv()
 
 
 # set sensitive data from .env as variables
