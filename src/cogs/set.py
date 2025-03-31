@@ -70,30 +70,41 @@ class SetCommand(commands.Cog):
 
         await ctx.send(embed=embed)
 
-    @admin_only()
-    @set.command(name="colorbonds", description="Set whether to color bonds in the render.")
-    async def colorbonds(self, ctx, option: bool):
-        self.db_handler.render_options.set(str(ctx.guild.id), "colorBonds", option)
-        await ctx.send(f"Color bonds set to: {option}")
+    def __boolOptionHelper(self, ctx, option_name):
+        prev_value = self.db_handler.render_options.get(str(ctx.guild.id), option_name)
+        self.db_handler.render_options.set(str(ctx.guild.id), option_name, not prev_value)
+
+        return not prev_value
 
     @admin_only()
-    @set.command(name="atomnumbers", description="Set whether to include atom numbers in the render.")
-    async def atomnumbers(self, ctx, option: bool):
-        self.db_handler.render_options.set(str(ctx.guild.id), "includeAtomNumbers", option)
-        await ctx.send(f"Include atom numbers set to: {option}")
+    @set.command(name="include_atom_numbers", description="Set whether to include atom numbers in the rendering.")
+    async def include_atom_numbers(self, ctx):
+        value = self.__boolOptionHelper(ctx, "includeAtomNumbers")
+        await ctx.send(f"Include atom numbers set to: {value}")
 
     @admin_only()
-    @set.command(name="nocarbon", description="Set whether to show carbon symbols in the render.")
-    async def nocarbon(self, ctx, option: bool):
-        self.db_handler.render_options.set(str(ctx.guild.id), "noCarbonSymbols", option)
-        await ctx.send(f"No carbon symbols set to: {option}")
+    @set.command(name="add_stereo_annotations", description="Set whether to add stereo annotations in the rendering.")
+    async def add_stereo_annotations(self, ctx):
+        value = self.__boolOptionHelper(ctx, "addStereoAnnotations")
+        await ctx.send(f"Add stereo annotations set to: {value}")
 
     @admin_only()
-    @set.command(name="wedgedashed", description="Set whether to use wedge dashed bonds in the render.")
-    async def wedgedashed(self, ctx, option: bool):
-        self.db_handler.render_options.set(str(ctx.guild.id), "wedgeDashedBonds", option)
-        await ctx.send(f"Wedge dashed bonds set to: {option}")
+    @set.command(name="explicit_methyl", description="Set whether to include explicit methyl groups in the rendering.")
+    async def explicit_methyl(self, ctx):
+        value = self.__boolOptionHelper(ctx, "explicitMethyl")
+        await ctx.send(f"Explicit methyl groups set to: {value}")
 
+    @admin_only()
+    @set.command(name="atom_label_deuterium_tritium", description="Set whether to label deuterium and tritium atoms.")
+    async def atom_label_deuterium_tritium(self, ctx):
+        value = self.__boolOptionHelper(ctx, "atomLabelDeuteriumTritium")
+        await ctx.send(f"Label deuterium and tritium atoms set to: {value}")
+
+    @admin_only()
+    @set.command(name="dummies_are_attachments", description="Set whether dummies are attachments.")
+    async def dummies_are_attachments(self, ctx):
+        value = self.__boolOptionHelper(ctx, "dummiesAreAttachments")
+        await ctx.send(f"Dummies are attachments set to: {value}")
 
 async def setup(bot):
     await bot.add_cog(SetCommand(bot))

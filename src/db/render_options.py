@@ -3,10 +3,10 @@ import sqlite3
 from constants import SMILE_BG
 
 DEFAULT_RENDER_OPTIONS = {
-    "colorBonds": False,
     "includeAtomNumbers": False,
-    "noCarbonSymbols": False,
-    "wedgeDashedBonds": False
+    "addStereoAnnotations": False,
+    "explicitMethyl": False,
+    "atomLabelDeuteriumTritium": False
 }
 
 class RenderOptions:
@@ -20,10 +20,11 @@ class RenderOptions:
             CREATE TABLE IF NOT EXISTS render_options (
                 server_id TEXT PRIMARY KEY,
                 background_color TEXT,
-                colorBonds BOOLEAN,
                 includeAtomNumbers BOOLEAN,
-                noCarbonSymbols BOOLEAN,
-                wedgeDashedBonds BOOLEAN
+                addStereoAnnotations BOOLEAN,
+                explicitMethyl BOOLEAN,
+                atomLabelDeuteriumTritium BOOLEAN,
+                dummiesAreAttachments BOOLEAN
             )
         ''')
         self.connection.commit()
@@ -34,7 +35,7 @@ class RenderOptions:
             SELECT * FROM render_options WHERE server_id=?
         ''', (server_id,))
         result = self.cursor.fetchone()
-        return dict(result)
+        return dict(result) if result else DEFAULT_RENDER_OPTIONS
 
     # Setter/Getter for background color
     def set_bgcolor(self, server_id, color):

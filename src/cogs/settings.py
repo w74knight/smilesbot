@@ -34,15 +34,14 @@ class SettingsCommand(commands.Cog):
         bg_color = render_config.get("background_color") or SMILE_BG
 
         embed.add_field(name="Render Options", value=" ", inline=False)
-        embed.add_field(name="Background Color", value=bg_color)
-        embed.add_field(name="Color Bonds", value=bool(render_config.get("colorBonds")))
-        embed.add_field(name="Include Atom Numbers", value=bool(render_config.get("includeAtomNumbers")), inline=False)
-        embed.add_field(name="No Carbon Symbols", value=bool(render_config.get("noCarbonSymbols")))
-        embed.add_field(name="Wedge Dashed Bonds", value=bool(render_config.get("wedgeDashedBonds")), inline=False)
+        embed.add_field(name="Background Color", value=bg_color, inline=False)
+        embed.add_field(name="Include Atom Numbers", value=bool(render_config.get("includeAtomNumbers")))
+        embed.add_field(name="Add Stereo Annotations", value=bool(render_config.get("addStereoAnnotations")))
+        embed.add_field(name="Explicit Methyl", value=bool(render_config.get("explicitMethyl")), inline=False)
+        embed.add_field(name="Atom Label Deuterium Tritium", value=bool(render_config.get("atomLabelDeuteriumTritium")))
+        embed.add_field(name="dummiesAreAttachments", value=bool(render_config.get("dummiesAreAttachments")), inline=False)
 
         atom_colors = ""
-
-        # Element colors
         for element, color in element_colors.items():
             element_name = self.periodic_table.GetElementName(element)
             atom_colors += f"{element_name}: {color}\n"

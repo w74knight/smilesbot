@@ -8,9 +8,9 @@ from rdkit.Chem import AllChem as Chem
 from rdkit.Chem import Draw
 from rdkit.Chem import rdChemReactions as Reactions
 
-from constants import SMILE_BG, smile_rgb
+from constants import SMILE_BG
 from db.db import DatabaseHandler
-from util import transform_rgb_to_smile
+from util import transform_rgb_to_smile, smile_rgb
 
 from .pallette import DISCORD_DARK
 
@@ -56,6 +56,11 @@ class Smile(object):
         await sent_message.add_reaction("❌")
 
         self.d2d.ClearDrawing()
+    
+    def __addAtomNumbers(self, mol):
+        for atom in mol.GetAtoms():
+            i = atom.GetIdx()
+            self.opts.atomLabels[i] = str(i)
 
     def __draw(self, drawFunc, mol, server_id, **drawFuncArgs):
         bg_color = self.db_handler.render_options.get_bgcolor(server_id)
@@ -66,13 +71,17 @@ class Smile(object):
         
         self.opts.setBackgroundColour(bg_color)
         self.opts.setHighlightColour((0, 0, 1.0, 0.1))
+        
+        if (render_options.get("includeAtomNumbers")):
+            self.__addAtomNumbers(mol)
+            del render_options["includeAtomNumbers"]
+
         for key, value in render_options.items():
             setattr(self.opts, key, bool(value))
 
         self.loadAtomPalette(server_id)
 
         drawFunc(mol, **drawFuncArgs)
-
         self.d2d.FinishDrawing()
 
         bio = io.BytesIO(self.d2d.GetDrawingText())
