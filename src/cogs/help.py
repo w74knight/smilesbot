@@ -1,12 +1,20 @@
+from logging import Logger, getLogger
+
 import discord
 from discord.ext import commands
+
+from constants import NAME
+
 
 class HelpCommand(commands.Cog):
     name = "/help"
     description = "Show this help menu."
 
     def __init__(self, bot):
-        self.bot = bot
+        self.bot:commands.Bot = bot
+        self.logger:Logger = getLogger(NAME)
+
+        self.logger.info("HelpCommand initialized.")
 
     @commands.hybrid_command(name="help", description="Displays help menu")
     async def help(self, ctx):

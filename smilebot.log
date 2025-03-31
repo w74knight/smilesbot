@@ -1,0 +1,488 @@
+[2025-03-31 15:26:10] [WARNING ] discord.client: PyNaCl is not installed, voice will NOT be supported
+[2025-03-31 15:26:10] [INFO    ] discord.client: logging in using static token
+[2025-03-31 15:26:11] [INFO    ] discord.gateway: Shard ID None has connected to Gateway (Session ID: 8520af47203e4caf45a7221439255121).
+[2025-03-31 15:26:40] [WARNING ] discord.client: PyNaCl is not installed, voice will NOT be supported
+[2025-03-31 15:26:40] [INFO    ] discord.client: logging in using static token
+[2025-03-31 15:26:41] [INFO    ] discord.gateway: Shard ID None has connected to Gateway (Session ID: 1a34550b17e82d34a5a059b71d3aac8f).
+[2025-03-31 15:35:46] [INFO    ] discord.gateway: Shard ID None has successfully RESUMED session 1a34550b17e82d34a5a059b71d3aac8f.
+[2025-03-31 15:50:24] [INFO    ] discord.gateway: Shard ID None has successfully RESUMED session 1a34550b17e82d34a5a059b71d3aac8f.
+[2025-03-31 15:54:10] [INFO    ] discord.gateway: Shard ID None has successfully RESUMED session 1a34550b17e82d34a5a059b71d3aac8f.
+[2025-03-31 16:03:16] [WARNING ] discord.gateway: Shard ID None heartbeat blocked for more than 10 seconds.
+Loop thread traceback (most recent call last):
+  File "c:\Users\Damien\Documents\GitHub\smilesbot\src\main.py", line 92, in <module>
+    backupCount=5,  # Rotate through 5 files
+  File "c:\Users\Damien\Documents\GitHub\smilesbot\.env\Lib\site-packages\discord\client.py", line 906, in run
+    asyncio.run(runner())
+  File "C:\Program Files\Python313\Lib\asyncio\runners.py", line 194, in run
+    return runner.run(main)
+  File "C:\Program Files\Python313\Lib\asyncio\runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+  File "C:\Program Files\Python313\Lib\asyncio\base_events.py", line 707, in run_until_complete
+    self.run_forever()
+  File "C:\Program Files\Python313\Lib\asyncio\base_events.py", line 678, in run_forever
+    self._run_once()
+  File "C:\Program Files\Python313\Lib\asyncio\base_events.py", line 2033, in _run_once
+    handle._run()
+  File "C:\Program Files\Python313\Lib\asyncio\events.py", line 89, in _run
+    self._context.run(self._callback, *self._args)
+  File "c:\Users\Damien\Documents\GitHub\smilesbot\.env\Lib\site-packages\discord\app_commands\tree.py", line 1151, in wrapper
+    await self._call(interaction)
+  File "c:\Users\Damien\Documents\GitHub\smilesbot\.env\Lib\site-packages\discord\app_commands\tree.py", line 1310, in _call
+    await command._invoke_with_namespace(interaction, namespace)
+  File "c:\Users\Damien\Documents\GitHub\smilesbot\.env\Lib\site-packages\discord\ext\commands\hybrid.py", line 450, in _invoke_with_namespace
+    value = await self._do_call(ctx, ctx.kwargs)  # type: ignore
+  File "c:\Users\Damien\Documents\GitHub\smilesbot\.env\Lib\site-packages\discord\app_commands\commands.py", line 857, in _do_call
+    return await self._callback(self.binding, interaction, **params)  # type: ignore
+  File "c:\Users\Damien\Documents\GitHub\smilesbot\src\cogs\render.py", line 18, in mlcl
+    pass
+  File "c:\Users\Damien\Documents\GitHub\smilesbot\src\smile\smile.py", line 180, in render_molecule
+    return
+  File "c:\Users\Damien\Documents\GitHub\smilesbot\.env\Lib\site-packages\cirpy.py", line 192, in resolve
+    results = query(input, representation, resolvers, False, get3d, **kwargs)
+  File "c:\Users\Damien\Documents\GitHub\smilesbot\.env\Lib\site-packages\cirpy.py", line 162, in query
+    tree = request(input, representation, resolvers, get3d, tautomers, **kwargs)
+  File "c:\Users\Damien\Documents\GitHub\smilesbot\.env\Lib\site-packages\cirpy.py", line 95, in request
+    response = urlopen(url)
+  File "C:\Program Files\Python313\Lib\urllib\request.py", line 189, in urlopen
+    return opener.open(url, data, timeout)
+  File "C:\Program Files\Python313\Lib\urllib\request.py", line 489, in open
+    response = self._open(req, data)
+  File "C:\Program Files\Python313\Lib\urllib\request.py", line 506, in _open
+    result = self._call_chain(self.handle_open, protocol, protocol +
+  File "C:\Program Files\Python313\Lib\urllib\request.py", line 466, in _call_chain
+    result = func(*args)
+  File "C:\Program Files\Python313\Lib\urllib\request.py", line 1367, in https_open
+    return self.do_open(http.client.HTTPSConnection, req,
+  File "C:\Program Files\Python313\Lib\urllib\request.py", line 1323, in do_open
+    r = h.getresponse()
+  File "C:\Program Files\Python313\Lib\http\client.py", line 1428, in getresponse
+    response.begin()
+  File "C:\Program Files\Python313\Lib\http\client.py", line 331, in begin
+    version, status, reason = self._read_status()
+  File "C:\Program Files\Python313\Lib\http\client.py", line 292, in _read_status
+    line = str(self.fp.readline(_MAXLINE + 1), "iso-8859-1")
+  File "C:\Program Files\Python313\Lib\socket.py", line 719, in readinto
+    return self._sock.recv_into(b)
+  File "C:\Program Files\Python313\Lib\ssl.py", line 1304, in recv_into
+    return self.read(nbytes, buffer)
+  File "C:\Program Files\Python313\Lib\ssl.py", line 1138, in read
+    return self._sslobj.read(len, buffer)
+
+[2025-03-31 16:03:27] [WARNING ] discord.gateway: Shard ID None heartbeat blocked for more than 20 seconds.
+Loop thread traceback (most recent call last):
+  File "c:\Users\Damien\Documents\GitHub\smilesbot\src\main.py", line 92, in <module>
+    backupCount=5,  # Rotate through 5 files
+  File "c:\Users\Damien\Documents\GitHub\smilesbot\.env\Lib\site-packages\discord\client.py", line 906, in run
+    asyncio.run(runner())
+  File "C:\Program Files\Python313\Lib\asyncio\runners.py", line 194, in run
+    return runner.run(main)
+  File "C:\Program Files\Python313\Lib\asyncio\runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+  File "C:\Program Files\Python313\Lib\asyncio\base_events.py", line 707, in run_until_complete
+    self.run_forever()
+  File "C:\Program Files\Python313\Lib\asyncio\base_events.py", line 678, in run_forever
+    self._run_once()
+  File "C:\Program Files\Python313\Lib\asyncio\base_events.py", line 2033, in _run_once
+    handle._run()
+  File "C:\Program Files\Python313\Lib\asyncio\events.py", line 89, in _run
+    self._context.run(self._callback, *self._args)
+  File "c:\Users\Damien\Documents\GitHub\smilesbot\.env\Lib\site-packages\discord\app_commands\tree.py", line 1151, in wrapper
+    await self._call(interaction)
+  File "c:\Users\Damien\Documents\GitHub\smilesbot\.env\Lib\site-packages\discord\app_commands\tree.py", line 1310, in _call
+    await command._invoke_with_namespace(interaction, namespace)
+  File "c:\Users\Damien\Documents\GitHub\smilesbot\.env\Lib\site-packages\discord\ext\commands\hybrid.py", line 450, in _invoke_with_namespace
+    value = await self._do_call(ctx, ctx.kwargs)  # type: ignore
+  File "c:\Users\Damien\Documents\GitHub\smilesbot\.env\Lib\site-packages\discord\app_commands\commands.py", line 857, in _do_call
+    return await self._callback(self.binding, interaction, **params)  # type: ignore
+  File "c:\Users\Damien\Documents\GitHub\smilesbot\src\cogs\render.py", line 18, in mlcl
+    pass
+  File "c:\Users\Damien\Documents\GitHub\smilesbot\src\smile\smile.py", line 180, in render_molecule
+    return
+  File "c:\Users\Damien\Documents\GitHub\smilesbot\.env\Lib\site-packages\cirpy.py", line 192, in resolve
+    results = query(input, representation, resolvers, False, get3d, **kwargs)
+  File "c:\Users\Damien\Documents\GitHub\smilesbot\.env\Lib\site-packages\cirpy.py", line 162, in query
+    tree = request(input, representation, resolvers, get3d, tautomers, **kwargs)
+  File "c:\Users\Damien\Documents\GitHub\smilesbot\.env\Lib\site-packages\cirpy.py", line 95, in request
+    response = urlopen(url)
+  File "C:\Program Files\Python313\Lib\urllib\request.py", line 189, in urlopen
+    return opener.open(url, data, timeout)
+  File "C:\Program Files\Python313\Lib\urllib\request.py", line 489, in open
+    response = self._open(req, data)
+  File "C:\Program Files\Python313\Lib\urllib\request.py", line 506, in _open
+    result = self._call_chain(self.handle_open, protocol, protocol +
+  File "C:\Program Files\Python313\Lib\urllib\request.py", line 466, in _call_chain
+    result = func(*args)
+  File "C:\Program Files\Python313\Lib\urllib\request.py", line 1367, in https_open
+    return self.do_open(http.client.HTTPSConnection, req,
+  File "C:\Program Files\Python313\Lib\urllib\request.py", line 1323, in do_open
+    r = h.getresponse()
+  File "C:\Program Files\Python313\Lib\http\client.py", line 1428, in getresponse
+    response.begin()
+  File "C:\Program Files\Python313\Lib\http\client.py", line 331, in begin
+    version, status, reason = self._read_status()
+  File "C:\Program Files\Python313\Lib\http\client.py", line 292, in _read_status
+    line = str(self.fp.readline(_MAXLINE + 1), "iso-8859-1")
+  File "C:\Program Files\Python313\Lib\socket.py", line 719, in readinto
+    return self._sock.recv_into(b)
+  File "C:\Program Files\Python313\Lib\ssl.py", line 1304, in recv_into
+    return self.read(nbytes, buffer)
+  File "C:\Program Files\Python313\Lib\ssl.py", line 1138, in read
+    return self._sslobj.read(len, buffer)
+
+[2025-03-31 16:03:37] [WARNING ] discord.gateway: Shard ID None heartbeat blocked for more than 30 seconds.
+Loop thread traceback (most recent call last):
+  File "c:\Users\Damien\Documents\GitHub\smilesbot\src\main.py", line 92, in <module>
+    backupCount=5,  # Rotate through 5 files
+  File "c:\Users\Damien\Documents\GitHub\smilesbot\.env\Lib\site-packages\discord\client.py", line 906, in run
+    asyncio.run(runner())
+  File "C:\Program Files\Python313\Lib\asyncio\runners.py", line 194, in run
+    return runner.run(main)
+  File "C:\Program Files\Python313\Lib\asyncio\runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+  File "C:\Program Files\Python313\Lib\asyncio\base_events.py", line 707, in run_until_complete
+    self.run_forever()
+  File "C:\Program Files\Python313\Lib\asyncio\base_events.py", line 678, in run_forever
+    self._run_once()
+  File "C:\Program Files\Python313\Lib\asyncio\base_events.py", line 2033, in _run_once
+    handle._run()
+  File "C:\Program Files\Python313\Lib\asyncio\events.py", line 89, in _run
+    self._context.run(self._callback, *self._args)
+  File "c:\Users\Damien\Documents\GitHub\smilesbot\.env\Lib\site-packages\discord\app_commands\tree.py", line 1151, in wrapper
+    await self._call(interaction)
+  File "c:\Users\Damien\Documents\GitHub\smilesbot\.env\Lib\site-packages\discord\app_commands\tree.py", line 1310, in _call
+    await command._invoke_with_namespace(interaction, namespace)
+  File "c:\Users\Damien\Documents\GitHub\smilesbot\.env\Lib\site-packages\discord\ext\commands\hybrid.py", line 450, in _invoke_with_namespace
+    value = await self._do_call(ctx, ctx.kwargs)  # type: ignore
+  File "c:\Users\Damien\Documents\GitHub\smilesbot\.env\Lib\site-packages\discord\app_commands\commands.py", line 857, in _do_call
+    return await self._callback(self.binding, interaction, **params)  # type: ignore
+  File "c:\Users\Damien\Documents\GitHub\smilesbot\src\cogs\render.py", line 18, in mlcl
+    pass
+  File "c:\Users\Damien\Documents\GitHub\smilesbot\src\smile\smile.py", line 180, in render_molecule
+    return
+  File "c:\Users\Damien\Documents\GitHub\smilesbot\.env\Lib\site-packages\cirpy.py", line 192, in resolve
+    results = query(input, representation, resolvers, False, get3d, **kwargs)
+  File "c:\Users\Damien\Documents\GitHub\smilesbot\.env\Lib\site-packages\cirpy.py", line 162, in query
+    tree = request(input, representation, resolvers, get3d, tautomers, **kwargs)
+  File "c:\Users\Damien\Documents\GitHub\smilesbot\.env\Lib\site-packages\cirpy.py", line 95, in request
+    response = urlopen(url)
+  File "C:\Program Files\Python313\Lib\urllib\request.py", line 189, in urlopen
+    return opener.open(url, data, timeout)
+  File "C:\Program Files\Python313\Lib\urllib\request.py", line 489, in open
+    response = self._open(req, data)
+  File "C:\Program Files\Python313\Lib\urllib\request.py", line 506, in _open
+    result = self._call_chain(self.handle_open, protocol, protocol +
+  File "C:\Program Files\Python313\Lib\urllib\request.py", line 466, in _call_chain
+    result = func(*args)
+  File "C:\Program Files\Python313\Lib\urllib\request.py", line 1367, in https_open
+    return self.do_open(http.client.HTTPSConnection, req,
+  File "C:\Program Files\Python313\Lib\urllib\request.py", line 1323, in do_open
+    r = h.getresponse()
+  File "C:\Program Files\Python313\Lib\http\client.py", line 1428, in getresponse
+    response.begin()
+  File "C:\Program Files\Python313\Lib\http\client.py", line 331, in begin
+    version, status, reason = self._read_status()
+  File "C:\Program Files\Python313\Lib\http\client.py", line 292, in _read_status
+    line = str(self.fp.readline(_MAXLINE + 1), "iso-8859-1")
+  File "C:\Program Files\Python313\Lib\socket.py", line 719, in readinto
+    return self._sock.recv_into(b)
+  File "C:\Program Files\Python313\Lib\ssl.py", line 1304, in recv_into
+    return self.read(nbytes, buffer)
+  File "C:\Program Files\Python313\Lib\ssl.py", line 1138, in read
+    return self._sslobj.read(len, buffer)
+
+[2025-03-31 16:03:47] [WARNING ] discord.gateway: Shard ID None heartbeat blocked for more than 40 seconds.
+Loop thread traceback (most recent call last):
+  File "c:\Users\Damien\Documents\GitHub\smilesbot\src\main.py", line 92, in <module>
+    backupCount=5,  # Rotate through 5 files
+  File "c:\Users\Damien\Documents\GitHub\smilesbot\.env\Lib\site-packages\discord\client.py", line 906, in run
+    asyncio.run(runner())
+  File "C:\Program Files\Python313\Lib\asyncio\runners.py", line 194, in run
+    return runner.run(main)
+  File "C:\Program Files\Python313\Lib\asyncio\runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+  File "C:\Program Files\Python313\Lib\asyncio\base_events.py", line 707, in run_until_complete
+    self.run_forever()
+  File "C:\Program Files\Python313\Lib\asyncio\base_events.py", line 678, in run_forever
+    self._run_once()
+  File "C:\Program Files\Python313\Lib\asyncio\base_events.py", line 2033, in _run_once
+    handle._run()
+  File "C:\Program Files\Python313\Lib\asyncio\events.py", line 89, in _run
+    self._context.run(self._callback, *self._args)
+  File "c:\Users\Damien\Documents\GitHub\smilesbot\.env\Lib\site-packages\discord\app_commands\tree.py", line 1151, in wrapper
+    await self._call(interaction)
+  File "c:\Users\Damien\Documents\GitHub\smilesbot\.env\Lib\site-packages\discord\app_commands\tree.py", line 1310, in _call
+    await command._invoke_with_namespace(interaction, namespace)
+  File "c:\Users\Damien\Documents\GitHub\smilesbot\.env\Lib\site-packages\discord\ext\commands\hybrid.py", line 450, in _invoke_with_namespace
+    value = await self._do_call(ctx, ctx.kwargs)  # type: ignore
+  File "c:\Users\Damien\Documents\GitHub\smilesbot\.env\Lib\site-packages\discord\app_commands\commands.py", line 857, in _do_call
+    return await self._callback(self.binding, interaction, **params)  # type: ignore
+  File "c:\Users\Damien\Documents\GitHub\smilesbot\src\cogs\render.py", line 18, in mlcl
+    pass
+  File "c:\Users\Damien\Documents\GitHub\smilesbot\src\smile\smile.py", line 180, in render_molecule
+    return
+  File "c:\Users\Damien\Documents\GitHub\smilesbot\.env\Lib\site-packages\cirpy.py", line 192, in resolve
+    results = query(input, representation, resolvers, False, get3d, **kwargs)
+  File "c:\Users\Damien\Documents\GitHub\smilesbot\.env\Lib\site-packages\cirpy.py", line 162, in query
+    tree = request(input, representation, resolvers, get3d, tautomers, **kwargs)
+  File "c:\Users\Damien\Documents\GitHub\smilesbot\.env\Lib\site-packages\cirpy.py", line 95, in request
+    response = urlopen(url)
+  File "C:\Program Files\Python313\Lib\urllib\request.py", line 189, in urlopen
+    return opener.open(url, data, timeout)
+  File "C:\Program Files\Python313\Lib\urllib\request.py", line 489, in open
+    response = self._open(req, data)
+  File "C:\Program Files\Python313\Lib\urllib\request.py", line 506, in _open
+    result = self._call_chain(self.handle_open, protocol, protocol +
+  File "C:\Program Files\Python313\Lib\urllib\request.py", line 466, in _call_chain
+    result = func(*args)
+  File "C:\Program Files\Python313\Lib\urllib\request.py", line 1367, in https_open
+    return self.do_open(http.client.HTTPSConnection, req,
+  File "C:\Program Files\Python313\Lib\urllib\request.py", line 1323, in do_open
+    r = h.getresponse()
+  File "C:\Program Files\Python313\Lib\http\client.py", line 1428, in getresponse
+    response.begin()
+  File "C:\Program Files\Python313\Lib\http\client.py", line 331, in begin
+    version, status, reason = self._read_status()
+  File "C:\Program Files\Python313\Lib\http\client.py", line 292, in _read_status
+    line = str(self.fp.readline(_MAXLINE + 1), "iso-8859-1")
+  File "C:\Program Files\Python313\Lib\socket.py", line 719, in readinto
+    return self._sock.recv_into(b)
+  File "C:\Program Files\Python313\Lib\ssl.py", line 1304, in recv_into
+    return self.read(nbytes, buffer)
+  File "C:\Program Files\Python313\Lib\ssl.py", line 1138, in read
+    return self._sslobj.read(len, buffer)
+
+[2025-03-31 16:03:57] [WARNING ] discord.gateway: Shard ID None heartbeat blocked for more than 50 seconds.
+Loop thread traceback (most recent call last):
+  File "c:\Users\Damien\Documents\GitHub\smilesbot\src\main.py", line 92, in <module>
+    backupCount=5,  # Rotate through 5 files
+  File "c:\Users\Damien\Documents\GitHub\smilesbot\.env\Lib\site-packages\discord\client.py", line 906, in run
+    asyncio.run(runner())
+  File "C:\Program Files\Python313\Lib\asyncio\runners.py", line 194, in run
+    return runner.run(main)
+  File "C:\Program Files\Python313\Lib\asyncio\runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+  File "C:\Program Files\Python313\Lib\asyncio\base_events.py", line 707, in run_until_complete
+    self.run_forever()
+  File "C:\Program Files\Python313\Lib\asyncio\base_events.py", line 678, in run_forever
+    self._run_once()
+  File "C:\Program Files\Python313\Lib\asyncio\base_events.py", line 2033, in _run_once
+    handle._run()
+  File "C:\Program Files\Python313\Lib\asyncio\events.py", line 89, in _run
+    self._context.run(self._callback, *self._args)
+  File "c:\Users\Damien\Documents\GitHub\smilesbot\.env\Lib\site-packages\discord\app_commands\tree.py", line 1151, in wrapper
+    await self._call(interaction)
+  File "c:\Users\Damien\Documents\GitHub\smilesbot\.env\Lib\site-packages\discord\app_commands\tree.py", line 1310, in _call
+    await command._invoke_with_namespace(interaction, namespace)
+  File "c:\Users\Damien\Documents\GitHub\smilesbot\.env\Lib\site-packages\discord\ext\commands\hybrid.py", line 450, in _invoke_with_namespace
+    value = await self._do_call(ctx, ctx.kwargs)  # type: ignore
+  File "c:\Users\Damien\Documents\GitHub\smilesbot\.env\Lib\site-packages\discord\app_commands\commands.py", line 857, in _do_call
+    return await self._callback(self.binding, interaction, **params)  # type: ignore
+  File "c:\Users\Damien\Documents\GitHub\smilesbot\src\cogs\render.py", line 18, in mlcl
+    pass
+  File "c:\Users\Damien\Documents\GitHub\smilesbot\src\smile\smile.py", line 180, in render_molecule
+    return
+  File "c:\Users\Damien\Documents\GitHub\smilesbot\.env\Lib\site-packages\cirpy.py", line 192, in resolve
+    results = query(input, representation, resolvers, False, get3d, **kwargs)
+  File "c:\Users\Damien\Documents\GitHub\smilesbot\.env\Lib\site-packages\cirpy.py", line 162, in query
+    tree = request(input, representation, resolvers, get3d, tautomers, **kwargs)
+  File "c:\Users\Damien\Documents\GitHub\smilesbot\.env\Lib\site-packages\cirpy.py", line 95, in request
+    response = urlopen(url)
+  File "C:\Program Files\Python313\Lib\urllib\request.py", line 189, in urlopen
+    return opener.open(url, data, timeout)
+  File "C:\Program Files\Python313\Lib\urllib\request.py", line 489, in open
+    response = self._open(req, data)
+  File "C:\Program Files\Python313\Lib\urllib\request.py", line 506, in _open
+    result = self._call_chain(self.handle_open, protocol, protocol +
+  File "C:\Program Files\Python313\Lib\urllib\request.py", line 466, in _call_chain
+    result = func(*args)
+  File "C:\Program Files\Python313\Lib\urllib\request.py", line 1367, in https_open
+    return self.do_open(http.client.HTTPSConnection, req,
+  File "C:\Program Files\Python313\Lib\urllib\request.py", line 1323, in do_open
+    r = h.getresponse()
+  File "C:\Program Files\Python313\Lib\http\client.py", line 1428, in getresponse
+    response.begin()
+  File "C:\Program Files\Python313\Lib\http\client.py", line 331, in begin
+    version, status, reason = self._read_status()
+  File "C:\Program Files\Python313\Lib\http\client.py", line 292, in _read_status
+    line = str(self.fp.readline(_MAXLINE + 1), "iso-8859-1")
+  File "C:\Program Files\Python313\Lib\socket.py", line 719, in readinto
+    return self._sock.recv_into(b)
+  File "C:\Program Files\Python313\Lib\ssl.py", line 1304, in recv_into
+    return self.read(nbytes, buffer)
+  File "C:\Program Files\Python313\Lib\ssl.py", line 1138, in read
+    return self._sslobj.read(len, buffer)
+
+[2025-03-31 16:04:06] [ERROR   ] discord.ext.commands.bot: Ignoring exception in command render mlcl
+Traceback (most recent call last):
+  File "c:\Users\Damien\Documents\GitHub\smilesbot\src\smile\smile.py", line 180, in render_molecule
+    return
+    
+  File "c:\Users\Damien\Documents\GitHub\smilesbot\.env\Lib\site-packages\cirpy.py", line 192, in resolve
+    results = query(input, representation, resolvers, False, get3d, **kwargs)
+  File "c:\Users\Damien\Documents\GitHub\smilesbot\.env\Lib\site-packages\cirpy.py", line 162, in query
+    tree = request(input, representation, resolvers, get3d, tautomers, **kwargs)
+  File "c:\Users\Damien\Documents\GitHub\smilesbot\.env\Lib\site-packages\cirpy.py", line 95, in request
+    response = urlopen(url)
+  File "C:\Program Files\Python313\Lib\urllib\request.py", line 189, in urlopen
+    return opener.open(url, data, timeout)
+           ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\Python313\Lib\urllib\request.py", line 495, in open
+    response = meth(req, response)
+  File "C:\Program Files\Python313\Lib\urllib\request.py", line 604, in http_response
+    response = self.parent.error(
+        'http', request, response, code, msg, hdrs)
+  File "C:\Program Files\Python313\Lib\urllib\request.py", line 533, in error
+    return self._call_chain(*args)
+           ~~~~~~~~~~~~~~~~^^^^^^^
+  File "C:\Program Files\Python313\Lib\urllib\request.py", line 466, in _call_chain
+    result = func(*args)
+  File "C:\Program Files\Python313\Lib\urllib\request.py", line 613, in http_error_default
+    raise HTTPError(req.full_url, code, msg, hdrs, fp)
+urllib.error.HTTPError: HTTP Error 504: Gateway Timeout
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "c:\Users\Damien\Documents\GitHub\smilesbot\.env\Lib\site-packages\discord\app_commands\commands.py", line 857, in _do_call
+    return await self._callback(self.binding, interaction, **params)  # type: ignore
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\Damien\Documents\GitHub\smilesbot\src\cogs\render.py", line 18, in mlcl
+    pass
+  File "c:\Users\Damien\Documents\GitHub\smilesbot\src\smile\smile.py", line 182, in render_molecule
+    for mol in molecules:
+                ^^^^^^^^^
+  File "c:\Users\Damien\Documents\GitHub\smilesbot\.env\Lib\site-packages\discord\ext\commands\context.py", line 1081, in send
+    response = await self.interaction.response.send_message(**kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\Damien\Documents\GitHub\smilesbot\.env\Lib\site-packages\discord\interactions.py", line 1004, in send_message
+    response = await adapter.create_interaction_response(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<6 lines>...
+    )
+    ^
+  File "c:\Users\Damien\Documents\GitHub\smilesbot\.env\Lib\site-packages\discord\webhook\async_.py", line 224, in request
+    raise NotFound(response, data)
+discord.errors.NotFound: 404 Not Found (error code: 10062): Unknown interaction
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "c:\Users\Damien\Documents\GitHub\smilesbot\.env\Lib\site-packages\discord\ext\commands\hybrid.py", line 450, in _invoke_with_namespace
+    value = await self._do_call(ctx, ctx.kwargs)  # type: ignore
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\Damien\Documents\GitHub\smilesbot\.env\Lib\site-packages\discord\app_commands\commands.py", line 876, in _do_call
+    raise CommandInvokeError(self, e) from e
+discord.app_commands.errors.CommandInvokeError: Command 'mlcl' raised an exception: NotFound: 404 Not Found (error code: 10062): Unknown interaction
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "c:\Users\Damien\Documents\GitHub\smilesbot\.env\Lib\site-packages\discord\ext\commands\hybrid.py", line 450, in _invoke_with_namespace
+    value = await self._do_call(ctx, ctx.kwargs)  # type: ignore
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\Damien\Documents\GitHub\smilesbot\.env\Lib\site-packages\discord\app_commands\commands.py", line 876, in _do_call
+    raise CommandInvokeError(self, e) from e
+discord.ext.commands.errors.HybridCommandError: Hybrid command raised an error: Command 'mlcl' raised an exception: NotFound: 404 Not Found (error code: 10062): Unknown interaction
+[2025-03-31 16:04:07] [INFO    ] discord.gateway: Shard ID None has successfully RESUMED session 1a34550b17e82d34a5a059b71d3aac8f.
+[2025-03-31 16:12:28] [WARNING ] discord.client: PyNaCl is not installed, voice will NOT be supported
+[2025-03-31 16:13:21] [WARNING ] discord.client: PyNaCl is not installed, voice will NOT be supported
+[2025-03-31 16:13:21] [INFO    ] discord: SmileBot starting...
+[2025-03-31 16:13:21] [INFO    ] discord.client: logging in using static token
+[2025-03-31 16:13:22] [INFO    ] discord.gateway: Shard ID None has connected to Gateway (Session ID: 6da68464c44702866ad20004ed908e20).
+[2025-03-31 16:15:07] [WARNING ] discord.client: PyNaCl is not installed, voice will NOT be supported
+[2025-03-31 16:15:07] [INFO    ] discord: SmileBot starting...
+[2025-03-31 16:15:07] [INFO    ] discord.client: logging in using static token
+[2025-03-31 16:15:08] [INFO    ] discord.gateway: Shard ID None has connected to Gateway (Session ID: 82322371ccc8dd89f5058287e527f678).
+[2025-03-31 16:16:22] [WARNING ] discord.client: PyNaCl is not installed, voice will NOT be supported
+[2025-03-31 16:16:22] [INFO    ] discord: SmileBot starting...
+[2025-03-31 16:16:22] [INFO    ] discord.client: logging in using static token
+[2025-03-31 16:16:26] [INFO    ] discord.gateway: Shard ID None has connected to Gateway (Session ID: 99139fe537a7ae46c46ff50acc321b8a).
+[2025-03-31 16:17:38] [WARNING ] discord.client: PyNaCl is not installed, voice will NOT be supported
+[2025-03-31 16:17:38] [INFO    ] discord: SmileBot starting...
+[2025-03-31 16:17:39] [INFO    ] discord.client: logging in using static token
+[2025-03-31 16:17:39] [INFO    ] discord.gateway: Shard ID None has connected to Gateway (Session ID: f423493be5d04152eba95600fc922647).
+[2025-03-31 16:18:44] [WARNING ] discord.client: PyNaCl is not installed, voice will NOT be supported
+[2025-03-31 16:18:44] [INFO    ] discord: SmileBot starting...
+[2025-03-31 16:18:44] [INFO    ] discord.client: logging in using static token
+[2025-03-31 16:18:45] [INFO    ] discord.gateway: Shard ID None has connected to Gateway (Session ID: b89d8e72afff2bb82e64574aed5bfdd3).
+[2025-03-31 16:19:39] [WARNING ] discord.client: PyNaCl is not installed, voice will NOT be supported
+[2025-03-31 16:19:39] [INFO    ] discord.client: logging in using static token
+[2025-03-31 16:19:40] [INFO    ] discord.gateway: Shard ID None has connected to Gateway (Session ID: 9f6d0933e3c5561677aa95ad1d1e1751).
+[2025-03-31 16:23:37] [WARNING ] discord.client: PyNaCl is not installed, voice will NOT be supported
+[2025-03-31 16:23:37] [INFO    ] discord.client: logging in using static token
+[2025-03-31 16:23:38] [INFO    ] discord.gateway: Shard ID None has connected to Gateway (Session ID: 7a5bc475eb2e28b8ee0f78fad4ee1e56).
+[2025-03-31 16:26:44] [WARNING ] discord.client: PyNaCl is not installed, voice will NOT be supported
+[2025-03-31 16:26:44] [INFO    ] discord.client: logging in using static token
+[2025-03-31 16:26:45] [INFO    ] discord.gateway: Shard ID None has connected to Gateway (Session ID: 1cfb2532e9f160fb9da960d4581f67e4).
+[2025-03-31 16:28:18] [WARNING ] discord.client: PyNaCl is not installed, voice will NOT be supported
+[2025-03-31 16:28:18] [INFO    ] smilebot: SmileBot initialized.
+[2025-03-31 16:28:18] [INFO    ] discord.client: logging in using static token
+[2025-03-31 16:28:18] [INFO    ] smilebot: All cogs loaded.
+[2025-03-31 16:28:19] [INFO    ] discord.gateway: Shard ID None has connected to Gateway (Session ID: 12b33ad619f1942f9531983b11574769).
+[2025-03-31 16:28:21] [INFO    ] smilebot: Logged in as SMILES.bot#2045 (ID: 1347275416225976333)
+[2025-03-31 16:33:53] [WARNING ] discord.client: PyNaCl is not installed, voice will NOT be supported
+[2025-03-31 16:33:53] [INFO    ] SmileBot: ElementColors initialized.
+[2025-03-31 16:33:53] [INFO    ] SmileBot: ServerSettings initialized.
+[2025-03-31 16:33:53] [INFO    ] SmileBot: DatabaseHandler initialized.
+[2025-03-31 16:33:53] [INFO    ] discord.client: logging in using static token
+[2025-03-31 16:33:54] [INFO    ] SmileBot: HelpCommand initialized.
+[2025-03-31 16:33:54] [INFO    ] SmileBot: SetCommand initialized.
+[2025-03-31 16:33:54] [INFO    ] SmileBot: ClearCommand initialized.
+[2025-03-31 16:33:54] [INFO    ] SmileBot: SmilesHelpCommand initialized.
+[2025-03-31 16:33:54] [INFO    ] SmileBot: SettingsCommand initialized.
+[2025-03-31 16:33:54] [INFO    ] SmileBot: AutoSmileCommand initialized.
+[2025-03-31 16:33:54] [INFO    ] SmileBot: RenderCommand initialized.
+[2025-03-31 16:33:54] [INFO    ] SmileBot: ElementInfoCommand initialized.
+[2025-03-31 16:33:54] [INFO    ] SmileBot: All cogs loaded.
+[2025-03-31 16:33:54] [INFO    ] discord.gateway: Shard ID None has connected to Gateway (Session ID: 276b60d0a2fb39c02ff523cc0e78fe82).
+[2025-03-31 16:33:56] [INFO    ] SmileBot: SmileBot initialized.
+[2025-03-31 16:33:57] [INFO    ] SmileBot: Logged in as SMILES.bot#2045 (ID: 1347275416225976333)
+[2025-03-31 16:44:23] [WARNING ] discord.client: PyNaCl is not installed, voice will NOT be supported
+[2025-03-31 16:44:23] [INFO    ] SmileBot: ElementColors initialized.
+[2025-03-31 16:44:23] [INFO    ] SmileBot: ServerSettings initialized.
+[2025-03-31 16:44:23] [INFO    ] discord.client: logging in using static token
+[2025-03-31 16:44:24] [INFO    ] SmileBot: HelpCommand initialized.
+[2025-03-31 16:44:24] [INFO    ] SmileBot: SetCommand initialized.
+[2025-03-31 16:44:24] [INFO    ] SmileBot: ClearCommand initialized.
+[2025-03-31 16:44:24] [INFO    ] SmileBot: SmilesHelpCommand initialized.
+[2025-03-31 16:44:24] [INFO    ] SmileBot: SettingsCommand initialized.
+[2025-03-31 16:44:24] [INFO    ] SmileBot: AutoSmileCommand initialized.
+[2025-03-31 16:44:24] [INFO    ] SmileBot: RenderCommand initialized.
+[2025-03-31 16:44:24] [INFO    ] SmileBot: ElementInfoCommand initialized.
+[2025-03-31 16:44:24] [INFO    ] SmileBot: All cogs loaded.
+[2025-03-31 16:44:24] [INFO    ] discord.gateway: Shard ID None has connected to Gateway (Session ID: bacfb96b27a02d46c2baaad0cebb6c86).
+[2025-03-31 16:44:26] [INFO    ] SmileBot: SmileBot initialized.
+[2025-03-31 16:44:28] [INFO    ] SmileBot: Logged in as SMILES.bot#2045 (ID: 1347275416225976333)
+[2025-03-31 16:50:38] [WARNING ] discord.client: PyNaCl is not installed, voice will NOT be supported
+[2025-03-31 16:50:39] [INFO    ] discord.client: logging in using static token
+[2025-03-31 16:50:39] [INFO    ] SmileBot: HelpCommand initialized.
+[2025-03-31 16:50:39] [INFO    ] SmileBot: SetCommand initialized.
+[2025-03-31 16:50:39] [INFO    ] SmileBot: ClearCommand initialized.
+[2025-03-31 16:50:39] [INFO    ] SmileBot: SmilesHelpCommand initialized.
+[2025-03-31 16:50:39] [INFO    ] SmileBot: SettingsCommand initialized.
+[2025-03-31 16:50:39] [INFO    ] SmileBot: AutoSmileCommand initialized.
+[2025-03-31 16:50:39] [INFO    ] SmileBot: RenderCommand initialized.
+[2025-03-31 16:50:39] [INFO    ] SmileBot: ElementInfoCommand initialized.
+[2025-03-31 16:50:39] [INFO    ] SmileBot: All cogs loaded.
+[2025-03-31 16:50:39] [INFO    ] discord.gateway: Shard ID None has connected to Gateway (Session ID: dd5e22ea148c6450548fe2ec13f9e8b5).
+[2025-03-31 16:50:41] [INFO    ] SmileBot: SmileBot initialized.
+[2025-03-31 16:50:41] [INFO    ] SmileBot: ElementColors initialized.
+[2025-03-31 16:50:41] [INFO    ] SmileBot: ServerSettings initialized.
+[2025-03-31 16:50:42] [INFO    ] SmileBot: Logged in as SMILES.bot#2045 (ID: 1347275416225976333)
+[2025-03-31 16:58:14] [WARNING ] client: PyNaCl is not installed, voice will NOT be supported
+[2025-03-31 16:58:14] [INFO    ] client: logging in using static token
+[2025-03-31 16:58:14] [INFO    ] help: HelpCommand initialized.
+[2025-03-31 16:58:14] [INFO    ] set: SetCommand initialized.
+[2025-03-31 16:58:14] [INFO    ] clear: ClearCommand initialized.
+[2025-03-31 16:58:14] [INFO    ] smiles_help: SmilesHelpCommand initialized.
+[2025-03-31 16:58:14] [INFO    ] settings: SettingsCommand initialized.
+[2025-03-31 16:58:14] [INFO    ] auto_smile: AutoSmileCommand initialized.
+[2025-03-31 16:58:14] [INFO    ] render: RenderCommand initialized.
+[2025-03-31 16:58:14] [INFO    ] element_info: ElementInfoCommand initialized.
+[2025-03-31 16:58:14] [INFO    ] main: All cogs loaded.
+[2025-03-31 16:58:15] [INFO    ] gateway: Shard ID None has connected to Gateway (Session ID: 8b3654da99ad68978e008ae83bb9c836).
+[2025-03-31 16:58:17] [INFO    ] main: SmileBot initialized.
+[2025-03-31 16:58:17] [INFO    ] element_colors: ElementColors initialized.
+[2025-03-31 16:58:17] [INFO    ] server_settings: ServerSettings initialized.
+[2025-03-31 16:58:17] [INFO    ] db: DatabaseHandler initialized.
+[2025-03-31 16:58:17] [INFO    ] main: Logged in as SMILES.bot#2045 (ID: 1347275416225976333)

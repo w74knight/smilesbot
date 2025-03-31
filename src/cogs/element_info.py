@@ -1,6 +1,10 @@
+from logging import Logger, getLogger
+
 import discord
 from discord.ext import commands
 from rdkit import Chem
+
+from constants import NAME
 
 
 class ElementInfoCommand(commands.Cog):
@@ -8,8 +12,11 @@ class ElementInfoCommand(commands.Cog):
     description = "Get information about an element."
 
     def __init__(self, bot):
-        self.bot = bot
+        self.bot:commands.Bot = bot
         self.periodic_table = Chem.GetPeriodicTable()
+        self.logger:Logger = getLogger(NAME)
+
+        self.logger.info("ElementInfoCommand initialized.")
 
     @commands.command(name='info')
     async def info(self, ctx, element: int):

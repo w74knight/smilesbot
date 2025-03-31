@@ -1,7 +1,10 @@
+from logging import Logger, getLogger
+
 import discord
 from discord.ext import commands
 from rdkit import Chem
 
+from constants import NAME
 from db.db import DatabaseHandler
 from util import admin_only, rgb_to_hex
 
@@ -11,10 +14,12 @@ class SetCommand(commands.Cog):
     description = "Set server settings."
 
     def __init__(self, bot):
-        self.bot = bot
-        self.pt = Chem.GetPeriodicTable()
+        self.bot:commands.Bot = bot
+        self.pt:Chem.PeriodicTable = Chem.GetPeriodicTable()
         self.db_handler:DatabaseHandler = self.bot.db_handler
+        self.logger:Logger = getLogger(NAME)
 
+        self.logger.info("SetCommand initialized.")
 
     @commands.hybrid_group()
     async def set(self, name):

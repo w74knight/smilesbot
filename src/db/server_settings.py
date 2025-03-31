@@ -1,8 +1,18 @@
+from logging import getLogger
+from sqlite3 import Connection
+
+from constants import NAME
+
+
 class ServerSettings:
     def __init__(self, connection):
+        self.logger = getLogger(NAME)
+
         self.connection = connection
         self.cursor = connection.cursor()
         self.init()
+
+        self.logger.info("ServerSettings initialized.")
 
     def init(self):
         self.cursor.execute('''

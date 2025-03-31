@@ -1,8 +1,10 @@
+from logging import Logger, getLogger
+
 import discord
 from discord.ext import commands
 from rdkit import Chem
 
-from constants import SMILE_BG
+from constants import NAME, SMILE_BG
 from db.db import DatabaseHandler
 
 
@@ -11,9 +13,12 @@ class SettingsCommand(commands.Cog):
     description = "display the current settings for the server."
 
     def __init__(self, bot):
-        self.bot = bot
-        self.periodic_table = Chem.GetPeriodicTable()
+        self.bot:commands.Bot = bot
+        self.periodic_table:Chem.PeriodicTable = Chem.GetPeriodicTable()
         self.db_handler:DatabaseHandler = self.bot.db_handler
+        self.logger:Logger = getLogger(NAME)
+
+        self.logger.info("SettingsCommand initialized.")
 
     @commands.hybrid_command(name="settings", description="display the current settings for the server.")
     async def settings(self, ctx):

@@ -1,8 +1,10 @@
+from logging import Logger, getLogger
+
 import discord
 from discord.ext import commands
 from rdkit import Chem
 
-from constants import SMILE_BG
+from constants import NAME, SMILE_BG
 from db.db import DatabaseHandler
 from smile.pallette import DISCORD_DARK
 from util import admin_only, rgb_to_hex
@@ -13,9 +15,14 @@ class GetCommand(commands.Cog):
     description = "Get the command prefix for this server."
 
     def __init__(self, bot):
-        self.bot = bot
+        self.bot:commands.Bot = bot
+
         self.db_handler:DatabaseHandler = self.bot.db_handler
-        self.periodic_table = Chem.GetPeriodicTable()
+        self.logger:Logger = getLogger(NAME)
+
+        self.periodic_table:Chem.PeriodicTable = Chem.GetPeriodicTable()
+
+        self.logger.debug("GetCommand initialized.")
 
     @commands.hybrid_group()
     async def get(self, name):

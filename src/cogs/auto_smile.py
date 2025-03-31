@@ -1,5 +1,8 @@
+from logging import Logger, getLogger
+
 from discord.ext import commands
 
+from constants import NAME
 from db.db import DatabaseHandler
 from util import admin_only
 
@@ -9,9 +12,12 @@ class AutoSmileCommand(commands.Cog):
     description = "Enable or disable automatic smile[...] message detection."
     setting_key = 'auto_smile'
 
-    def __init__(self, bot):
-        self.bot = bot
+    def __init__(self, bot: commands.Bot):
+        self.bot:commands.Bot = bot
         self.database_handler:DatabaseHandler = self.bot.db_handler
+        self.logger:Logger = getLogger(NAME)
+
+        self.logger.info("AutoSmileCommand initialized.")
 
     @admin_only()
     @commands.hybrid_command(name="auto_smile", description="Enable or disable automatic smile[...] message detection.")

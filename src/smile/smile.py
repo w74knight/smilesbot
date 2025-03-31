@@ -1,6 +1,7 @@
 import asyncio
 import functools
 import io
+from logging import Logger, getLogger
 
 import cirpy
 import discord
@@ -8,9 +9,9 @@ from rdkit.Chem import AllChem as Chem
 from rdkit.Chem import Draw
 from rdkit.Chem import rdChemReactions as Reactions
 
-from constants import SMILE_BG
+from constants import SMILE_BG, NAME
 from db.db import DatabaseHandler
-from util import transform_rgb_to_smile, smile_rgb, complement_color
+from util import complement_color, smile_rgb, transform_rgb_to_smile
 
 from .pallette import DISCORD_DARK
 
@@ -18,6 +19,8 @@ from .pallette import DISCORD_DARK
 class Smile(object):
     def __init__(self, database_handler: DatabaseHandler):
         self.db_handler:DatabaseHandler = database_handler
+        self.logger:Logger = getLogger(NAME)
+        self.logger.debug("Smile initialized.")
 
         self.d2d = Draw.MolDraw2DCairo(-1, -1)
         self.opts = self.d2d.drawOptions()
@@ -32,19 +35,19 @@ class Smile(object):
         self.opts.setSymbolColour((1, 1, 1))
         self.opts.setAnnotationColour((1,1,1))
 
-    def __is_valid_smiles(self, smiles: str):
+    def __is_valid_smiles(self, smiles: str) -> bool:
         try:
             return Chem.MolFromSmiles(smiles) is not None
         except:
             return False
 
-    def __is_valid_smarts(self, rxn: str):
+    def __is_valid_smarts(self, rxn: str) -> bool:
         try:
             return Chem.ReactionFromSmarts(rxn, useSmiles=True) is not None
         except:
             return False
 
-    async def __render(self, ctx, mlcl, img):
+    async def __render(self, ctx, mlcl, img) -> None:
         embed = discord.Embed(
             title=f'Render Complete!',
             description=f"{mlcl}"
@@ -57,12 +60,12 @@ class Smile(object):
 
         self.d2d.ClearDrawing()
     
-    def __addAtomNumbers(self, mol):
+    def __addAtomNumbers(self, mol) -> None:
         for atom in mol.GetAtoms():
             i = atom.GetIdx()
             self.opts.atomLabels[i] = str(i)
 
-    def __loadRenderOptions(self, mols, server_id):
+    def __loadRenderOptions(self, mols, server_id) -> None:
         bg_color = self.db_handler.render_options.get_bgcolor(server_id)
         render_options = self.db_handler.get_render_option(server_id)
 
@@ -90,7 +93,7 @@ class Smile(object):
 
         self.loadAtomPalette(server_id)
 
-    def __draw(self, drawFunc, mol, server_id, **drawFuncArgs):
+    def __draw(self, drawFunc, mol, server_id, **drawFuncArgs) -> io.BytesIO:
         self.__loadRenderOptions(mol, server_id)
 
         drawFunc(mol, **drawFuncArgs)
@@ -100,7 +103,7 @@ class Smile(object):
         bio.seek(0)
         return bio
     
-    def __processLegend(self, legends, num_mols):
+    def __processLegend(self, legends, num_mols) -> list:
         render_legend = []
         if legends:
             legends = [legend.strip() for legend in legends.split(",")]
@@ -114,7 +117,7 @@ class Smile(object):
 
         return render_legend
 
-    def loadAtomPalette(self, server_id):
+    def loadAtomPalette(self, server_id) -> None:
         pallette = self.db_handler.element_colors.get_element_colors(server_id)
         if pallette:
             pallette = transform_rgb_to_smile(pallette)
@@ -124,7 +127,7 @@ class Smile(object):
 
         self.opts.setAtomPalette(pallette)
 
-    def create_molecule_image(self, mols, server_id, legends, **drawFuncArgs):
+    def create_molecule_image(self, mols, server_id, legends, **drawFuncArgs) -> io.BytesIO:
         if not isinstance(mols, list):
             mols = [mols]
 
@@ -158,7 +161,7 @@ class Smile(object):
         bio.seek(0)
         return bio
 
-    def create_rxn_image(self, rxn, server_id, **drawFuncArgs):
+    def create_rxn_image(self, rxn, server_id, **drawFuncArgs) -> io.BytesIO:
         # not sure why this is needed, but otherwise it'll error
         self.d2d = Draw.MolDraw2DCairo(-1, -1)
         self.opts = self.d2d.drawOptions()
@@ -166,7 +169,9 @@ class Smile(object):
 
         return self.__draw(self.d2d.DrawReaction, rxn, server_id, **drawFuncArgs)
 
-    async def render_molecule(self, ctx, molecule, server_id, legends, **drawFuncArgs):
+    async def render_molecule(self, ctx, molecule, server_id, legends, **drawFuncArgs) -> None:
+        self.logger.info(f"smile.render_molecule({ctx}, {molecule}, {server_id}, {legends})")
+
         molecules = [m.strip() for m in molecule.split(",")]
         mol_objects = []
 
@@ -207,7 +212,9 @@ class Smile(object):
         await self.__render(ctx, ", ".join(molecules), img)
 
 
-    async def render_reaction(self, ctx, reaction, server_id):
+    async def render_reaction(self, ctx, reaction, server_id) -> None:
+        self.logger.info(f"smile.render_reaction({ctx}, {reaction}, {server_id})")
+
         reaction = reaction.strip()
         if not self.__is_valid_smarts(reaction):
             await ctx.send(

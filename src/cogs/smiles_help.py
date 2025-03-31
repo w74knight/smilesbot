@@ -1,12 +1,18 @@
+from logging import Logger, getLogger
+
 import discord
 from discord.ext import commands
+from constants import NAME
 
 class SmilesHelpCommand(commands.Cog):
     name = "/smileshelp"
     description = "Quick guide to SMILES."
 
     def __init__(self, bot):
-        self.bot = bot
+        self.bot:commands.Bot = bot
+        self.logger:Logger = getLogger(NAME)
+
+        self.logger.info("SmilesHelpCommand initialized.")
 
     @commands.hybrid_command(name="smileshelp", description="Quick guide to SMILES.")
     async def smileshelp(self, ctx):

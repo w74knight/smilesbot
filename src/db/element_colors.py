@@ -1,10 +1,17 @@
 import sqlite3
+from logging import getLogger
+
+from constants import NAME
+
 
 class ElementColors:
     def __init__(self, connection):
+        self.logger = getLogger(NAME)
         self.connection = connection
         self.cursor = connection.cursor()
         self.init()
+
+        self.logger.info("ElementColors initialized.")
 
     def init(self):
         self.cursor.execute('''

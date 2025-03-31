@@ -1,7 +1,10 @@
+from logging import Logger, getLogger
+
 import discord
 from discord.ext import commands
 
 from db.db import DatabaseHandler
+from constants import NAME
 
 
 class ClearCommand(commands.Cog):
@@ -9,8 +12,11 @@ class ClearCommand(commands.Cog):
     description = "Clear: bot settings, render colors, all settings."
 
     def __init__(self, bot):
-        self.bot = bot
+        self.bot:commands.Bot = bot
         self.database_handler:DatabaseHandler = self.bot.db_handler
+        self.logger:Logger = getLogger(NAME)
+
+        self.logger.info("ClearCommand initialized.")
 
     @commands.hybrid_group()
     async def clear(self, name):

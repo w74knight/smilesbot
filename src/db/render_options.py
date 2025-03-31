@@ -1,6 +1,7 @@
 import sqlite3
+from logging import getLogger
 
-from constants import SMILE_BG
+from constants import NAME, SMILE_BG
 
 DEFAULT_RENDER_OPTIONS = {
     "includeAtomNumbers": False,
@@ -11,9 +12,16 @@ DEFAULT_RENDER_OPTIONS = {
 
 class RenderOptions:
     def __init__(self, connection):
+        self.logger = getLogger(NAME)
         self.connection = connection
         self.cursor = connection.cursor()
         self.init()
+
+    def init(self):
+        self.logger = getLogger(NAME)
+        self.init()
+
+        self.logger.info("RenderOptions initialized.")
 
     def init(self):
         self.cursor.execute('''
