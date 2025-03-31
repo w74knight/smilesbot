@@ -22,3 +22,7 @@ def admin_only():
 
 def transform_rgb_to_smile(atoms: dict):
     return {k: smile_rgb(*v) for k, v in atoms.items()}
+
+def complement_color(rgb):
+    # took from chatgpt
+    return tuple(1.0 - (c / 255.0) for c in rgb)

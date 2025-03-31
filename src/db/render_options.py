@@ -53,7 +53,7 @@ class RenderOptions:
         ''', (server_id,))
         result = self.cursor.fetchone()
         
-        if result["background_color"]:
+        if result and result["background_color"]:
             bg_color = result["background_color"].split(",")
             return tuple(int(c) for c in bg_color)
 
