@@ -1,8 +1,10 @@
 import discord
 from discord.ext import commands
-from db.db import DatabaseHandler
 from rdkit import Chem
+
 from constants import SMILE_BG
+from db.db import DatabaseHandler
+
 
 class SettingsCommand(commands.Cog):
     name = "/settings"

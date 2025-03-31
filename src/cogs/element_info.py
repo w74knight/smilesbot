@@ -2,6 +2,7 @@ import discord
 from discord.ext import commands
 from rdkit import Chem
 
+
 class ElementInfoCommand(commands.Cog):
     name = "/info"
     description = "Get information about an element."

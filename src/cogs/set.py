@@ -1,9 +1,10 @@
 import discord
 from discord.ext import commands
 from rdkit import Chem
-from util import rgb_to_hex
+
 from db.db import DatabaseHandler
-from util import admin_only
+from util import admin_only, rgb_to_hex
+
 
 class SetCommand(commands.Cog):
     name = "/set"

@@ -1,7 +1,7 @@
-import re
 import os
-from dotenv import load_dotenv, find_dotenv
-from util import smile_rgb
+import re
+
+from dotenv import load_dotenv
 
 # load sensitive data .env
 load_dotenv("env")

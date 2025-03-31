@@ -1,16 +1,19 @@
-from rdkit.Chem import AllChem as Chem
-from rdkit.Chem import rdChemReactions as Reactions
-from rdkit.Chem import Draw
 import asyncio
+import functools
+import io
+
 import cirpy
 import discord
-import io
+from rdkit.Chem import AllChem as Chem
+from rdkit.Chem import Draw
+from rdkit.Chem import rdChemReactions as Reactions
+
 from constants import SMILE_BG, smile_rgb
-from .pallette import DISCORD_DARK
-import functools
+from db.db import DatabaseHandler
 from util import transform_rgb_to_smile
 
-from db.db import DatabaseHandler
+from .pallette import DISCORD_DARK
+
 
 class Smile(object):
     def __init__(self, database_handler: DatabaseHandler):

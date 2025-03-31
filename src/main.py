@@ -1,12 +1,12 @@
 import discord
 from discord.ext import commands
 
-from constants import TOKEN, OWNER_ID, AUTO_DETECT_PATTERN
 from cogs import __all__ as command_modules
-
+from constants import AUTO_DETECT_PATTERN, OWNER_ID, TOKEN
 from db.db import DatabaseHandler
-from util import get_prefix
 from smile.smile import Smile
+from util import get_prefix
+
 
 class Bot(commands.Bot):
     def __init__(self, *args, **kwargs):

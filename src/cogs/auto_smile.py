@@ -1,6 +1,8 @@
 from discord.ext import commands
-from util import admin_only
+
 from db.db import DatabaseHandler
+from util import admin_only
+
 
 class AutoSmileCommand(commands.Cog):
     name = "/auto_smile"

@@ -1,6 +1,8 @@
 import discord
 from discord.ext import commands
+
 from db.db import DatabaseHandler
+
 
 class ClearCommand(commands.Cog):
     name = "/clear"

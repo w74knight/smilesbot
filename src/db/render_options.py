@@ -1,4 +1,5 @@
 import sqlite3
+
 from constants import SMILE_BG
 
 DEFAULT_RENDER_OPTIONS = {
