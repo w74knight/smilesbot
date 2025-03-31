@@ -7,6 +7,7 @@ __version__ = "1.0.0"
 NAME = "SmileBot"
 
 # load sensitive data .env
+load_dotenv()
 
 # set sensitive data from .env as variables
 OWNER_ID = os.getenv("OWNER")

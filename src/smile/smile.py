@@ -24,16 +24,6 @@ class Smile(object):
 
         self.d2d = Draw.MolDraw2DCairo(-1, -1)
         self.opts = self.d2d.drawOptions()
-        self.opts.setBackgroundColour(smile_rgb(*SMILE_BG))
-        self.opts.drawMolsSameScale = False
-
-        self.opts.scalingFactor = 20
-        self.opts.fixedFontSize = 20
-        self.opts.bondLineWidth = 2.
-
-        # rxn options
-        self.opts.setSymbolColour((1, 1, 1))
-        self.opts.setAnnotationColour((1,1,1))
 
     def __is_valid_smiles(self, smiles: str) -> bool:
         try:
@@ -82,7 +72,18 @@ class Smile(object):
         
         self.opts.setBackgroundColour(bg_color)
         self.opts.setHighlightColour((0, 0, 1.0, 0.1))
-        
+
+        self.opts.setBackgroundColour(smile_rgb(*SMILE_BG))
+        self.opts.drawMolsSameScale = False
+
+        self.opts.scalingFactor = 50
+        self.opts.fixedFontSize = 20
+        self.opts.bondLineWidth = 2.
+
+        # rxn options
+        self.opts.setSymbolColour((1, 1, 1))
+        self.opts.setAnnotationColour((1, 1, 1))
+
         if (render_options.get("includeAtomNumbers")):
             for mol in mols:
                 self.__addAtomNumbers(mol)
