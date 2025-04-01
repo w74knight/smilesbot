@@ -18,4 +18,4 @@ WEBHOOK_URL = os.getenv("WEBHOOK_URL")
 AUTO_DETECT_PATTERN = re.compile(r"&(.+)&")
 
 # smile
-SMILE_BG = (44, 45, 49)
+SMILE_BG = (55, 56, 61)
