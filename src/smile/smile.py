@@ -27,14 +27,21 @@ class Smile(object):
 
     def __is_valid_smiles(self, smiles: str) -> bool:
         try:
-            return Chem.MolFromSmiles(smiles) is not None
-        except:
+            mol = Chem.MolFromSmiles(smiles)
+            if mol is None:
+                return False
+            Chem.SanitizeMol(mol)
+            return True
+        except Exception as e:
+            self.logger.error(f"SMILES validation failed: {e}")
             return False
 
     def __is_valid_smarts(self, rxn: str) -> bool:
         try:
-            return Chem.ReactionFromSmarts(rxn, useSmiles=True) is not None
-        except:
+            rxn = Chem.ReactionFromSmarts(rxn, useSmiles=True)
+            return rxn is not None
+        except Exception as e:
+            self.logger.error(f"SMILES validation failed: {e}")
             return False
 
     async def __render(self, ctx, mlcl, img) -> None:
@@ -43,6 +50,7 @@ class Smile(object):
             description=f"{mlcl}"
         )
         embed.set_image(url="attachment://molecule.png")
+
 
         sent_message = await ctx.send(embed=embed, file=discord.File(img, filename="molecule.png"))
         
@@ -56,20 +64,19 @@ class Smile(object):
             self.opts.atomLabels[i] = str(i)
 
     def __loadRenderOptions(self, mols, server_id) -> None:
+        if not isinstance(mols, list):
+            mols = [mols]
+
         bg_color = self.db_handler.render_options.get_bgcolor(server_id)
         render_options = self.db_handler.get_render_option(server_id)
 
-        mols = [mols] if not isinstance(mols, list) else mols
-
         # complementary color for legend & reaction plus and arrows
         complement_bg_color = complement_color(bg_color) + (1.0,)
-
         self.opts.setLegendColour(complement_bg_color)
         self.opts.setSymbolColour(complement_bg_color)
 
         # convert rgb to ratio
         bg_color = tuple(c / 255 for c in bg_color)
-        
         self.opts.setBackgroundColour(bg_color)
         self.opts.setHighlightColour((0, 0, 1.0, 0.1))
 
@@ -117,6 +124,10 @@ class Smile(object):
             render_legend = [""] * num_mols
 
         return render_legend
+    
+    @functools.lru_cache(maxsize=1000)
+    def _resolve_name_to_smiles(self, name: str) -> str:
+        return cirpy.resolve(name, 'smiles')
 
     def loadAtomPalette(self, server_id) -> None:
         pallette = self.db_handler.element_colors.get_element_colors(server_id)
@@ -183,7 +194,7 @@ class Smile(object):
         for mol in molecules:
             if not self.__is_valid_smiles(mol):
                 try:
-                    mol = cirpy.resolve(mol, 'smiles')
+                    mol = self._resolve_name_to_smiles(mol)
                 except:
                     await ctx.send(f"{mol} is invalid, please try another compound ID.")
                     return
@@ -222,7 +233,13 @@ class Smile(object):
                 f"{reaction} is an invalid reaction, please check for typos/erros!"
             )
 
-        rxn = Reactions.ReactionFromSmarts(f'{reaction}', useSmiles=True)
+        try:
+            rxn = Reactions.ReactionFromSmarts(f'{reaction}', useSmiles=True)
+        except Exception as e:
+            self.logger.error(f"Reaction error: {e}")
+            await ctx.send("Reaction error: {e}")
+            return
+        
         loop = asyncio.get_running_loop()
         img = await loop.run_in_executor(
             None,
