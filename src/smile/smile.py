@@ -7,6 +7,7 @@ import cirpy
 import discord
 from rdkit.Chem import AllChem as Chem
 from rdkit.Chem import Draw
+from rdkit.Chem.Draw import rdMolDraw2D
 from rdkit.Chem import rdChemReactions as Reactions
 
 from constants import SMILE_BG, NAME
@@ -22,7 +23,7 @@ class Smile(object):
         self.logger:Logger = getLogger(NAME)
         self.logger.debug("Smile initialized.")
 
-        self.d2d = Draw.MolDraw2DCairo(-1, -1)
+        self.d2d = rdMolDraw2D.MolDraw2DCairo(-1, -1)
         self.opts = self.d2d.drawOptions()
 
     def __is_valid_smiles(self, smiles: str) -> bool:
@@ -64,25 +65,23 @@ class Smile(object):
         # complementary color for legend & reaction plus and arrows
         complement_bg_color = complement_color(bg_color) + (1.0,)
 
-        self.opts.setLegendColour(complement_bg_color)
-        self.opts.setSymbolColour(complement_bg_color)
-
         # convert rgb to ratio
         bg_color = tuple(c / 255 for c in bg_color)
-        
-        self.opts.setBackgroundColour(bg_color)
-        self.opts.setHighlightColour((0, 0, 1.0, 0.1))
 
         self.opts.setBackgroundColour(smile_rgb(*SMILE_BG))
         self.opts.drawMolsSameScale = False
 
-        self.opts.scalingFactor = 50
-        self.opts.fixedFontSize = 20
-        self.opts.bondLineWidth = 2.
+        # Misc settings to help readability
+        self.opts.SetFlexiMode = True
+        self.opts.scaleBondWidth = True
+        self.opts.scaleHighlightBondWidth = True
 
-        # rxn options
-        self.opts.setSymbolColour((1, 1, 1))
-        self.opts.setAnnotationColour((1, 1, 1))
+        # Color Options
+        self.opts.setSymbolColour((complement_bg_color))
+        self.opts.setAnnotationColour((complement_bg_color))
+        self.opts.setLegendColour((complement_bg_color))
+        self.opts.setBackgroundColour(bg_color)
+        self.opts.setHighlightColour((0, 0, 1.0, 0.1))
 
         if (render_options.get("includeAtomNumbers")):
             for mol in mols:
@@ -96,7 +95,6 @@ class Smile(object):
 
     def __draw(self, drawFunc, mol, server_id, **drawFuncArgs) -> io.BytesIO:
         self.__loadRenderOptions(mol, server_id)
-
         drawFunc(mol, **drawFuncArgs)
         self.d2d.FinishDrawing()
 
@@ -137,8 +135,7 @@ class Smile(object):
                 Chem.Kekulize(mol, clearAromaticFlags=True)
             except:
                 print("Kekulization failed, skipping.")
-
-        self.d2d = Draw.MolDraw2DCairo(-1, -1)
+        self.d2d = rdMolDraw2D.MolDraw2DCairo(-1, -1)
         self.opts = self.d2d.drawOptions()
 
         mols_per_row = (len(mols) + 1) // 2
@@ -150,7 +147,7 @@ class Smile(object):
             mols,
             **drawFuncArgs,
             # **self.opts.__dict__,
-            subImgSize=(300, 300),
+            subImgSize=(960, 540),
             molsPerRow=mols_per_row,
             legends=legends,
             highlightAtomLists=[highlight_atoms] * len(mols) if highlight_atoms else None,
@@ -164,10 +161,9 @@ class Smile(object):
 
     def create_rxn_image(self, rxn, server_id, **drawFuncArgs) -> io.BytesIO:
         # not sure why this is needed, but otherwise it'll error
-        self.d2d = Draw.MolDraw2DCairo(-1, -1)
+        self.d2d = rdMolDraw2D.MolDraw2DCairo(-1, -1)
         self.opts = self.d2d.drawOptions()
-
-
+        self.opts.scalingFactor = 50
         return self.__draw(self.d2d.DrawReaction, rxn, server_id, **drawFuncArgs)
 
     async def render_molecule(self, ctx, molecule, server_id, legends, **drawFuncArgs) -> None:
