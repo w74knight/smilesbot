@@ -73,9 +73,13 @@ class Smile(object):
 
         # complementary color for legend & reaction plus and arrows
         complement_bg_color = complement_color(bg_color) + (1.0,)
+        self.opts.setLegendColour(complement_bg_color)
+        self.opts.setSymbolColour(complement_bg_color)
 
         # convert rgb to ratio
         bg_color = tuple(c / 255 for c in bg_color)
+        self.opts.setBackgroundColour(bg_color)
+        self.opts.setHighlightColour((0, 0, 1.0, 0.1))
 
         self.opts.setBackgroundColour(smile_rgb(*SMILE_BG))
         self.opts.drawMolsSameScale = False
@@ -106,7 +110,6 @@ class Smile(object):
         self.__loadRenderOptions(mol, server_id)
         drawFunc(mol, **drawFuncArgs)
         self.d2d.FinishDrawing()
-
         bio = io.BytesIO(self.d2d.GetDrawingText())
         bio.seek(0)
         return bio
@@ -177,6 +180,7 @@ class Smile(object):
         self.d2d = rdMolDraw2D.MolDraw2DCairo(-1, -1)
         self.opts = self.d2d.drawOptions()
         self.opts.scalingFactor = 50
+        
         return self.__draw(self.d2d.DrawReaction, rxn, server_id, **drawFuncArgs)
 
     async def render_molecule(self, ctx, molecule, server_id, legends, **drawFuncArgs) -> None:
@@ -193,8 +197,11 @@ class Smile(object):
             if not self.__is_valid_smiles(mol):
                 try:
                     mol = self._resolve_name_to_smiles(mol)
-                except:
-                    await ctx.send(f"{mol} is invalid, please try another compound ID.")
+                    if not mol:
+                        raise ValueError("Could not resolve name to SMILES.")
+                except Exception as e:
+                    self.logger.error(f"Failed to resolve: {molecule}, error: {e}")
+                    await ctx.send(f"Failed to resolve: {molecule}, error: {e}")
                     return
 
             mol_obj = Chem.MolFromSmiles(mol)
@@ -207,19 +214,23 @@ class Smile(object):
             await ctx.send("No valid molecules to render.")
             return
 
-        loop = asyncio.get_running_loop()
-        img = await loop.run_in_executor(
-            None,
-            functools.partial(
-                self.create_molecule_image,
-                mol_objects,
-                server_id,
-                legends=self.__processLegend(legends, len(mol_objects)),
-                **drawFuncArgs
+        try:
+            loop = asyncio.get_running_loop()
+            img = await loop.run_in_executor(
+                None,
+                functools.partial(
+                    self.create_molecule_image,
+                    mol_objects,
+                    server_id,
+                    legends=self.__processLegend(legends, len(mol_objects)),
+                    **drawFuncArgs
+                )
             )
-        )
-
-        await self.__render(ctx, ", ".join(molecules), img)
+            await self.__render(ctx, ", ".join(molecules), img)
+        except Exception as e:
+            self.logger.error(f"Rendering error: {e}")
+            await ctx.send(f"Rendering error: {e}")
+            return
 
 
     async def render_reaction(self, ctx, reaction, server_id) -> None:
@@ -230,6 +241,7 @@ class Smile(object):
             await ctx.send(
                 f"{reaction} is an invalid reaction, please check for typos/erros!"
             )
+            return
 
         try:
             rxn = Reactions.ReactionFromSmarts(f'{reaction}', useSmiles=True)
@@ -246,7 +258,7 @@ class Smile(object):
             
         except Exception as e:
             self.logger.error(f"Reaction error: {e}")
-            await ctx.send("Reaction error: {e}")
+            await ctx.send(f"Reaction error: {e}")
             return
 
         await self.__render(ctx, reaction, img)
