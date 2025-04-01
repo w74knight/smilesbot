@@ -7,7 +7,7 @@ from rdkit import Chem
 from constants import NAME, SMILE_BG
 from db.db import DatabaseHandler
 from smile.pallette import DISCORD_DARK
-from util import admin_only, rgb_to_hex
+from util import admin_only, rgb_to_hex, humanOnly
 
 
 class GetCommand(commands.Cog):
@@ -28,6 +28,7 @@ class GetCommand(commands.Cog):
     async def get(self, name):
         pass
     
+    @humanOnly()
     @admin_only()
     @get.command(name="prefix", description="Get the command prefix for this server.")
     async def prefix(self, ctx):
@@ -35,6 +36,7 @@ class GetCommand(commands.Cog):
 
         await ctx.send(f"The current prefix is: {"/" if not prefix else prefix}")
 
+    @humanOnly()
     @admin_only()
     @get.command(name="color", description="Get rgb color for an element when rendering.")
     async def getcolor(self, ctx, element: int):
@@ -58,6 +60,7 @@ class GetCommand(commands.Cog):
         embed.set_thumbnail(url=f"https://dummyimage.com/250/{hex_color}/ffffff&text={element_name}")
         await ctx.send(embed=embed)
 
+    @humanOnly()
     @admin_only()
     @get.command(name="bgcolor", description="Get the background color for rendering.")
     async def bgcolor(self, ctx):
@@ -76,6 +79,7 @@ class GetCommand(commands.Cog):
         embed.set_thumbnail(url=f"https://dummyimage.com/250/{hex_color}/ffffff")
         await ctx.send(embed=embed)
 
+    @humanOnly()
     @admin_only()
     @get.command(name="render", description="Get the current render options.")
     async def render(self, ctx):

@@ -20,6 +20,11 @@ def admin_only():
         return ctx.author.guild_permissions.administrator
     return commands.check(predicate)
 
+def humanOnly():
+    async def predicate(ctx):
+        return not ctx.author.bot
+    return commands.check(predicate)
+
 def transform_rgb_to_smile(atoms: dict):
     return {k: smile_rgb(*v) for k, v in atoms.items()}
 

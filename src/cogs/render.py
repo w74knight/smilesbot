@@ -1,7 +1,9 @@
 from logging import Logger, getLogger
 
 from discord.ext import commands
+
 from constants import NAME
+from util import humanOnly
 
 
 class RenderCommand(commands.Cog):
@@ -14,10 +16,13 @@ class RenderCommand(commands.Cog):
 
         self.logger.info("RenderCommand initialized.")
 
+    async def cog_check(self, ctx: commands.Context) -> bool:
+        return not ctx.author.bot
+
     @commands.hybrid_group()
     async def render(self, name):
         pass
-
+    
     @render.command(name="mlcl", description="Render a molecule.")
     async def mlcl(self, ctx, mlcl: str, legends:str = "", highlightatoms: str = ""):
         highlightatoms = tuple(map(int, highlightatoms.split(","))) if highlightatoms else ()

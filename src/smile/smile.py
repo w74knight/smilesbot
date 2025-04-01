@@ -22,8 +22,8 @@ class Smile(object):
         self.db_handler:DatabaseHandler = database_handler
         self.logger:Logger = getLogger(NAME)
         self.logger.debug("Smile initialized.")
-
-        self.d2d = rdMolDraw2D.MolDraw2DCairo(-1, -1)
+    
+        self.d2d = rdMolDraw2D.MolDraw2DCairo(-1, -1) # not really being used
         self.opts = self.d2d.drawOptions()
 
     def __is_valid_smiles(self, smiles: str) -> bool:
@@ -105,14 +105,6 @@ class Smile(object):
             setattr(self.opts, key, bool(value))
 
         self.loadAtomPalette(server_id)
-
-    def __draw(self, drawFunc, mol, server_id, **drawFuncArgs) -> io.BytesIO:
-        self.__loadRenderOptions(mol, server_id)
-        drawFunc(mol, **drawFuncArgs)
-        self.d2d.FinishDrawing()
-        bio = io.BytesIO(self.d2d.GetDrawingText())
-        bio.seek(0)
-        return bio
     
     def __processLegend(self, legends, num_mols) -> list:
         render_legend = []
@@ -161,8 +153,6 @@ class Smile(object):
 
         img_data = Draw.MolsToGridImage(
             mols,
-            **drawFuncArgs,
-            # **self.opts.__dict__,
             subImgSize=(960, 540),
             molsPerRow=mols_per_row,
             legends=legends,
@@ -175,13 +165,21 @@ class Smile(object):
         bio.seek(0)
         return bio
 
-    def create_rxn_image(self, rxn, server_id, **drawFuncArgs) -> io.BytesIO:
+    def create_rxn_image(self, rxn, server_id) -> io.BytesIO:
+        self.__loadRenderOptions(rxn, server_id)
         # not sure why this is needed, but otherwise it'll error
-        self.d2d = rdMolDraw2D.MolDraw2DCairo(-1, -1)
-        self.opts = self.d2d.drawOptions()
         self.opts.scalingFactor = 50
-        
-        return self.__draw(self.d2d.DrawReaction, rxn, server_id, **drawFuncArgs)
+
+        img = Draw.ReactionToImage(
+            rxn,
+            subImgSize=(960, 540),
+            drawOptions=self.opts,
+        )
+        bio = io.BytesIO()
+        img.save(bio, format="PNG")
+        bio.seek(0)
+
+        return bio
 
     async def render_molecule(self, ctx, molecule, server_id, legends, **drawFuncArgs) -> None:
         self.logger.info(f"smile.render_molecule(ctx, {molecule}, {server_id}, {legends})")
