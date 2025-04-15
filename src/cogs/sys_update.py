@@ -7,7 +7,7 @@ import os
 from constants import NAME, OWNERS_ID, SUPPORT_GUILD_ID
 
 PROJECT_DIR = "/home/smile.bot/smilesbot"
-PYTHON_PATH = "/home/smile.bot/smilesbot/venv/bin/python3.13"
+PYTHON_PATH = "/home/smile.bot/smilesbot/env/bin/python3.13"
 
 class SysUpdateCommand(commands.Cog):
     name = "/sysupdate"
@@ -32,6 +32,10 @@ class SysUpdateCommand(commands.Cog):
         try:
             git_process = subprocess.run(["git", "pull"], cwd=PROJECT_DIR, check=True, capture_output=True, text=True)
             git_output = git_process.stdout + git_process.stderr
+
+            if "Already up to date." in git_output:
+                await interaction.followup.send("Already up to date.")
+                return
 
             pip_process = subprocess.run(
                 [PYTHON_PATH, "-m", "pip", "install", "--upgrade", "-r", "requirements.txt"],
