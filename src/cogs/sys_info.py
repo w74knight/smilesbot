@@ -62,7 +62,6 @@ class SysInfoCommand(commands.Cog):
             f"**Memory Usage:** {used_mem:.2f}GB / {total_mem:.2f}GB\n"
             f"**Disk Usage:** {used_disk:.2f}GB / {total_disk:.2f}GB\n"
             f"**Uptime:** {uptime_str}\n"
-            f"Random...\n"
         )
 
         if GPU_ENABLED:
