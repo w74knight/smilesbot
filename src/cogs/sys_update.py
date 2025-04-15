@@ -1,8 +1,10 @@
+from discord import File
 from discord.ext import commands
 from discord import app_commands, Interaction
 from logging import getLogger, Logger
 import subprocess
 import os
+import io
 
 from constants import NAME, OWNERS_ID, SUPPORT_GUILD_ID
 
@@ -46,11 +48,16 @@ class SysUpdateCommand(commands.Cog):
             )
             pip_output = pip_process.stdout + pip_process.stderr
 
-            await interaction.followup.send(
+            full_log = (
                 f"**Git Output:**\n```\n{git_output}\n```\n"
                 f"**Pip Output:**\n```\n{pip_output}\n```\n"
                 f"**Restarting bot...**"
             )
+            log_file = io.BytesIO(full_log.encode("utf-8"))
+            log_file.seek(0)
+            log_file.name = "log.txt"
+
+            await interaction.followup.send(content="✅ Update complete. Here's the full log:", file=File(log_file))
             await self.bot.close()
             os._exit(1)  # exit code 1 indicates a restart
         except subprocess.CalledProcessError as e:
