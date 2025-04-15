@@ -56,6 +56,7 @@ class SysInfoCommand(commands.Cog):
             f"**🖥️ System Info**\n"
             f"**OS:** {uname.system} {uname.release} ({uname.version})\n"
             f"**Machine:** {uname.machine}\n"
+            f"Temperature: {psutil.sensors_temperatures()['cpu_thermal'][0].current}°C\n"
             f"**Processor:** {uname.processor}\n"
             f"**CPU Usage:** {cpu_percent}%\n"
             f"**Memory Usage:** {used_mem:.2f}GB / {total_mem:.2f}GB\n"

@@ -11,4 +11,5 @@ __all__ = [
     'sys_info',
     'sys_restart',
     'sys_shutdown',
+    'sys_update',
 ]
