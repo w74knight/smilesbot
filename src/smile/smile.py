@@ -110,14 +110,6 @@ class Smile(object):
 
         self.loadAtomPalette(server_id)
 
-    def __draw(self, drawFunc, mol, server_id, **drawFuncArgs) -> io.BytesIO:
-        self.__loadRenderOptions(mol, server_id)
-        drawFunc(mol, **drawFuncArgs)
-        self.d2d.FinishDrawing()
-        bio = io.BytesIO(self.d2d.GetDrawingText())
-        bio.seek(0)
-        return bio
-    
     def __processLegend(self, legends, num_mols) -> list:
         render_legend = []
         if legends:
@@ -181,6 +173,7 @@ class Smile(object):
     def create_rxn_image(self, rxn, server_id, **drawFuncArgs) -> io.BytesIO:
         # not sure why this is needed, but otherwise it'll error
         self.reset_draw_options()
+        self.opts.scalingFactor = 50
         
         if rxn is None:
             raise ValueError("Reaction is None.")
