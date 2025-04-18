@@ -3,7 +3,7 @@ The use of this application ("Bot") within a Discord server ("Server") requires 
 
 ## Access to Data
 Access to Data is strictly limited to the Bot's developers and authorized personnel, and only to the extent necessary for the development, maintenance, testing, and operation of the Bot. Data will not be sold, shared, or disclosed to any third party, except as required by applicable law, regulations, or Discord’s Terms of Service.
-Users may request access to their stored Data by contacting @killerboss2019 or @w74knight.
+Users may request access to their stored Data by contacting @KillerBOSS2019 or @w74knight.
 
 ## Storage and Security of Data
 Data is stored within a server-side SQLite database. Reasonable measures are taken to secure the database and prevent unauthorized access. However, no method of electronic storage is entirely secure, and as such, no guarantee can be made against potential breaches. The Bot owners assume no liability for unauthorized access to or disclosure of Data.
