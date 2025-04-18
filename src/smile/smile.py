@@ -16,6 +16,7 @@ from util import complement_color, smile_rgb, transform_rgb_to_smile
 
 from .pallette import DISCORD_DARK
 
+MAX_MOLECULES = 4
 
 class Smile(object):
     def __init__(self, database_handler: DatabaseHandler):
@@ -23,6 +24,9 @@ class Smile(object):
         self.logger:Logger = getLogger(NAME)
         self.logger.debug("Smile initialized.")
 
+        self.reset_draw_options()
+
+    def reset_draw_options(self) -> None:
         self.d2d = rdMolDraw2D.MolDraw2DCairo(-1, -1)
         self.opts = self.d2d.drawOptions()
 
@@ -151,8 +155,7 @@ class Smile(object):
                 Chem.Kekulize(mol, clearAromaticFlags=True)
             except:
                 print("Kekulization failed, skipping.")
-        self.d2d = rdMolDraw2D.MolDraw2DCairo(-1, -1)
-        self.opts = self.d2d.drawOptions()
+        self.reset_draw_options()
 
         mols_per_row = (len(mols) + 1) // 2
 
@@ -177,11 +180,34 @@ class Smile(object):
 
     def create_rxn_image(self, rxn, server_id, **drawFuncArgs) -> io.BytesIO:
         # not sure why this is needed, but otherwise it'll error
-        self.d2d = rdMolDraw2D.MolDraw2DCairo(-1, -1)
-        self.opts = self.d2d.drawOptions()
-        self.opts.scalingFactor = 50
+        self.reset_draw_options()
         
-        return self.__draw(self.d2d.DrawReaction, rxn, server_id, **drawFuncArgs)
+        if rxn is None:
+            raise ValueError("Reaction is None.")
+
+        self.__loadRenderOptions(rxn, server_id)
+
+        self.d2d.DrawReaction(rxn, **drawFuncArgs)
+        self.d2d.FinishDrawing()
+
+        drawing_text = self.d2d.GetDrawingText()
+        if not drawing_text.startswith(b'\x89PNG'):
+            raise ValueError("Drawing text is not a valid PNG.")
+
+        bio = io.BytesIO(self.d2d.GetDrawingText())
+        bio.seek(0)
+        return bio
+    
+    def validate_and_create_molecule(self, smiles: str) -> Chem.Mol:
+        if not self.__is_valid_smiles(smiles):
+            try:
+                smiles = self._resolve_name_to_smiles(smiles)
+                if not smiles:
+                    raise ValueError("Could not resolve name to SMILES.")
+            except Exception as e:
+                self.logger.error(f"Failed to resolve: {smiles}, error: {e}")
+                raise
+        return Chem.MolFromSmiles(smiles)
 
     async def render_molecule(self, ctx, molecule, server_id, legends, **drawFuncArgs) -> None:
         self.logger.info(f"smile.render_molecule(ctx, {molecule}, {server_id}, {legends})")
@@ -189,20 +215,18 @@ class Smile(object):
         molecules = [m.strip() for m in molecule.split(",")]
         mol_objects = []
 
-        if len(molecules) > 4:
-            await ctx.send("You can only render 4 molecules at a time.")
+        if len(molecules) > MAX_MOLECULES:
+            await ctx.send(f"You can only render {MAX_MOLECULES} molecules at a time.")
             return
         
         for mol in molecules:
             if not self.__is_valid_smiles(mol):
                 try:
-                    mol = self._resolve_name_to_smiles(mol)
-                    if not mol:
-                        raise ValueError("Could not resolve name to SMILES.")
+                    mol_obj = self.validate_and_create_molecule(mol)
+                    if mol_obj:
+                        mol_objects.append(mol_obj)
                 except Exception as e:
-                    self.logger.error(f"Failed to resolve: {molecule}, error: {e}")
-                    await ctx.send(f"Failed to resolve: {molecule}, error: {e}")
-                    return
+                    await ctx.send(f"Error processing molecule `{mol}`: {e}")
 
             mol_obj = Chem.MolFromSmiles(mol)
             if mol_obj:
