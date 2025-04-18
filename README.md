@@ -9,10 +9,11 @@ A Discord bot for rendering chemical structures and equations using [SMILES synt
 ## Table of Contents
 - [Getting Started](#getting-started)
 - [Features](#features)
-  - [Help Menu](#help-menu)
-  - [Render](#render)
-  - [Extra Features](#extra-features)
-  - [Customization](#customization)
+  - [Help Menu](#❓-help-menu)
+  - [Render](#🧪-render)
+  - [Extra Features](#🌟-extra-features)
+  - [Customization](#⚙️-customization)
+    - [Default Render Color Palettes](#🎨-default-render-color-palettes)
 - [SMILES Syntax](#smiles-syntax)
 - [Contributing](#contributing)
 - [Legal](#legal)
@@ -29,10 +30,10 @@ Displays the help menu.
 Quick guide to SMILES syntax.
 
 ## 🧪 Render
-### `/render rxn:<SMILE Syntax>`
+### `/render rxn:<SMILES Syntax>`
 **Renders chemical equations.**
 
-### `/render mlcl:<SMILE Syntax>`
+### `/render mlcl:<SMILES Syntax>`
 **Render chemical structures using SMILES syntax.**
 - Render multiple structures by separating them with a `,` (up to 4 structures).
 - Add legends under the render image using `legend:<text>`. Multiple legends can be added by separating them with a `,` (up to 4 legends).
@@ -51,7 +52,7 @@ This render function also supports:
 ### `/info <element>`
 Get information about an element. For example, to get information about Carbon, use: `/info element:6`
 ### `/auto_smile`
-Enable or disable automatic `&SMILE Syntax&` message detection.
+Enable or disable automatic `&SMILES Syntax&` message detection.
 ### `/clear`
 Restore all settings and customizations for the server back to default.
 
@@ -65,6 +66,11 @@ Restore all settings and customizations for the server back to default.
 | `/get prefix`            | Get the current prefix.                                                   |
 | `/get color <element>`   | Get the render color of a specific element.                                |
 | `/get bgcolor`           | Get the current render background color.                                  |
+
+### 🎨 Default Render Color Palettes
+<p align="center">
+<img src = "./assets/Default_Color_Palette.png"/>
+</p>
 
 # SMILES Syntax
 ## Bonds
