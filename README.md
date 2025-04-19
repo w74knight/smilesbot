@@ -58,13 +58,15 @@ This render function also supports:
 <p align="center">
 <img src = https://github.com/user-attachments/assets/672c09d3-427c-4ecc-94c1-f802a9d77f67 width=400>
 </p>
+
 ##### Multiple compounds
 
 `/render mlcl mlcl: OCCc1ccn2cnccc12, C1CC1Oc1cc2ccncn2c1, CNC(=O)c1nccc2cccn12`
 <p align="center">
 <img src = https://github.com/user-attachments/assets/42b105bc-970b-462f-9126-33883cebd761 width=400>
 </p>
-##### ID Conversion
+
+##### ID conversion in use
 
 `/render mlcl:Acetaminophen`
 <p align="center">
