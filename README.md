@@ -121,7 +121,7 @@ If you would like to contribute to the project, please fork the repository and s
 
 # Legal
 - **[License](./LICENSE)**: This project is licensed under the GNUv3.0 License.
-- **[Privacy Policy](./privacy.md)**: Read the privacy policy for details on how user data is handled.
-- **[Terms of Service](./terms.md)**: Review the terms of service for using SMILES.bot.
+- **[Privacy Policy](./PRIVACY.md)**: Read the privacy policy for details on how user data is handled.
+- **[Terms of Service](./TERMS.md)**: Review the terms of service for using SMILES.bot.
 
 ---
