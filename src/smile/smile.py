@@ -180,14 +180,13 @@ class Smile(object):
         self.reset_draw_options()
         self.opts.scalingFactor = 50
 
-        Reactions.SanitizeRxn(rxn)
+        validate_rxn = Reactions.ChemicalReaction.Validate(rxn, True)
 
-        if rxn is None:
-            raise ValueError("Reaction is None.")
-        else:
-            validate_rxn = Reactions.ChemicalReaction.Validate(rxn)
-        print(f"{validate_rxn}")
-
+        # If error occurs, it'll send the error message
+        if validate_rxn[0] > 0 or validate_rxn[1] > 0:
+            raise ValueError(validate_rxn)
+        
+        sanitize_reaction = Reactions.SanitizeRxn(rxn)
 
         self.__loadRenderOptions(rxn, server_id)
         self.d2d.DrawReaction(rxn, **drawFuncArgs)
@@ -230,12 +229,12 @@ class Smile(object):
                         mol_objects.append(mol_obj)
                 except Exception as e:
                     await ctx.send(f"Error processing molecule `{mol}`: {e}")
-
-            mol_obj = Chem.MolFromSmiles(mol)
-            if mol_obj:
-                mol_objects.append(mol_obj)
             else:
-                await ctx.send(f"Could not parse {mol}, skipping.")
+                mol_obj = Chem.MolFromSmiles(mol)
+                if mol_obj:
+                    mol_objects.append(mol_obj)
+                else:
+                    await ctx.send(f"Could not parse {mol}, skipping.")
 
         if not mol_objects:
             await ctx.send("No valid molecules to render.")
