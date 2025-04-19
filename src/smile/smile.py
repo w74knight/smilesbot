@@ -5,10 +5,13 @@ from logging import Logger, getLogger
 
 import cirpy
 import discord
+import rdkit
 from rdkit.Chem import AllChem as Chem
 from rdkit.Chem import Draw
 from rdkit.Chem.Draw import rdMolDraw2D
 from rdkit.Chem import rdChemReactions as Reactions
+
+print(rdkit.__version__)
 
 from constants import SMILE_BG, NAME
 from db.db import DatabaseHandler
@@ -17,6 +20,8 @@ from util import complement_color, smile_rgb, transform_rgb_to_smile
 from .pallette import DISCORD_DARK
 
 MAX_MOLECULES = 4
+
+print(rdkit.__version__)
 
 class Smile(object):
     def __init__(self, database_handler: DatabaseHandler):
@@ -174,12 +179,17 @@ class Smile(object):
         # not sure why this is needed, but otherwise it'll error
         self.reset_draw_options()
         self.opts.scalingFactor = 50
-        
+
+        Reactions.SanitizeRxn(rxn)
+
         if rxn is None:
             raise ValueError("Reaction is None.")
+        else:
+            validate_rxn = Reactions.ChemicalReaction.Validate(rxn)
+        print(f"{validate_rxn}")
+
 
         self.__loadRenderOptions(rxn, server_id)
-
         self.d2d.DrawReaction(rxn, **drawFuncArgs)
         self.d2d.FinishDrawing()
 
@@ -262,8 +272,8 @@ class Smile(object):
 
         try:
             rxn = Reactions.ReactionFromSmarts(f'{reaction}', useSmiles=True)
-
             loop = asyncio.get_running_loop()
+
             img = await loop.run_in_executor(
                 None,
                 functools.partial(
@@ -272,7 +282,7 @@ class Smile(object):
                     server_id
                 )
             )
-            
+
         except Exception as e:
             self.logger.error(f"Reaction error: {e}")
             await ctx.send(f"Reaction error: {e}")
