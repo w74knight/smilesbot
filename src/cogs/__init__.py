@@ -7,5 +7,9 @@ __all__ = [
     'settings',
     'auto_smile',
     'render',
-    'element_info'
+    'element_info',
+    'sys_info',
+    'sys_restart',
+    'sys_shutdown',
+    'sys_update',
 ]

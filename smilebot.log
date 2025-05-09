@@ -486,3 +486,1153 @@ discord.ext.commands.errors.HybridCommandError: Hybrid command raised an error: 
 [2025-03-31 16:58:17] [INFO    ] server_settings: ServerSettings initialized.
 [2025-03-31 16:58:17] [INFO    ] db: DatabaseHandler initialized.
 [2025-03-31 16:58:17] [INFO    ] main: Logged in as SMILES.bot#2045 (ID: 1347275416225976333)
+[2025-04-14 20:19:13] [INFO    ] client: logging in using static token
+[2025-04-14 20:19:13] [INFO    ] help: HelpCommand initialized.
+[2025-04-14 20:19:13] [INFO    ] set: SetCommand initialized.
+[2025-04-14 20:19:13] [INFO    ] clear: ClearCommand initialized.
+[2025-04-14 20:19:13] [INFO    ] smiles_help: SmilesHelpCommand initialized.
+[2025-04-14 20:19:13] [INFO    ] settings: SettingsCommand initialized.
+[2025-04-14 20:19:13] [INFO    ] auto_smile: AutoSmileCommand initialized.
+[2025-04-14 20:19:13] [INFO    ] render: RenderCommand initialized.
+[2025-04-14 20:19:13] [INFO    ] element_info: ElementInfoCommand initialized.
+[2025-04-14 20:19:13] [INFO    ] main: All cogs loaded.
+[2025-04-14 20:19:14] [INFO    ] gateway: Shard ID None has connected to Gateway (Session ID: 10ec8e69c3f24da827fed12af86259dc).
+[2025-04-14 20:19:16] [INFO    ] main: SmileBot initialized.
+[2025-04-14 20:19:16] [INFO    ] main: Logged in as SMILES.bot#2045 (ID: 1347275416225976333)
+[2025-04-14 20:21:26] [INFO    ] client: logging in using static token
+[2025-04-14 20:21:26] [INFO    ] help: HelpCommand initialized.
+[2025-04-14 20:21:26] [INFO    ] set: SetCommand initialized.
+[2025-04-14 20:21:26] [INFO    ] clear: ClearCommand initialized.
+[2025-04-14 20:21:26] [INFO    ] smiles_help: SmilesHelpCommand initialized.
+[2025-04-14 20:21:26] [INFO    ] settings: SettingsCommand initialized.
+[2025-04-14 20:21:26] [INFO    ] auto_smile: AutoSmileCommand initialized.
+[2025-04-14 20:21:26] [INFO    ] render: RenderCommand initialized.
+[2025-04-14 20:21:26] [INFO    ] element_info: ElementInfoCommand initialized.
+[2025-04-14 20:21:27] [INFO    ] sys_info: SystemInfoCommand initialized.
+[2025-04-14 20:21:27] [INFO    ] main: All cogs loaded.
+[2025-04-14 20:21:27] [INFO    ] gateway: Shard ID None has connected to Gateway (Session ID: 96ec70c8e2f47572dd432ad524f6265a).
+[2025-04-14 20:21:29] [INFO    ] main: SmileBot initialized.
+[2025-04-14 20:21:29] [INFO    ] main: Logged in as SMILES.bot#2045 (ID: 1347275416225976333)
+[2025-04-14 20:25:27] [INFO    ] client: logging in using static token
+[2025-04-14 20:25:28] [INFO    ] help: HelpCommand initialized.
+[2025-04-14 20:25:28] [INFO    ] set: SetCommand initialized.
+[2025-04-14 20:25:28] [INFO    ] clear: ClearCommand initialized.
+[2025-04-14 20:25:28] [INFO    ] smiles_help: SmilesHelpCommand initialized.
+[2025-04-14 20:25:28] [INFO    ] settings: SettingsCommand initialized.
+[2025-04-14 20:25:28] [INFO    ] auto_smile: AutoSmileCommand initialized.
+[2025-04-14 20:25:28] [INFO    ] render: RenderCommand initialized.
+[2025-04-14 20:25:28] [INFO    ] element_info: ElementInfoCommand initialized.
+[2025-04-14 20:25:28] [INFO    ] sys_info: SystemInfoCommand initialized.
+[2025-04-14 20:25:28] [INFO    ] db: Closing database connection.
+[2025-04-14 20:25:28] [INFO    ] main: SmileBot closed.
+[2025-04-14 20:25:50] [INFO    ] client: logging in using static token
+[2025-04-14 20:25:50] [INFO    ] help: HelpCommand initialized.
+[2025-04-14 20:25:50] [INFO    ] set: SetCommand initialized.
+[2025-04-14 20:25:50] [INFO    ] clear: ClearCommand initialized.
+[2025-04-14 20:25:50] [INFO    ] smiles_help: SmilesHelpCommand initialized.
+[2025-04-14 20:25:50] [INFO    ] settings: SettingsCommand initialized.
+[2025-04-14 20:25:50] [INFO    ] auto_smile: AutoSmileCommand initialized.
+[2025-04-14 20:25:50] [INFO    ] render: RenderCommand initialized.
+[2025-04-14 20:25:50] [INFO    ] element_info: ElementInfoCommand initialized.
+[2025-04-14 20:25:50] [INFO    ] sys_info: SystemInfoCommand initialized.
+[2025-04-14 20:25:50] [INFO    ] db: Closing database connection.
+[2025-04-14 20:25:50] [INFO    ] main: SmileBot closed.
+[2025-04-14 20:26:49] [INFO    ] client: logging in using static token
+[2025-04-14 20:26:49] [INFO    ] help: HelpCommand initialized.
+[2025-04-14 20:26:50] [INFO    ] set: SetCommand initialized.
+[2025-04-14 20:26:50] [INFO    ] clear: ClearCommand initialized.
+[2025-04-14 20:26:50] [INFO    ] smiles_help: SmilesHelpCommand initialized.
+[2025-04-14 20:26:50] [INFO    ] settings: SettingsCommand initialized.
+[2025-04-14 20:26:50] [INFO    ] auto_smile: AutoSmileCommand initialized.
+[2025-04-14 20:26:50] [INFO    ] render: RenderCommand initialized.
+[2025-04-14 20:26:50] [INFO    ] element_info: ElementInfoCommand initialized.
+[2025-04-14 20:26:50] [INFO    ] sys_info: SystemInfoCommand initialized.
+[2025-04-14 20:26:50] [INFO    ] main: All cogs loaded.
+[2025-04-14 20:26:50] [INFO    ] gateway: Shard ID None has connected to Gateway (Session ID: 02bb82bf01deb466bf4786a7735d9e90).
+[2025-04-14 20:26:52] [INFO    ] main: SmileBot initialized.
+[2025-04-14 20:26:52] [INFO    ] main: Logged in as SMILES.bot#2045 (ID: 1347275416225976333)
+[2025-04-14 20:29:21] [INFO    ] db: Closing database connection.
+[2025-04-14 20:29:21] [INFO    ] main: SmileBot closed.
+[2025-04-14 20:29:27] [INFO    ] client: logging in using static token
+[2025-04-14 20:29:27] [INFO    ] help: HelpCommand initialized.
+[2025-04-14 20:29:27] [INFO    ] set: SetCommand initialized.
+[2025-04-14 20:29:27] [INFO    ] clear: ClearCommand initialized.
+[2025-04-14 20:29:27] [INFO    ] smiles_help: SmilesHelpCommand initialized.
+[2025-04-14 20:29:27] [INFO    ] settings: SettingsCommand initialized.
+[2025-04-14 20:29:27] [INFO    ] auto_smile: AutoSmileCommand initialized.
+[2025-04-14 20:29:27] [INFO    ] render: RenderCommand initialized.
+[2025-04-14 20:29:27] [INFO    ] element_info: ElementInfoCommand initialized.
+[2025-04-14 20:29:27] [INFO    ] sys_info: SystemInfoCommand initialized.
+[2025-04-14 20:29:27] [INFO    ] main: All cogs loaded.
+[2025-04-14 20:29:27] [INFO    ] gateway: Shard ID None has connected to Gateway (Session ID: b76cb70a3f77da6839389d1d871515a5).
+[2025-04-14 20:29:30] [INFO    ] main: SmileBot initialized.
+[2025-04-14 20:29:30] [INFO    ] main: Logged in as SMILES.bot#2045 (ID: 1347275416225976333)
+[2025-04-14 20:31:19] [INFO    ] client: logging in using static token
+[2025-04-14 20:31:19] [INFO    ] help: HelpCommand initialized.
+[2025-04-14 20:31:19] [INFO    ] set: SetCommand initialized.
+[2025-04-14 20:31:19] [INFO    ] clear: ClearCommand initialized.
+[2025-04-14 20:31:19] [INFO    ] smiles_help: SmilesHelpCommand initialized.
+[2025-04-14 20:31:19] [INFO    ] settings: SettingsCommand initialized.
+[2025-04-14 20:31:19] [INFO    ] auto_smile: AutoSmileCommand initialized.
+[2025-04-14 20:31:19] [INFO    ] render: RenderCommand initialized.
+[2025-04-14 20:31:19] [INFO    ] element_info: ElementInfoCommand initialized.
+[2025-04-14 20:31:19] [INFO    ] sys_info: SystemInfoCommand initialized.
+[2025-04-14 20:31:19] [INFO    ] main: All cogs loaded.
+[2025-04-14 20:31:20] [INFO    ] gateway: Shard ID None has connected to Gateway (Session ID: 5e12ca1932913758dd0119df3c8cd820).
+[2025-04-14 20:31:22] [INFO    ] main: SmileBot initialized.
+[2025-04-14 20:31:22] [INFO    ] main: Logged in as SMILES.bot#2045 (ID: 1347275416225976333)
+[2025-04-14 20:32:27] [INFO    ] client: logging in using static token
+[2025-04-14 20:32:27] [INFO    ] help: HelpCommand initialized.
+[2025-04-14 20:32:27] [INFO    ] set: SetCommand initialized.
+[2025-04-14 20:32:27] [INFO    ] clear: ClearCommand initialized.
+[2025-04-14 20:32:27] [INFO    ] smiles_help: SmilesHelpCommand initialized.
+[2025-04-14 20:32:27] [INFO    ] settings: SettingsCommand initialized.
+[2025-04-14 20:32:27] [INFO    ] auto_smile: AutoSmileCommand initialized.
+[2025-04-14 20:32:27] [INFO    ] render: RenderCommand initialized.
+[2025-04-14 20:32:27] [INFO    ] element_info: ElementInfoCommand initialized.
+[2025-04-14 20:32:27] [INFO    ] sys_info: SystemInfoCommand initialized.
+[2025-04-14 20:32:27] [INFO    ] db: Closing database connection.
+[2025-04-14 20:32:27] [INFO    ] main: SmileBot closed.
+[2025-04-14 20:32:48] [INFO    ] client: logging in using static token
+[2025-04-14 20:32:48] [INFO    ] help: HelpCommand initialized.
+[2025-04-14 20:32:48] [INFO    ] set: SetCommand initialized.
+[2025-04-14 20:32:48] [INFO    ] clear: ClearCommand initialized.
+[2025-04-14 20:32:48] [INFO    ] smiles_help: SmilesHelpCommand initialized.
+[2025-04-14 20:32:48] [INFO    ] settings: SettingsCommand initialized.
+[2025-04-14 20:32:48] [INFO    ] auto_smile: AutoSmileCommand initialized.
+[2025-04-14 20:32:48] [INFO    ] render: RenderCommand initialized.
+[2025-04-14 20:32:48] [INFO    ] element_info: ElementInfoCommand initialized.
+[2025-04-14 20:32:48] [INFO    ] sys_info: SystemInfoCommand initialized.
+[2025-04-14 20:32:48] [INFO    ] db: Closing database connection.
+[2025-04-14 20:32:48] [INFO    ] main: SmileBot closed.
+[2025-04-14 20:34:19] [INFO    ] client: logging in using static token
+[2025-04-14 20:34:20] [INFO    ] help: HelpCommand initialized.
+[2025-04-14 20:34:20] [INFO    ] set: SetCommand initialized.
+[2025-04-14 20:34:20] [INFO    ] clear: ClearCommand initialized.
+[2025-04-14 20:34:20] [INFO    ] smiles_help: SmilesHelpCommand initialized.
+[2025-04-14 20:34:20] [INFO    ] settings: SettingsCommand initialized.
+[2025-04-14 20:34:20] [INFO    ] auto_smile: AutoSmileCommand initialized.
+[2025-04-14 20:34:20] [INFO    ] render: RenderCommand initialized.
+[2025-04-14 20:34:20] [INFO    ] element_info: ElementInfoCommand initialized.
+[2025-04-14 20:34:20] [INFO    ] sys_info: SystemInfoCommand initialized.
+[2025-04-14 20:34:20] [INFO    ] main: All cogs loaded.
+[2025-04-14 20:34:21] [INFO    ] gateway: Shard ID None has connected to Gateway (Session ID: 351954e88ee2a46dddea5fe0b27a342f).
+[2025-04-14 20:34:23] [INFO    ] main: SmileBot initialized.
+[2025-04-14 20:34:23] [INFO    ] main: Logged in as SMILES.bot#2045 (ID: 1347275416225976333)
+[2025-04-14 20:34:35] [INFO    ] client: logging in using static token
+[2025-04-14 20:34:36] [INFO    ] help: HelpCommand initialized.
+[2025-04-14 20:34:36] [INFO    ] set: SetCommand initialized.
+[2025-04-14 20:34:36] [INFO    ] clear: ClearCommand initialized.
+[2025-04-14 20:34:36] [INFO    ] smiles_help: SmilesHelpCommand initialized.
+[2025-04-14 20:34:36] [INFO    ] settings: SettingsCommand initialized.
+[2025-04-14 20:34:36] [INFO    ] auto_smile: AutoSmileCommand initialized.
+[2025-04-14 20:34:36] [INFO    ] render: RenderCommand initialized.
+[2025-04-14 20:34:36] [INFO    ] element_info: ElementInfoCommand initialized.
+[2025-04-14 20:34:36] [INFO    ] sys_info: SystemInfoCommand initialized.
+[2025-04-14 20:34:36] [INFO    ] main: All cogs loaded.
+[2025-04-14 20:34:36] [INFO    ] gateway: Shard ID None has connected to Gateway (Session ID: 248c8569e2d728438f85ca6adca80dad).
+[2025-04-14 20:34:38] [INFO    ] main: SmileBot initialized.
+[2025-04-14 20:35:23] [INFO    ] main: Logged in as SMILES.bot#2045 (ID: 1347275416225976333)
+[2025-04-14 20:41:30] [INFO    ] client: logging in using static token
+[2025-04-14 20:41:31] [INFO    ] help: HelpCommand initialized.
+[2025-04-14 20:41:31] [INFO    ] set: SetCommand initialized.
+[2025-04-14 20:41:31] [INFO    ] clear: ClearCommand initialized.
+[2025-04-14 20:41:31] [INFO    ] smiles_help: SmilesHelpCommand initialized.
+[2025-04-14 20:41:31] [INFO    ] settings: SettingsCommand initialized.
+[2025-04-14 20:41:31] [INFO    ] auto_smile: AutoSmileCommand initialized.
+[2025-04-14 20:41:31] [INFO    ] render: RenderCommand initialized.
+[2025-04-14 20:41:31] [INFO    ] element_info: ElementInfoCommand initialized.
+[2025-04-14 20:41:31] [INFO    ] sys_info: SystemInfoCommand initialized.
+[2025-04-14 20:41:31] [INFO    ] main: All cogs loaded.
+[2025-04-14 20:41:31] [INFO    ] gateway: Shard ID None has connected to Gateway (Session ID: c946c27c6b32a4c90e9d64c1164dbe82).
+[2025-04-14 20:41:33] [INFO    ] main: SmileBot initialized.
+[2025-04-14 20:41:33] [INFO    ] main: Logged in as SMILES.bot#2045 (ID: 1347275416225976333)
+[2025-04-14 20:42:34] [INFO    ] client: logging in using static token
+[2025-04-14 20:42:35] [INFO    ] help: HelpCommand initialized.
+[2025-04-14 20:42:35] [INFO    ] set: SetCommand initialized.
+[2025-04-14 20:42:35] [INFO    ] clear: ClearCommand initialized.
+[2025-04-14 20:42:35] [INFO    ] smiles_help: SmilesHelpCommand initialized.
+[2025-04-14 20:42:35] [INFO    ] settings: SettingsCommand initialized.
+[2025-04-14 20:42:35] [INFO    ] auto_smile: AutoSmileCommand initialized.
+[2025-04-14 20:42:35] [INFO    ] render: RenderCommand initialized.
+[2025-04-14 20:42:35] [INFO    ] element_info: ElementInfoCommand initialized.
+[2025-04-14 20:42:35] [INFO    ] sys_info: SystemInfoCommand initialized.
+[2025-04-14 20:42:35] [INFO    ] main: All cogs loaded.
+[2025-04-14 20:42:35] [INFO    ] gateway: Shard ID None has connected to Gateway (Session ID: c5269740b4ee16b956c311897221f903).
+[2025-04-14 20:42:37] [INFO    ] main: SmileBot initialized.
+[2025-04-14 20:42:38] [INFO    ] main: Logged in as SMILES.bot#2045 (ID: 1347275416225976333)
+[2025-04-14 20:44:07] [INFO    ] client: logging in using static token
+[2025-04-14 20:44:08] [INFO    ] help: HelpCommand initialized.
+[2025-04-14 20:44:08] [INFO    ] set: SetCommand initialized.
+[2025-04-14 20:44:08] [INFO    ] clear: ClearCommand initialized.
+[2025-04-14 20:44:08] [INFO    ] smiles_help: SmilesHelpCommand initialized.
+[2025-04-14 20:44:08] [INFO    ] settings: SettingsCommand initialized.
+[2025-04-14 20:44:08] [INFO    ] auto_smile: AutoSmileCommand initialized.
+[2025-04-14 20:44:08] [INFO    ] render: RenderCommand initialized.
+[2025-04-14 20:44:08] [INFO    ] element_info: ElementInfoCommand initialized.
+[2025-04-14 20:44:08] [INFO    ] sys_info: SystemInfoCommand initialized.
+[2025-04-14 20:44:08] [INFO    ] main: All cogs loaded.
+[2025-04-14 20:44:08] [INFO    ] gateway: Shard ID None has connected to Gateway (Session ID: 098a364e58e3cd5d9780209f3018948a).
+[2025-04-14 20:44:10] [INFO    ] main: SmileBot initialized.
+[2025-04-14 20:44:11] [INFO    ] main: Logged in as SMILES.bot#2045 (ID: 1347275416225976333)
+[2025-04-14 20:45:20] [INFO    ] client: logging in using static token
+[2025-04-14 20:45:21] [INFO    ] help: HelpCommand initialized.
+[2025-04-14 20:45:21] [INFO    ] set: SetCommand initialized.
+[2025-04-14 20:45:21] [INFO    ] clear: ClearCommand initialized.
+[2025-04-14 20:45:21] [INFO    ] smiles_help: SmilesHelpCommand initialized.
+[2025-04-14 20:45:21] [INFO    ] settings: SettingsCommand initialized.
+[2025-04-14 20:45:21] [INFO    ] auto_smile: AutoSmileCommand initialized.
+[2025-04-14 20:45:21] [INFO    ] render: RenderCommand initialized.
+[2025-04-14 20:45:21] [INFO    ] element_info: ElementInfoCommand initialized.
+[2025-04-14 20:45:21] [INFO    ] sys_info: SystemInfoCommand initialized.
+[2025-04-14 20:45:21] [INFO    ] main: All cogs loaded.
+[2025-04-14 20:45:21] [INFO    ] gateway: Shard ID None has connected to Gateway (Session ID: 500099c71d93523b95232d559a7aa98a).
+[2025-04-14 20:45:23] [INFO    ] main: SmileBot initialized.
+[2025-04-14 20:45:23] [INFO    ] main: Logged in as SMILES.bot#2045 (ID: 1347275416225976333)
+[2025-04-14 20:46:02] [INFO    ] client: logging in using static token
+[2025-04-14 20:46:02] [INFO    ] help: HelpCommand initialized.
+[2025-04-14 20:46:02] [INFO    ] set: SetCommand initialized.
+[2025-04-14 20:46:02] [INFO    ] clear: ClearCommand initialized.
+[2025-04-14 20:46:02] [INFO    ] smiles_help: SmilesHelpCommand initialized.
+[2025-04-14 20:46:02] [INFO    ] settings: SettingsCommand initialized.
+[2025-04-14 20:46:02] [INFO    ] auto_smile: AutoSmileCommand initialized.
+[2025-04-14 20:46:02] [INFO    ] render: RenderCommand initialized.
+[2025-04-14 20:46:02] [INFO    ] element_info: ElementInfoCommand initialized.
+[2025-04-14 20:46:02] [INFO    ] sys_info: SystemInfoCommand initialized.
+[2025-04-14 20:46:02] [INFO    ] main: All cogs loaded.
+[2025-04-14 20:46:03] [INFO    ] gateway: Shard ID None has connected to Gateway (Session ID: 19984731a204194c8f121b451b3e9852).
+[2025-04-14 20:46:05] [INFO    ] main: SmileBot initialized.
+[2025-04-14 20:46:05] [INFO    ] main: Logged in as SMILES.bot#2045 (ID: 1347275416225976333)
+[2025-04-14 20:55:03] [INFO    ] client: logging in using static token
+[2025-04-14 20:55:03] [INFO    ] help: HelpCommand initialized.
+[2025-04-14 20:55:03] [INFO    ] set: SetCommand initialized.
+[2025-04-14 20:55:03] [INFO    ] clear: ClearCommand initialized.
+[2025-04-14 20:55:03] [INFO    ] smiles_help: SmilesHelpCommand initialized.
+[2025-04-14 20:55:03] [INFO    ] settings: SettingsCommand initialized.
+[2025-04-14 20:55:03] [INFO    ] auto_smile: AutoSmileCommand initialized.
+[2025-04-14 20:55:03] [INFO    ] render: RenderCommand initialized.
+[2025-04-14 20:55:03] [INFO    ] element_info: ElementInfoCommand initialized.
+[2025-04-14 20:55:04] [INFO    ] sys_info: SystemInfoCommand initialized.
+[2025-04-14 20:55:04] [INFO    ] sys_restart: SysRestart initialized.
+[2025-04-14 20:55:04] [INFO    ] sys_shutdown: SysShutdown initialized.
+[2025-04-14 20:55:04] [INFO    ] main: All cogs loaded.
+[2025-04-14 20:55:04] [INFO    ] gateway: Shard ID None has connected to Gateway (Session ID: aa9b528a9da0da3e1e5fdf74c4084323).
+[2025-04-14 20:55:06] [INFO    ] main: SmileBot initialized.
+[2025-04-14 20:55:06] [INFO    ] main: Logged in as SMILES.bot#2045 (ID: 1347275416225976333)
+[2025-04-14 20:56:24] [INFO    ] db: Closing database connection.
+[2025-04-14 20:56:24] [INFO    ] main: SmileBot closed.
+[2025-04-14 20:56:33] [INFO    ] client: logging in using static token
+[2025-04-14 20:56:33] [INFO    ] help: HelpCommand initialized.
+[2025-04-14 20:56:33] [INFO    ] set: SetCommand initialized.
+[2025-04-14 20:56:33] [INFO    ] clear: ClearCommand initialized.
+[2025-04-14 20:56:33] [INFO    ] smiles_help: SmilesHelpCommand initialized.
+[2025-04-14 20:56:33] [INFO    ] settings: SettingsCommand initialized.
+[2025-04-14 20:56:33] [INFO    ] auto_smile: AutoSmileCommand initialized.
+[2025-04-14 20:56:33] [INFO    ] render: RenderCommand initialized.
+[2025-04-14 20:56:33] [INFO    ] element_info: ElementInfoCommand initialized.
+[2025-04-14 20:56:33] [INFO    ] sys_info: SystemInfoCommand initialized.
+[2025-04-14 20:56:33] [INFO    ] sys_restart: SysRestart initialized.
+[2025-04-14 20:56:33] [INFO    ] sys_shutdown: SysShutdown initialized.
+[2025-04-14 20:56:33] [INFO    ] main: All cogs loaded.
+[2025-04-14 20:56:34] [INFO    ] gateway: Shard ID None has connected to Gateway (Session ID: 65caa9e19006d4182724d7611d4c6f10).
+[2025-04-14 20:56:36] [INFO    ] main: SmileBot initialized.
+[2025-04-14 20:56:36] [INFO    ] main: Logged in as SMILES.bot#2045 (ID: 1347275416225976333)
+[2025-04-14 20:56:50] [INFO    ] db: Closing database connection.
+[2025-04-14 20:56:50] [INFO    ] main: SmileBot closed.
+[2025-04-14 20:59:31] [INFO    ] client: logging in using static token
+[2025-04-14 20:59:31] [INFO    ] help: HelpCommand initialized.
+[2025-04-14 20:59:31] [INFO    ] set: SetCommand initialized.
+[2025-04-14 20:59:31] [INFO    ] clear: ClearCommand initialized.
+[2025-04-14 20:59:31] [INFO    ] smiles_help: SmilesHelpCommand initialized.
+[2025-04-14 20:59:31] [INFO    ] settings: SettingsCommand initialized.
+[2025-04-14 20:59:31] [INFO    ] auto_smile: AutoSmileCommand initialized.
+[2025-04-14 20:59:31] [INFO    ] render: RenderCommand initialized.
+[2025-04-14 20:59:31] [INFO    ] element_info: ElementInfoCommand initialized.
+[2025-04-14 20:59:31] [INFO    ] sys_info: SystemInfoCommand initialized.
+[2025-04-14 20:59:31] [INFO    ] sys_restart: SysRestart initialized.
+[2025-04-14 20:59:31] [INFO    ] sys_shutdown: SysShutdown initialized.
+[2025-04-14 20:59:31] [INFO    ] main: All cogs loaded.
+[2025-04-14 20:59:32] [INFO    ] gateway: Shard ID None has connected to Gateway (Session ID: b2e959718678defa3eeafaec459bd41d).
+[2025-04-14 20:59:34] [INFO    ] main: SmileBot initialized.
+[2025-04-14 20:59:34] [INFO    ] main: Logged in as SMILES.bot#2045 (ID: 1347275416225976333)
+[2025-04-14 20:59:38] [ERROR   ] main: Error in command help: Hybrid command raised an error: Command 'help' raised an exception: AttributeError: module 'cogs.sys_info' has no attribute 'SysInfoCommand'
+[2025-04-14 21:00:18] [INFO    ] client: logging in using static token
+[2025-04-14 21:00:18] [INFO    ] help: HelpCommand initialized.
+[2025-04-14 21:00:18] [INFO    ] set: SetCommand initialized.
+[2025-04-14 21:00:18] [INFO    ] clear: ClearCommand initialized.
+[2025-04-14 21:00:18] [INFO    ] smiles_help: SmilesHelpCommand initialized.
+[2025-04-14 21:00:18] [INFO    ] settings: SettingsCommand initialized.
+[2025-04-14 21:00:18] [INFO    ] auto_smile: AutoSmileCommand initialized.
+[2025-04-14 21:00:18] [INFO    ] render: RenderCommand initialized.
+[2025-04-14 21:00:18] [INFO    ] element_info: ElementInfoCommand initialized.
+[2025-04-14 21:00:18] [INFO    ] sys_info: SystemInfoCommand initialized.
+[2025-04-14 21:00:18] [INFO    ] sys_restart: SysRestart initialized.
+[2025-04-14 21:00:18] [INFO    ] sys_shutdown: SysShutdown initialized.
+[2025-04-14 21:00:18] [INFO    ] main: All cogs loaded.
+[2025-04-14 21:00:19] [INFO    ] gateway: Shard ID None has connected to Gateway (Session ID: 100854741c287c9d191aaccd4349a42e).
+[2025-04-14 21:00:21] [INFO    ] main: SmileBot initialized.
+[2025-04-14 21:00:21] [INFO    ] main: Logged in as SMILES.bot#2045 (ID: 1347275416225976333)
+[2025-04-14 21:00:22] [ERROR   ] main: Error in command help: Hybrid command raised an error: Command 'help' raised an exception: AttributeError: module 'cogs.sys_restart' has no attribute 'SysRestartCommand'
+[2025-04-14 21:00:50] [INFO    ] client: logging in using static token
+[2025-04-14 21:00:50] [INFO    ] help: HelpCommand initialized.
+[2025-04-14 21:00:50] [INFO    ] set: SetCommand initialized.
+[2025-04-14 21:00:50] [INFO    ] clear: ClearCommand initialized.
+[2025-04-14 21:00:50] [INFO    ] smiles_help: SmilesHelpCommand initialized.
+[2025-04-14 21:00:50] [INFO    ] settings: SettingsCommand initialized.
+[2025-04-14 21:00:50] [INFO    ] auto_smile: AutoSmileCommand initialized.
+[2025-04-14 21:00:50] [INFO    ] render: RenderCommand initialized.
+[2025-04-14 21:00:50] [INFO    ] element_info: ElementInfoCommand initialized.
+[2025-04-14 21:00:50] [INFO    ] sys_info: SystemInfoCommand initialized.
+[2025-04-14 21:00:50] [INFO    ] sys_restart: SysRestart initialized.
+[2025-04-14 21:00:50] [INFO    ] sys_shutdown: SysShutdown initialized.
+[2025-04-14 21:00:50] [INFO    ] main: All cogs loaded.
+[2025-04-14 21:00:51] [INFO    ] gateway: Shard ID None has connected to Gateway (Session ID: 569843b6c2f78e462b7bd79e7ae96a0a).
+[2025-04-14 21:00:53] [INFO    ] main: SmileBot initialized.
+[2025-04-14 21:00:53] [INFO    ] main: Logged in as SMILES.bot#2045 (ID: 1347275416225976333)
+[2025-04-19 04:41:43] [INFO    ] client: logging in using static token
+[2025-04-19 04:41:44] [INFO    ] help: HelpCommand initialized.
+[2025-04-19 04:41:44] [INFO    ] set: SetCommand initialized.
+[2025-04-19 04:41:44] [INFO    ] clear: ClearCommand initialized.
+[2025-04-19 04:41:44] [INFO    ] smiles_help: SmilesHelpCommand initialized.
+[2025-04-19 04:41:44] [INFO    ] settings: SettingsCommand initialized.
+[2025-04-19 04:41:44] [INFO    ] auto_smile: AutoSmileCommand initialized.
+[2025-04-19 04:41:44] [INFO    ] render: RenderCommand initialized.
+[2025-04-19 04:41:44] [INFO    ] element_info: ElementInfoCommand initialized.
+[2025-04-19 04:41:44] [INFO    ] sys_info: SystemInfoCommand initialized.
+[2025-04-19 04:41:44] [INFO    ] sys_restart: SysRestart initialized.
+[2025-04-19 04:41:44] [INFO    ] sys_shutdown: SysShutdown initialized.
+[2025-04-19 04:41:44] [INFO    ] sys_update: SysUpdate initialized.
+[2025-04-19 04:41:44] [INFO    ] main: All cogs loaded.
+[2025-04-19 04:41:45] [INFO    ] gateway: Shard ID None has connected to Gateway (Session ID: 07398ee822544ad0f540595857179df1).
+[2025-04-19 04:41:47] [INFO    ] main: SmileBot initialized.
+[2025-04-19 04:41:47] [INFO    ] main: Logged in as SMILES.bot#2045 (ID: 1347275416225976333)
+[2025-04-19 04:42:10] [INFO    ] smile: smile.render_molecule(ctx, 98-86-2, 1347283142096060426, )
+[2025-04-19 04:43:00] [INFO    ] client: logging in using static token
+[2025-04-19 04:43:00] [INFO    ] help: HelpCommand initialized.
+[2025-04-19 04:43:00] [INFO    ] set: SetCommand initialized.
+[2025-04-19 04:43:00] [INFO    ] clear: ClearCommand initialized.
+[2025-04-19 04:43:00] [INFO    ] smiles_help: SmilesHelpCommand initialized.
+[2025-04-19 04:43:00] [INFO    ] settings: SettingsCommand initialized.
+[2025-04-19 04:43:00] [INFO    ] auto_smile: AutoSmileCommand initialized.
+[2025-04-19 04:43:00] [INFO    ] render: RenderCommand initialized.
+[2025-04-19 04:43:00] [INFO    ] element_info: ElementInfoCommand initialized.
+[2025-04-19 04:43:00] [INFO    ] sys_info: SystemInfoCommand initialized.
+[2025-04-19 04:43:00] [INFO    ] sys_restart: SysRestart initialized.
+[2025-04-19 04:43:00] [INFO    ] sys_shutdown: SysShutdown initialized.
+[2025-04-19 04:43:00] [INFO    ] sys_update: SysUpdate initialized.
+[2025-04-19 04:43:00] [INFO    ] main: All cogs loaded.
+[2025-04-19 04:43:00] [INFO    ] gateway: Shard ID None has connected to Gateway (Session ID: 602db86e8e2078c0214358df808eac3f).
+[2025-04-19 04:43:03] [INFO    ] main: SmileBot initialized.
+[2025-04-19 04:43:03] [INFO    ] main: Logged in as SMILES.bot#2045 (ID: 1347275416225976333)
+[2025-04-19 04:43:09] [INFO    ] smile: smile.render_molecule(ctx, 98-86-2, 1347283142096060426, )
+[2025-04-19 04:45:44] [INFO    ] client: logging in using static token
+[2025-04-19 04:45:45] [INFO    ] help: HelpCommand initialized.
+[2025-04-19 04:45:45] [INFO    ] set: SetCommand initialized.
+[2025-04-19 04:45:45] [INFO    ] clear: ClearCommand initialized.
+[2025-04-19 04:45:45] [INFO    ] smiles_help: SmilesHelpCommand initialized.
+[2025-04-19 04:45:45] [INFO    ] settings: SettingsCommand initialized.
+[2025-04-19 04:45:45] [INFO    ] auto_smile: AutoSmileCommand initialized.
+[2025-04-19 04:45:45] [INFO    ] render: RenderCommand initialized.
+[2025-04-19 04:45:45] [INFO    ] element_info: ElementInfoCommand initialized.
+[2025-04-19 04:45:45] [INFO    ] sys_info: SystemInfoCommand initialized.
+[2025-04-19 04:45:45] [INFO    ] sys_restart: SysRestart initialized.
+[2025-04-19 04:45:45] [INFO    ] sys_shutdown: SysShutdown initialized.
+[2025-04-19 04:45:45] [INFO    ] sys_update: SysUpdate initialized.
+[2025-04-19 04:45:45] [INFO    ] main: All cogs loaded.
+[2025-04-19 04:45:45] [INFO    ] gateway: Shard ID None has connected to Gateway (Session ID: 370453c4374f5c89718fe56dc9776d8a).
+[2025-04-19 04:45:47] [INFO    ] main: SmileBot initialized.
+[2025-04-19 04:45:48] [INFO    ] main: Logged in as SMILES.bot#2045 (ID: 1347275416225976333)
+[2025-04-19 04:46:01] [ERROR   ] main: Error in command render mlcl: The check functions for command render mlcl failed.
+[2025-04-19 04:46:14] [ERROR   ] main: Error in command render mlcl: The check functions for command render mlcl failed.
+[2025-04-19 04:48:19] [INFO    ] client: logging in using static token
+[2025-04-19 04:48:20] [INFO    ] help: HelpCommand initialized.
+[2025-04-19 04:48:20] [INFO    ] set: SetCommand initialized.
+[2025-04-19 04:48:20] [INFO    ] clear: ClearCommand initialized.
+[2025-04-19 04:48:20] [INFO    ] smiles_help: SmilesHelpCommand initialized.
+[2025-04-19 04:48:20] [INFO    ] settings: SettingsCommand initialized.
+[2025-04-19 04:48:20] [INFO    ] auto_smile: AutoSmileCommand initialized.
+[2025-04-19 04:48:20] [INFO    ] render: RenderCommand initialized.
+[2025-04-19 04:48:20] [INFO    ] element_info: ElementInfoCommand initialized.
+[2025-04-19 04:48:20] [INFO    ] sys_info: SystemInfoCommand initialized.
+[2025-04-19 04:48:20] [INFO    ] sys_restart: SysRestart initialized.
+[2025-04-19 04:48:20] [INFO    ] sys_shutdown: SysShutdown initialized.
+[2025-04-19 04:48:20] [INFO    ] sys_update: SysUpdate initialized.
+[2025-04-19 04:48:20] [INFO    ] main: All cogs loaded.
+[2025-04-19 04:48:21] [INFO    ] gateway: Shard ID None has connected to Gateway (Session ID: 1c705571491d9ed98e8a72437307ac22).
+[2025-04-19 04:48:23] [INFO    ] smile: smile.render_molecule(ctx, 98-86-2, 1347283142096060426, )
+[2025-04-19 04:48:23] [INFO    ] main: SmileBot initialized.
+[2025-04-19 04:48:24] [INFO    ] main: Logged in as SMILES.bot#2045 (ID: 1347275416225976333)
+[2025-04-19 04:50:41] [INFO    ] client: logging in using static token
+[2025-04-19 04:50:41] [INFO    ] help: HelpCommand initialized.
+[2025-04-19 04:50:41] [INFO    ] set: SetCommand initialized.
+[2025-04-19 04:50:41] [INFO    ] clear: ClearCommand initialized.
+[2025-04-19 04:50:41] [INFO    ] smiles_help: SmilesHelpCommand initialized.
+[2025-04-19 04:50:41] [INFO    ] settings: SettingsCommand initialized.
+[2025-04-19 04:50:41] [INFO    ] auto_smile: AutoSmileCommand initialized.
+[2025-04-19 04:50:41] [INFO    ] render: RenderCommand initialized.
+[2025-04-19 04:50:41] [INFO    ] element_info: ElementInfoCommand initialized.
+[2025-04-19 04:50:41] [INFO    ] sys_info: SystemInfoCommand initialized.
+[2025-04-19 04:50:41] [INFO    ] sys_restart: SysRestart initialized.
+[2025-04-19 04:50:41] [INFO    ] sys_shutdown: SysShutdown initialized.
+[2025-04-19 04:50:41] [INFO    ] sys_update: SysUpdate initialized.
+[2025-04-19 04:50:41] [INFO    ] main: All cogs loaded.
+[2025-04-19 04:50:42] [INFO    ] gateway: Shard ID None has connected to Gateway (Session ID: d3f5a4433960e31ce609b929bc56a3f0).
+[2025-04-19 04:50:44] [INFO    ] main: SmileBot initialized.
+[2025-04-19 04:50:44] [INFO    ] main: Logged in as SMILES.bot#2045 (ID: 1347275416225976333)
+[2025-04-19 04:50:52] [ERROR   ] main: Error in command render mlcl: The check functions for command render mlcl failed.
+[2025-04-19 04:50:57] [ERROR   ] main: Error in command render mlcl: The check functions for command render mlcl failed.
+[2025-04-19 04:51:27] [INFO    ] client: logging in using static token
+[2025-04-19 04:51:27] [INFO    ] help: HelpCommand initialized.
+[2025-04-19 04:51:27] [INFO    ] set: SetCommand initialized.
+[2025-04-19 04:51:27] [INFO    ] clear: ClearCommand initialized.
+[2025-04-19 04:51:27] [INFO    ] smiles_help: SmilesHelpCommand initialized.
+[2025-04-19 04:51:27] [INFO    ] settings: SettingsCommand initialized.
+[2025-04-19 04:51:27] [INFO    ] auto_smile: AutoSmileCommand initialized.
+[2025-04-19 04:51:27] [INFO    ] render: RenderCommand initialized.
+[2025-04-19 04:51:27] [INFO    ] element_info: ElementInfoCommand initialized.
+[2025-04-19 04:51:27] [INFO    ] sys_info: SystemInfoCommand initialized.
+[2025-04-19 04:51:27] [INFO    ] sys_restart: SysRestart initialized.
+[2025-04-19 04:51:27] [INFO    ] sys_shutdown: SysShutdown initialized.
+[2025-04-19 04:51:27] [INFO    ] sys_update: SysUpdate initialized.
+[2025-04-19 04:51:27] [INFO    ] main: All cogs loaded.
+[2025-04-19 04:51:28] [INFO    ] gateway: Shard ID None has connected to Gateway (Session ID: e78bf66f714abd9a2c605b551af0d2c2).
+[2025-04-19 04:51:30] [INFO    ] main: SmileBot initialized.
+[2025-04-19 04:51:30] [INFO    ] main: Logged in as SMILES.bot#2045 (ID: 1347275416225976333)
+[2025-04-19 04:51:34] [ERROR   ] main: Error in command render mlcl: The check functions for command render mlcl failed.
+[2025-04-19 04:51:57] [INFO    ] client: logging in using static token
+[2025-04-19 04:51:57] [INFO    ] help: HelpCommand initialized.
+[2025-04-19 04:51:57] [INFO    ] set: SetCommand initialized.
+[2025-04-19 04:51:57] [INFO    ] clear: ClearCommand initialized.
+[2025-04-19 04:51:57] [INFO    ] smiles_help: SmilesHelpCommand initialized.
+[2025-04-19 04:51:57] [INFO    ] settings: SettingsCommand initialized.
+[2025-04-19 04:51:57] [INFO    ] auto_smile: AutoSmileCommand initialized.
+[2025-04-19 04:51:57] [INFO    ] db: Closing database connection.
+[2025-04-19 04:51:57] [INFO    ] main: SmileBot closed.
+[2025-04-19 04:52:03] [INFO    ] client: logging in using static token
+[2025-04-19 04:52:04] [INFO    ] help: HelpCommand initialized.
+[2025-04-19 04:52:04] [INFO    ] set: SetCommand initialized.
+[2025-04-19 04:52:04] [INFO    ] clear: ClearCommand initialized.
+[2025-04-19 04:52:04] [INFO    ] smiles_help: SmilesHelpCommand initialized.
+[2025-04-19 04:52:04] [INFO    ] settings: SettingsCommand initialized.
+[2025-04-19 04:52:04] [INFO    ] auto_smile: AutoSmileCommand initialized.
+[2025-04-19 04:52:04] [INFO    ] render: RenderCommand initialized.
+[2025-04-19 04:52:04] [INFO    ] element_info: ElementInfoCommand initialized.
+[2025-04-19 04:52:04] [INFO    ] sys_info: SystemInfoCommand initialized.
+[2025-04-19 04:52:04] [INFO    ] sys_restart: SysRestart initialized.
+[2025-04-19 04:52:04] [INFO    ] sys_shutdown: SysShutdown initialized.
+[2025-04-19 04:52:04] [INFO    ] sys_update: SysUpdate initialized.
+[2025-04-19 04:52:04] [INFO    ] main: All cogs loaded.
+[2025-04-19 04:52:04] [INFO    ] gateway: Shard ID None has connected to Gateway (Session ID: 32805377cfe6dfc689b3d213788cf0ed).
+[2025-04-19 04:52:06] [INFO    ] main: SmileBot initialized.
+[2025-04-19 04:52:06] [INFO    ] main: Logged in as SMILES.bot#2045 (ID: 1347275416225976333)
+[2025-04-19 04:52:13] [INFO    ] smile: smile.render_molecule(ctx, 98-86-2, 1347283142096060426, )
+[2025-04-19 04:52:46] [INFO    ] client: logging in using static token
+[2025-04-19 04:52:47] [INFO    ] help: HelpCommand initialized.
+[2025-04-19 04:52:47] [INFO    ] set: SetCommand initialized.
+[2025-04-19 04:52:47] [INFO    ] clear: ClearCommand initialized.
+[2025-04-19 04:52:47] [INFO    ] smiles_help: SmilesHelpCommand initialized.
+[2025-04-19 04:52:47] [INFO    ] settings: SettingsCommand initialized.
+[2025-04-19 04:52:47] [INFO    ] auto_smile: AutoSmileCommand initialized.
+[2025-04-19 04:52:47] [INFO    ] render: RenderCommand initialized.
+[2025-04-19 04:52:47] [INFO    ] element_info: ElementInfoCommand initialized.
+[2025-04-19 04:52:47] [INFO    ] sys_info: SystemInfoCommand initialized.
+[2025-04-19 04:52:47] [INFO    ] sys_restart: SysRestart initialized.
+[2025-04-19 04:52:47] [INFO    ] sys_shutdown: SysShutdown initialized.
+[2025-04-19 04:52:47] [INFO    ] sys_update: SysUpdate initialized.
+[2025-04-19 04:52:47] [INFO    ] main: All cogs loaded.
+[2025-04-19 04:52:47] [INFO    ] gateway: Shard ID None has connected to Gateway (Session ID: eb69688a732832a120807228d5abb87e).
+[2025-04-19 04:52:49] [INFO    ] main: SmileBot initialized.
+[2025-04-19 04:52:51] [INFO    ] main: Logged in as SMILES.bot#2045 (ID: 1347275416225976333)
+[2025-04-19 04:52:56] [ERROR   ] main: Error in command render mlcl: The check functions for command render mlcl failed.
+[2025-04-19 04:53:11] [INFO    ] client: logging in using static token
+[2025-04-19 04:53:11] [INFO    ] help: HelpCommand initialized.
+[2025-04-19 04:53:11] [INFO    ] set: SetCommand initialized.
+[2025-04-19 04:53:11] [INFO    ] clear: ClearCommand initialized.
+[2025-04-19 04:53:11] [INFO    ] smiles_help: SmilesHelpCommand initialized.
+[2025-04-19 04:53:11] [INFO    ] settings: SettingsCommand initialized.
+[2025-04-19 04:53:11] [INFO    ] auto_smile: AutoSmileCommand initialized.
+[2025-04-19 04:53:11] [INFO    ] render: RenderCommand initialized.
+[2025-04-19 04:53:11] [INFO    ] element_info: ElementInfoCommand initialized.
+[2025-04-19 04:53:11] [INFO    ] sys_info: SystemInfoCommand initialized.
+[2025-04-19 04:53:11] [INFO    ] sys_restart: SysRestart initialized.
+[2025-04-19 04:53:11] [INFO    ] sys_shutdown: SysShutdown initialized.
+[2025-04-19 04:53:11] [INFO    ] sys_update: SysUpdate initialized.
+[2025-04-19 04:53:11] [INFO    ] main: All cogs loaded.
+[2025-04-19 04:53:12] [INFO    ] gateway: Shard ID None has connected to Gateway (Session ID: d2072bbedd24fec0bf340cb3fdbdf8c3).
+[2025-04-19 04:53:14] [INFO    ] main: SmileBot initialized.
+[2025-04-19 04:53:16] [ERROR   ] bot: Ignoring exception in command render mlcl
+Traceback (most recent call last):
+  File "c:\Users\Damien\Documents\GitHub\smilesbot\.env\Lib\site-packages\discord\ext\commands\hybrid.py", line 448, in _invoke_with_namespace
+    await command.prepare(ctx)
+  File "c:\Users\Damien\Documents\GitHub\smilesbot\.env\Lib\site-packages\discord\ext\commands\core.py", line 926, in prepare
+    raise CheckFailure(f'The check functions for command {self.qualified_name} failed.')
+discord.ext.commands.errors.CheckFailure: The check functions for command render mlcl failed.
+[2025-04-19 04:53:49] [INFO    ] main: Logged in as SMILES.bot#2045 (ID: 1347275416225976333)
+[2025-04-19 04:55:15] [INFO    ] client: logging in using static token
+[2025-04-19 04:55:16] [INFO    ] help: HelpCommand initialized.
+[2025-04-19 04:55:16] [INFO    ] set: SetCommand initialized.
+[2025-04-19 04:55:16] [INFO    ] clear: ClearCommand initialized.
+[2025-04-19 04:55:16] [INFO    ] smiles_help: SmilesHelpCommand initialized.
+[2025-04-19 04:55:16] [INFO    ] settings: SettingsCommand initialized.
+[2025-04-19 04:55:16] [INFO    ] auto_smile: AutoSmileCommand initialized.
+[2025-04-19 04:55:16] [INFO    ] render: RenderCommand initialized.
+[2025-04-19 04:55:16] [INFO    ] element_info: ElementInfoCommand initialized.
+[2025-04-19 04:55:16] [INFO    ] sys_info: SystemInfoCommand initialized.
+[2025-04-19 04:55:16] [INFO    ] sys_restart: SysRestart initialized.
+[2025-04-19 04:55:16] [INFO    ] sys_shutdown: SysShutdown initialized.
+[2025-04-19 04:55:16] [INFO    ] sys_update: SysUpdate initialized.
+[2025-04-19 04:55:16] [INFO    ] main: All cogs loaded.
+[2025-04-19 04:55:16] [INFO    ] gateway: Shard ID None has connected to Gateway (Session ID: db93ff54a1fc2feeb76a533eeb8c75c4).
+[2025-04-19 04:55:18] [INFO    ] main: SmileBot initialized.
+[2025-04-19 04:55:19] [INFO    ] main: Logged in as SMILES.bot#2045 (ID: 1347275416225976333)
+[2025-04-19 04:55:23] [ERROR   ] bot: Ignoring exception in command render mlcl
+Traceback (most recent call last):
+  File "c:\Users\Damien\Documents\GitHub\smilesbot\.env\Lib\site-packages\discord\ext\commands\hybrid.py", line 448, in _invoke_with_namespace
+    await command.prepare(ctx)
+  File "c:\Users\Damien\Documents\GitHub\smilesbot\.env\Lib\site-packages\discord\ext\commands\core.py", line 926, in prepare
+    raise CheckFailure(f'The check functions for command {self.qualified_name} failed.')
+discord.ext.commands.errors.CheckFailure: The check functions for command render mlcl failed.
+[2025-04-19 04:56:34] [INFO    ] client: logging in using static token
+[2025-04-19 04:56:35] [INFO    ] help: HelpCommand initialized.
+[2025-04-19 04:56:35] [INFO    ] set: SetCommand initialized.
+[2025-04-19 04:56:35] [INFO    ] clear: ClearCommand initialized.
+[2025-04-19 04:56:35] [INFO    ] smiles_help: SmilesHelpCommand initialized.
+[2025-04-19 04:56:35] [INFO    ] settings: SettingsCommand initialized.
+[2025-04-19 04:56:35] [INFO    ] auto_smile: AutoSmileCommand initialized.
+[2025-04-19 04:56:35] [INFO    ] render: RenderCommand initialized.
+[2025-04-19 04:56:35] [INFO    ] element_info: ElementInfoCommand initialized.
+[2025-04-19 04:56:35] [INFO    ] sys_info: SystemInfoCommand initialized.
+[2025-04-19 04:56:35] [INFO    ] sys_restart: SysRestart initialized.
+[2025-04-19 04:56:35] [INFO    ] sys_shutdown: SysShutdown initialized.
+[2025-04-19 04:56:35] [INFO    ] sys_update: SysUpdate initialized.
+[2025-04-19 04:56:35] [INFO    ] main: All cogs loaded.
+[2025-04-19 04:56:35] [INFO    ] gateway: Shard ID None has connected to Gateway (Session ID: c14b67dc872d59678266a359f35bbebf).
+[2025-04-19 04:56:37] [INFO    ] main: SmileBot initialized.
+[2025-04-19 04:56:38] [INFO    ] main: Logged in as SMILES.bot#2045 (ID: 1347275416225976333)
+[2025-04-19 04:56:44] [INFO    ] smile: smile.render_molecule(ctx, 98-86-2, 1347283142096060426, )
+[2025-04-19 04:59:57] [INFO    ] client: logging in using static token
+[2025-04-19 04:59:58] [INFO    ] help: HelpCommand initialized.
+[2025-04-19 04:59:58] [INFO    ] set: SetCommand initialized.
+[2025-04-19 04:59:58] [INFO    ] clear: ClearCommand initialized.
+[2025-04-19 04:59:58] [INFO    ] smiles_help: SmilesHelpCommand initialized.
+[2025-04-19 04:59:58] [INFO    ] settings: SettingsCommand initialized.
+[2025-04-19 04:59:58] [INFO    ] auto_smile: AutoSmileCommand initialized.
+[2025-04-19 04:59:58] [INFO    ] render: RenderCommand initialized.
+[2025-04-19 04:59:58] [INFO    ] element_info: ElementInfoCommand initialized.
+[2025-04-19 04:59:58] [INFO    ] sys_info: SystemInfoCommand initialized.
+[2025-04-19 04:59:58] [INFO    ] sys_restart: SysRestart initialized.
+[2025-04-19 04:59:58] [INFO    ] sys_shutdown: SysShutdown initialized.
+[2025-04-19 04:59:58] [INFO    ] sys_update: SysUpdate initialized.
+[2025-04-19 04:59:58] [INFO    ] main: All cogs loaded.
+[2025-04-19 04:59:58] [INFO    ] gateway: Shard ID None has connected to Gateway (Session ID: 8740d8ddc2084ed77a84a6715c0c2751).
+[2025-04-19 05:00:00] [INFO    ] main: SmileBot initialized.
+[2025-04-19 05:00:01] [INFO    ] main: Logged in as SMILES.bot#2045 (ID: 1347275416225976333)
+[2025-04-19 05:00:06] [INFO    ] smile: smile.render_molecule(ctx, 98-86-2, 1347283142096060426, )
+[2025-04-19 05:00:06] [INFO    ] smile: Validating and creating molecule from: 98-86-2
+[2025-04-19 05:01:01] [INFO    ] client: logging in using static token
+[2025-04-19 05:01:02] [INFO    ] help: HelpCommand initialized.
+[2025-04-19 05:01:02] [INFO    ] set: SetCommand initialized.
+[2025-04-19 05:01:02] [INFO    ] clear: ClearCommand initialized.
+[2025-04-19 05:01:02] [INFO    ] smiles_help: SmilesHelpCommand initialized.
+[2025-04-19 05:01:02] [INFO    ] settings: SettingsCommand initialized.
+[2025-04-19 05:01:02] [INFO    ] auto_smile: AutoSmileCommand initialized.
+[2025-04-19 05:01:02] [INFO    ] render: RenderCommand initialized.
+[2025-04-19 05:01:02] [INFO    ] element_info: ElementInfoCommand initialized.
+[2025-04-19 05:01:02] [INFO    ] sys_info: SystemInfoCommand initialized.
+[2025-04-19 05:01:02] [INFO    ] sys_restart: SysRestart initialized.
+[2025-04-19 05:01:02] [INFO    ] sys_shutdown: SysShutdown initialized.
+[2025-04-19 05:01:02] [INFO    ] sys_update: SysUpdate initialized.
+[2025-04-19 05:01:02] [INFO    ] main: All cogs loaded.
+[2025-04-19 05:01:02] [INFO    ] gateway: Shard ID None has connected to Gateway (Session ID: 5fd6a45a9f2136770d0435fefba8de2d).
+[2025-04-19 05:01:04] [INFO    ] main: SmileBot initialized.
+[2025-04-19 05:01:04] [INFO    ] main: Logged in as SMILES.bot#2045 (ID: 1347275416225976333)
+[2025-04-19 05:01:06] [INFO    ] smile: smile.render_molecule(ctx, 98-86-2, 1347283142096060426, )
+[2025-04-19 05:01:25] [INFO    ] client: logging in using static token
+[2025-04-19 05:01:26] [INFO    ] help: HelpCommand initialized.
+[2025-04-19 05:01:26] [INFO    ] set: SetCommand initialized.
+[2025-04-19 05:01:26] [INFO    ] clear: ClearCommand initialized.
+[2025-04-19 05:01:26] [INFO    ] smiles_help: SmilesHelpCommand initialized.
+[2025-04-19 05:01:26] [INFO    ] settings: SettingsCommand initialized.
+[2025-04-19 05:01:26] [INFO    ] auto_smile: AutoSmileCommand initialized.
+[2025-04-19 05:01:26] [INFO    ] render: RenderCommand initialized.
+[2025-04-19 05:01:26] [INFO    ] element_info: ElementInfoCommand initialized.
+[2025-04-19 05:01:26] [INFO    ] sys_info: SystemInfoCommand initialized.
+[2025-04-19 05:01:26] [INFO    ] sys_restart: SysRestart initialized.
+[2025-04-19 05:01:26] [INFO    ] sys_shutdown: SysShutdown initialized.
+[2025-04-19 05:01:26] [INFO    ] sys_update: SysUpdate initialized.
+[2025-04-19 05:01:26] [INFO    ] main: All cogs loaded.
+[2025-04-19 05:01:26] [INFO    ] gateway: Shard ID None has connected to Gateway (Session ID: a8e618680615f54aa892d8b002d192da).
+[2025-04-19 05:01:28] [INFO    ] main: SmileBot initialized.
+[2025-04-19 05:01:33] [INFO    ] smile: smile.render_molecule(ctx, 98-86-2, 1347283142096060426, )
+[2025-04-19 05:01:54] [INFO    ] client: logging in using static token
+[2025-04-19 05:01:55] [INFO    ] help: HelpCommand initialized.
+[2025-04-19 05:01:55] [INFO    ] set: SetCommand initialized.
+[2025-04-19 05:01:55] [INFO    ] clear: ClearCommand initialized.
+[2025-04-19 05:01:55] [INFO    ] smiles_help: SmilesHelpCommand initialized.
+[2025-04-19 05:01:55] [INFO    ] settings: SettingsCommand initialized.
+[2025-04-19 05:01:55] [INFO    ] auto_smile: AutoSmileCommand initialized.
+[2025-04-19 05:01:55] [INFO    ] render: RenderCommand initialized.
+[2025-04-19 05:01:55] [INFO    ] element_info: ElementInfoCommand initialized.
+[2025-04-19 05:01:55] [INFO    ] sys_info: SystemInfoCommand initialized.
+[2025-04-19 05:01:55] [INFO    ] sys_restart: SysRestart initialized.
+[2025-04-19 05:01:55] [INFO    ] sys_shutdown: SysShutdown initialized.
+[2025-04-19 05:01:55] [INFO    ] sys_update: SysUpdate initialized.
+[2025-04-19 05:01:55] [INFO    ] main: All cogs loaded.
+[2025-04-19 05:01:55] [INFO    ] gateway: Shard ID None has connected to Gateway (Session ID: 8728053fc7df9471cf665e52a6541abe).
+[2025-04-19 05:01:57] [INFO    ] main: SmileBot initialized.
+[2025-04-19 05:02:04] [INFO    ] client: logging in using static token
+[2025-04-19 05:02:04] [INFO    ] help: HelpCommand initialized.
+[2025-04-19 05:02:04] [INFO    ] set: SetCommand initialized.
+[2025-04-19 05:02:04] [INFO    ] clear: ClearCommand initialized.
+[2025-04-19 05:02:04] [INFO    ] smiles_help: SmilesHelpCommand initialized.
+[2025-04-19 05:02:04] [INFO    ] settings: SettingsCommand initialized.
+[2025-04-19 05:02:04] [INFO    ] auto_smile: AutoSmileCommand initialized.
+[2025-04-19 05:02:04] [INFO    ] render: RenderCommand initialized.
+[2025-04-19 05:02:04] [INFO    ] element_info: ElementInfoCommand initialized.
+[2025-04-19 05:02:04] [INFO    ] sys_info: SystemInfoCommand initialized.
+[2025-04-19 05:02:04] [INFO    ] sys_restart: SysRestart initialized.
+[2025-04-19 05:02:04] [INFO    ] sys_shutdown: SysShutdown initialized.
+[2025-04-19 05:02:04] [INFO    ] sys_update: SysUpdate initialized.
+[2025-04-19 05:02:04] [INFO    ] main: All cogs loaded.
+[2025-04-19 05:02:05] [INFO    ] gateway: Shard ID None has connected to Gateway (Session ID: 4078d9dc58e8ef80e7ff9ea522b1fbe7).
+[2025-04-19 05:02:07] [INFO    ] main: SmileBot initialized.
+[2025-04-19 05:02:11] [INFO    ] smile: smile.render_molecule(ctx, 98-86-2, 1347283142096060426, )
+[2025-04-19 05:02:41] [INFO    ] client: logging in using static token
+[2025-04-19 05:02:41] [INFO    ] help: HelpCommand initialized.
+[2025-04-19 05:02:41] [INFO    ] set: SetCommand initialized.
+[2025-04-19 05:02:41] [INFO    ] clear: ClearCommand initialized.
+[2025-04-19 05:02:41] [INFO    ] smiles_help: SmilesHelpCommand initialized.
+[2025-04-19 05:02:41] [INFO    ] settings: SettingsCommand initialized.
+[2025-04-19 05:02:41] [INFO    ] auto_smile: AutoSmileCommand initialized.
+[2025-04-19 05:02:41] [INFO    ] render: RenderCommand initialized.
+[2025-04-19 05:02:41] [INFO    ] element_info: ElementInfoCommand initialized.
+[2025-04-19 05:02:41] [INFO    ] sys_info: SystemInfoCommand initialized.
+[2025-04-19 05:02:41] [INFO    ] sys_restart: SysRestart initialized.
+[2025-04-19 05:02:41] [INFO    ] sys_shutdown: SysShutdown initialized.
+[2025-04-19 05:02:41] [INFO    ] sys_update: SysUpdate initialized.
+[2025-04-19 05:02:41] [INFO    ] main: All cogs loaded.
+[2025-04-19 05:02:42] [INFO    ] gateway: Shard ID None has connected to Gateway (Session ID: 4f02ea83197f7a1b535cef7623c6abd8).
+[2025-04-19 05:02:44] [INFO    ] main: SmileBot initialized.
+[2025-04-19 05:02:47] [INFO    ] smile: smile.render_molecule(ctx, 98-86-2, 1347283142096060426, )
+[2025-04-19 05:03:13] [INFO    ] client: logging in using static token
+[2025-04-19 05:03:14] [INFO    ] help: HelpCommand initialized.
+[2025-04-19 05:03:14] [INFO    ] set: SetCommand initialized.
+[2025-04-19 05:03:14] [INFO    ] clear: ClearCommand initialized.
+[2025-04-19 05:03:14] [INFO    ] smiles_help: SmilesHelpCommand initialized.
+[2025-04-19 05:03:14] [INFO    ] settings: SettingsCommand initialized.
+[2025-04-19 05:03:14] [INFO    ] auto_smile: AutoSmileCommand initialized.
+[2025-04-19 05:03:14] [INFO    ] render: RenderCommand initialized.
+[2025-04-19 05:03:14] [INFO    ] element_info: ElementInfoCommand initialized.
+[2025-04-19 05:03:14] [INFO    ] sys_info: SystemInfoCommand initialized.
+[2025-04-19 05:03:14] [INFO    ] sys_restart: SysRestart initialized.
+[2025-04-19 05:03:14] [INFO    ] sys_shutdown: SysShutdown initialized.
+[2025-04-19 05:03:14] [INFO    ] sys_update: SysUpdate initialized.
+[2025-04-19 05:03:14] [INFO    ] main: All cogs loaded.
+[2025-04-19 05:03:14] [INFO    ] gateway: Shard ID None has connected to Gateway (Session ID: cb02a8532549ca877b876b8ba06176cb).
+[2025-04-19 05:03:16] [INFO    ] main: SmileBot initialized.
+[2025-04-19 05:03:18] [INFO    ] smile: smile.render_molecule(ctx, 98-86-2, 1347283142096060426, )
+[2025-04-19 05:03:42] [INFO    ] client: logging in using static token
+[2025-04-19 05:03:43] [INFO    ] help: HelpCommand initialized.
+[2025-04-19 05:03:43] [INFO    ] set: SetCommand initialized.
+[2025-04-19 05:03:43] [INFO    ] clear: ClearCommand initialized.
+[2025-04-19 05:03:43] [INFO    ] smiles_help: SmilesHelpCommand initialized.
+[2025-04-19 05:03:43] [INFO    ] settings: SettingsCommand initialized.
+[2025-04-19 05:03:43] [INFO    ] auto_smile: AutoSmileCommand initialized.
+[2025-04-19 05:03:43] [INFO    ] render: RenderCommand initialized.
+[2025-04-19 05:03:43] [INFO    ] element_info: ElementInfoCommand initialized.
+[2025-04-19 05:03:43] [INFO    ] sys_info: SystemInfoCommand initialized.
+[2025-04-19 05:03:43] [INFO    ] sys_restart: SysRestart initialized.
+[2025-04-19 05:03:43] [INFO    ] sys_shutdown: SysShutdown initialized.
+[2025-04-19 05:03:43] [INFO    ] sys_update: SysUpdate initialized.
+[2025-04-19 05:03:43] [INFO    ] main: All cogs loaded.
+[2025-04-19 05:03:43] [INFO    ] gateway: Shard ID None has connected to Gateway (Session ID: d9232ad741db4448c77b076fa598b55d).
+[2025-04-19 05:03:45] [INFO    ] main: SmileBot initialized.
+[2025-04-19 05:03:50] [INFO    ] smile: smile.render_molecule(ctx, 98-86-2, 1347283142096060426, )
+[2025-04-19 05:04:21] [INFO    ] client: logging in using static token
+[2025-04-19 05:04:22] [INFO    ] help: HelpCommand initialized.
+[2025-04-19 05:04:22] [INFO    ] set: SetCommand initialized.
+[2025-04-19 05:04:22] [INFO    ] clear: ClearCommand initialized.
+[2025-04-19 05:04:22] [INFO    ] smiles_help: SmilesHelpCommand initialized.
+[2025-04-19 05:04:22] [INFO    ] settings: SettingsCommand initialized.
+[2025-04-19 05:04:22] [INFO    ] auto_smile: AutoSmileCommand initialized.
+[2025-04-19 05:04:22] [INFO    ] render: RenderCommand initialized.
+[2025-04-19 05:04:22] [INFO    ] element_info: ElementInfoCommand initialized.
+[2025-04-19 05:04:22] [INFO    ] sys_info: SystemInfoCommand initialized.
+[2025-04-19 05:04:22] [INFO    ] sys_restart: SysRestart initialized.
+[2025-04-19 05:04:22] [INFO    ] sys_shutdown: SysShutdown initialized.
+[2025-04-19 05:04:22] [INFO    ] sys_update: SysUpdate initialized.
+[2025-04-19 05:04:22] [INFO    ] main: All cogs loaded.
+[2025-04-19 05:04:23] [INFO    ] gateway: Shard ID None has connected to Gateway (Session ID: 298341a05e458a6f22f882c3d76c9ca5).
+[2025-04-19 05:04:25] [INFO    ] main: SmileBot initialized.
+[2025-04-19 05:04:25] [INFO    ] smile: smile.render_molecule(ctx, 98-86-2, 1347283142096060426, )
+[2025-04-19 05:04:49] [INFO    ] client: logging in using static token
+[2025-04-19 05:04:50] [INFO    ] help: HelpCommand initialized.
+[2025-04-19 05:04:50] [INFO    ] set: SetCommand initialized.
+[2025-04-19 05:04:50] [INFO    ] clear: ClearCommand initialized.
+[2025-04-19 05:04:50] [INFO    ] smiles_help: SmilesHelpCommand initialized.
+[2025-04-19 05:04:50] [INFO    ] settings: SettingsCommand initialized.
+[2025-04-19 05:04:50] [INFO    ] auto_smile: AutoSmileCommand initialized.
+[2025-04-19 05:04:50] [INFO    ] render: RenderCommand initialized.
+[2025-04-19 05:04:50] [INFO    ] element_info: ElementInfoCommand initialized.
+[2025-04-19 05:04:50] [INFO    ] sys_info: SystemInfoCommand initialized.
+[2025-04-19 05:04:50] [INFO    ] sys_restart: SysRestart initialized.
+[2025-04-19 05:04:50] [INFO    ] sys_shutdown: SysShutdown initialized.
+[2025-04-19 05:04:50] [INFO    ] sys_update: SysUpdate initialized.
+[2025-04-19 05:04:50] [INFO    ] main: All cogs loaded.
+[2025-04-19 05:04:50] [INFO    ] gateway: Shard ID None has connected to Gateway (Session ID: 704e9f70f5dbc60b3faf7c3b1778f322).
+[2025-04-19 05:04:52] [INFO    ] main: SmileBot initialized.
+[2025-04-19 05:04:54] [INFO    ] smile: smile.render_molecule(ctx, 98-86-2, 1347283142096060426, )
+[2025-04-19 05:05:18] [INFO    ] client: logging in using static token
+[2025-04-19 05:05:19] [INFO    ] help: HelpCommand initialized.
+[2025-04-19 05:05:19] [INFO    ] set: SetCommand initialized.
+[2025-04-19 05:05:19] [INFO    ] clear: ClearCommand initialized.
+[2025-04-19 05:05:19] [INFO    ] smiles_help: SmilesHelpCommand initialized.
+[2025-04-19 05:05:19] [INFO    ] settings: SettingsCommand initialized.
+[2025-04-19 05:05:19] [INFO    ] auto_smile: AutoSmileCommand initialized.
+[2025-04-19 05:05:19] [INFO    ] render: RenderCommand initialized.
+[2025-04-19 05:05:19] [INFO    ] element_info: ElementInfoCommand initialized.
+[2025-04-19 05:05:19] [INFO    ] sys_info: SystemInfoCommand initialized.
+[2025-04-19 05:05:19] [INFO    ] sys_restart: SysRestart initialized.
+[2025-04-19 05:05:19] [INFO    ] sys_shutdown: SysShutdown initialized.
+[2025-04-19 05:05:19] [INFO    ] sys_update: SysUpdate initialized.
+[2025-04-19 05:05:19] [INFO    ] main: All cogs loaded.
+[2025-04-19 05:05:19] [INFO    ] gateway: Shard ID None has connected to Gateway (Session ID: 4d745bc1803d2e3725927e6311ca9141).
+[2025-04-19 05:05:21] [INFO    ] main: SmileBot initialized.
+[2025-04-19 05:05:25] [INFO    ] smile: smile.render_molecule(ctx, 98-86-2, 1347283142096060426, )
+[2025-04-19 05:06:04] [INFO    ] main: Logged in as SMILES.bot#2045 (ID: 1347275416225976333)
+[2025-04-19 05:07:29] [INFO    ] client: logging in using static token
+[2025-04-19 05:07:29] [INFO    ] help: HelpCommand initialized.
+[2025-04-19 05:07:29] [INFO    ] set: SetCommand initialized.
+[2025-04-19 05:07:29] [INFO    ] clear: ClearCommand initialized.
+[2025-04-19 05:07:29] [INFO    ] smiles_help: SmilesHelpCommand initialized.
+[2025-04-19 05:07:29] [INFO    ] settings: SettingsCommand initialized.
+[2025-04-19 05:07:29] [INFO    ] auto_smile: AutoSmileCommand initialized.
+[2025-04-19 05:07:29] [INFO    ] render: RenderCommand initialized.
+[2025-04-19 05:07:29] [INFO    ] element_info: ElementInfoCommand initialized.
+[2025-04-19 05:07:29] [INFO    ] sys_info: SystemInfoCommand initialized.
+[2025-04-19 05:07:29] [INFO    ] sys_restart: SysRestart initialized.
+[2025-04-19 05:07:29] [INFO    ] sys_shutdown: SysShutdown initialized.
+[2025-04-19 05:07:29] [INFO    ] sys_update: SysUpdate initialized.
+[2025-04-19 05:07:29] [INFO    ] main: All cogs loaded.
+[2025-04-19 05:07:29] [INFO    ] gateway: Shard ID None has connected to Gateway (Session ID: 6445355f38164c05358b1c28deac9821).
+[2025-04-19 05:07:31] [INFO    ] main: SmileBot initialized.
+[2025-04-19 05:07:32] [INFO    ] main: Logged in as SMILES.bot#2045 (ID: 1347275416225976333)
+[2025-04-19 05:07:35] [INFO    ] smile: smile.render_molecule(ctx, 98-86-2, 1347283142096060426, )
+[2025-04-19 05:09:03] [INFO    ] smile: smile.render_molecule(ctx, OCCc1ccn2cnccc12, 1347283142096060426, )
+[2025-04-19 05:09:23] [INFO    ] smile: smile.render_molecule(ctx, /render mlcl mlcl: OCCc1ccn2cnccc12, 1347283142096060426, )
+[2025-04-19 05:09:23] [ERROR   ] smile: Failed to resolve: None, error: Could not resolve name to SMILES.
+[2025-04-19 05:15:36] [INFO    ] smile: smile.render_reaction(ctx, CC(=O)O.OCC>[H+].[Cl-].OCC>CC(=O)OCC, 1347283142096060426)
+[2025-04-19 05:15:36] [ERROR   ] smile: Reaction error: File parsing error: PNG header not recognized
+[2025-04-19 05:16:15] [INFO    ] smile: smile.render_reaction(ctx, CC(=O)O.OCC>[H+].[Cl-].OCC>CC(=O)OCC, 1347283142096060426)
+[2025-04-19 05:16:15] [ERROR   ] smile: Reaction error: File parsing error: PNG header not recognized
+[2025-04-19 05:18:04] [INFO    ] client: logging in using static token
+[2025-04-19 05:18:04] [INFO    ] help: HelpCommand initialized.
+[2025-04-19 05:18:04] [INFO    ] set: SetCommand initialized.
+[2025-04-19 05:18:04] [INFO    ] clear: ClearCommand initialized.
+[2025-04-19 05:18:04] [INFO    ] smiles_help: SmilesHelpCommand initialized.
+[2025-04-19 05:18:04] [INFO    ] settings: SettingsCommand initialized.
+[2025-04-19 05:18:04] [INFO    ] auto_smile: AutoSmileCommand initialized.
+[2025-04-19 05:18:04] [INFO    ] render: RenderCommand initialized.
+[2025-04-19 05:18:04] [INFO    ] element_info: ElementInfoCommand initialized.
+[2025-04-19 05:18:04] [INFO    ] sys_info: SystemInfoCommand initialized.
+[2025-04-19 05:18:04] [INFO    ] sys_restart: SysRestart initialized.
+[2025-04-19 05:18:04] [INFO    ] sys_shutdown: SysShutdown initialized.
+[2025-04-19 05:18:04] [INFO    ] sys_update: SysUpdate initialized.
+[2025-04-19 05:18:04] [INFO    ] main: All cogs loaded.
+[2025-04-19 05:18:05] [INFO    ] gateway: Shard ID None has connected to Gateway (Session ID: 33a5019647309e6a76b7727852bfe5ad).
+[2025-04-19 05:18:07] [INFO    ] main: SmileBot initialized.
+[2025-04-19 05:18:07] [INFO    ] main: Logged in as SMILES.bot#2045 (ID: 1347275416225976333)
+[2025-04-19 05:18:12] [INFO    ] smile: smile.render_reaction(ctx, CC(=O)O.OCC>[H+].[Cl-].OCC>CC(=O)OCC, 1347283142096060426)
+[2025-04-19 05:18:12] [ERROR   ] smile: Reaction error: File parsing error: PNG header not recognized
+[2025-04-19 05:18:17] [INFO    ] smile: smile.render_reaction(ctx, CC(=O)O.OCC>[H+].[Cl-].OCC>CC(=O)OCC, 1347283142096060426)
+[2025-04-19 05:18:17] [ERROR   ] smile: Reaction error: File parsing error: PNG header not recognized
+[2025-04-19 05:18:55] [INFO    ] client: logging in using static token
+[2025-04-19 05:18:55] [INFO    ] help: HelpCommand initialized.
+[2025-04-19 05:18:55] [INFO    ] set: SetCommand initialized.
+[2025-04-19 05:18:55] [INFO    ] clear: ClearCommand initialized.
+[2025-04-19 05:18:55] [INFO    ] smiles_help: SmilesHelpCommand initialized.
+[2025-04-19 05:18:55] [INFO    ] settings: SettingsCommand initialized.
+[2025-04-19 05:18:55] [INFO    ] auto_smile: AutoSmileCommand initialized.
+[2025-04-19 05:18:55] [INFO    ] render: RenderCommand initialized.
+[2025-04-19 05:18:55] [INFO    ] element_info: ElementInfoCommand initialized.
+[2025-04-19 05:18:55] [INFO    ] sys_info: SystemInfoCommand initialized.
+[2025-04-19 05:18:55] [INFO    ] sys_restart: SysRestart initialized.
+[2025-04-19 05:18:55] [INFO    ] sys_shutdown: SysShutdown initialized.
+[2025-04-19 05:18:55] [INFO    ] sys_update: SysUpdate initialized.
+[2025-04-19 05:18:55] [INFO    ] main: All cogs loaded.
+[2025-04-19 05:18:56] [INFO    ] gateway: Shard ID None has connected to Gateway (Session ID: 51d6b1502e6620467f13acdf70f85d19).
+[2025-04-19 05:18:58] [INFO    ] main: SmileBot initialized.
+[2025-04-19 05:18:58] [INFO    ] main: Logged in as SMILES.bot#2045 (ID: 1347275416225976333)
+[2025-04-19 05:19:03] [INFO    ] smile: smile.render_reaction(ctx, CC(=O)O.OCC>[H+].[Cl-].OCC>CC(=O)OCC, 1347283142096060426)
+[2025-04-19 05:19:03] [ERROR   ] smile: Reaction error: File parsing error: PNG header not recognized
+[2025-04-19 05:19:51] [INFO    ] client: logging in using static token
+[2025-04-19 05:19:51] [INFO    ] help: HelpCommand initialized.
+[2025-04-19 05:19:51] [INFO    ] set: SetCommand initialized.
+[2025-04-19 05:19:51] [INFO    ] clear: ClearCommand initialized.
+[2025-04-19 05:19:51] [INFO    ] smiles_help: SmilesHelpCommand initialized.
+[2025-04-19 05:19:51] [INFO    ] settings: SettingsCommand initialized.
+[2025-04-19 05:19:51] [INFO    ] auto_smile: AutoSmileCommand initialized.
+[2025-04-19 05:19:51] [INFO    ] render: RenderCommand initialized.
+[2025-04-19 05:19:51] [INFO    ] element_info: ElementInfoCommand initialized.
+[2025-04-19 05:19:51] [INFO    ] sys_info: SystemInfoCommand initialized.
+[2025-04-19 05:19:51] [INFO    ] sys_restart: SysRestart initialized.
+[2025-04-19 05:19:51] [INFO    ] sys_shutdown: SysShutdown initialized.
+[2025-04-19 05:19:51] [INFO    ] sys_update: SysUpdate initialized.
+[2025-04-19 05:19:51] [INFO    ] main: All cogs loaded.
+[2025-04-19 05:19:51] [INFO    ] gateway: Shard ID None has connected to Gateway (Session ID: 19cf3c877c21a3f4e8a2e60ac125de9b).
+[2025-04-19 05:19:53] [INFO    ] main: SmileBot initialized.
+[2025-04-19 05:19:54] [INFO    ] main: Logged in as SMILES.bot#2045 (ID: 1347275416225976333)
+[2025-04-19 05:19:56] [INFO    ] smile: smile.render_reaction(ctx, CC(=O)O.OCC>[H+].[Cl-].OCC>CC(=O)OCC, 1347283142096060426)
+[2025-04-19 05:19:56] [ERROR   ] smile: Reaction error: File parsing error: PNG header not recognized
+[2025-04-19 05:20:13] [INFO    ] client: logging in using static token
+[2025-04-19 05:20:14] [INFO    ] help: HelpCommand initialized.
+[2025-04-19 05:20:14] [INFO    ] set: SetCommand initialized.
+[2025-04-19 05:20:14] [INFO    ] clear: ClearCommand initialized.
+[2025-04-19 05:20:14] [INFO    ] smiles_help: SmilesHelpCommand initialized.
+[2025-04-19 05:20:14] [INFO    ] settings: SettingsCommand initialized.
+[2025-04-19 05:20:14] [INFO    ] auto_smile: AutoSmileCommand initialized.
+[2025-04-19 05:20:14] [INFO    ] render: RenderCommand initialized.
+[2025-04-19 05:20:14] [INFO    ] element_info: ElementInfoCommand initialized.
+[2025-04-19 05:20:14] [INFO    ] sys_info: SystemInfoCommand initialized.
+[2025-04-19 05:20:14] [INFO    ] sys_restart: SysRestart initialized.
+[2025-04-19 05:20:14] [INFO    ] sys_shutdown: SysShutdown initialized.
+[2025-04-19 05:20:14] [INFO    ] sys_update: SysUpdate initialized.
+[2025-04-19 05:20:14] [INFO    ] main: All cogs loaded.
+[2025-04-19 05:20:14] [INFO    ] gateway: Shard ID None has connected to Gateway (Session ID: 595f2782a8008df1820edc0fc4384e08).
+[2025-04-19 05:20:16] [INFO    ] main: SmileBot initialized.
+[2025-04-19 05:20:19] [INFO    ] smile: smile.render_reaction(ctx, CC(=O)O.OCC>[H+].[Cl-].OCC>CC(=O)OCC, 1347283142096060426)
+[2025-04-19 05:20:19] [ERROR   ] smile: Reaction error: Reaction is not valid.
+[2025-04-19 05:20:54] [INFO    ] main: Logged in as SMILES.bot#2045 (ID: 1347275416225976333)
+[2025-04-19 05:21:58] [INFO    ] client: logging in using static token
+[2025-04-19 05:21:59] [INFO    ] help: HelpCommand initialized.
+[2025-04-19 05:21:59] [INFO    ] set: SetCommand initialized.
+[2025-04-19 05:21:59] [INFO    ] clear: ClearCommand initialized.
+[2025-04-19 05:21:59] [INFO    ] smiles_help: SmilesHelpCommand initialized.
+[2025-04-19 05:21:59] [INFO    ] settings: SettingsCommand initialized.
+[2025-04-19 05:21:59] [INFO    ] auto_smile: AutoSmileCommand initialized.
+[2025-04-19 05:21:59] [INFO    ] render: RenderCommand initialized.
+[2025-04-19 05:21:59] [INFO    ] element_info: ElementInfoCommand initialized.
+[2025-04-19 05:21:59] [INFO    ] sys_info: SystemInfoCommand initialized.
+[2025-04-19 05:21:59] [INFO    ] sys_restart: SysRestart initialized.
+[2025-04-19 05:21:59] [INFO    ] sys_shutdown: SysShutdown initialized.
+[2025-04-19 05:21:59] [INFO    ] sys_update: SysUpdate initialized.
+[2025-04-19 05:21:59] [INFO    ] main: All cogs loaded.
+[2025-04-19 05:21:59] [INFO    ] gateway: Shard ID None has connected to Gateway (Session ID: 49960aaab7966c6f88691114b8764afa).
+[2025-04-19 05:22:01] [INFO    ] main: SmileBot initialized.
+[2025-04-19 05:22:01] [INFO    ] main: Logged in as SMILES.bot#2045 (ID: 1347275416225976333)
+[2025-04-19 05:22:36] [INFO    ] smile: smile.render_reaction(ctx, CC(=O)O.OCC>[H+].[Cl-].OCC>CC(=O)OCC, 1347283142096060426)
+[2025-04-19 05:22:36] [ERROR   ] smile: Reaction error: Reaction is not valid.
+[2025-04-19 05:23:20] [INFO    ] client: logging in using static token
+[2025-04-19 05:23:20] [INFO    ] help: HelpCommand initialized.
+[2025-04-19 05:23:20] [INFO    ] set: SetCommand initialized.
+[2025-04-19 05:23:20] [INFO    ] clear: ClearCommand initialized.
+[2025-04-19 05:23:20] [INFO    ] smiles_help: SmilesHelpCommand initialized.
+[2025-04-19 05:23:20] [INFO    ] settings: SettingsCommand initialized.
+[2025-04-19 05:23:20] [INFO    ] auto_smile: AutoSmileCommand initialized.
+[2025-04-19 05:23:20] [INFO    ] render: RenderCommand initialized.
+[2025-04-19 05:23:20] [INFO    ] element_info: ElementInfoCommand initialized.
+[2025-04-19 05:23:20] [INFO    ] sys_info: SystemInfoCommand initialized.
+[2025-04-19 05:23:20] [INFO    ] sys_restart: SysRestart initialized.
+[2025-04-19 05:23:20] [INFO    ] sys_shutdown: SysShutdown initialized.
+[2025-04-19 05:23:20] [INFO    ] sys_update: SysUpdate initialized.
+[2025-04-19 05:23:20] [INFO    ] main: All cogs loaded.
+[2025-04-19 05:23:21] [INFO    ] gateway: Shard ID None has connected to Gateway (Session ID: d68f80ebeb9ce664c6fca58755134418).
+[2025-04-19 05:23:23] [INFO    ] main: SmileBot initialized.
+[2025-04-19 05:23:23] [INFO    ] smile: smile.render_reaction(ctx, CC(=O)O.OCC>[H+].[Cl-].OCC>CC(=O)OCC, 1347283142096060426)
+[2025-04-19 05:23:23] [ERROR   ] smile: Reaction error: File parsing error: PNG header not recognized
+[2025-04-19 05:23:23] [INFO    ] main: Logged in as SMILES.bot#2045 (ID: 1347275416225976333)
+[2025-04-19 05:24:25] [INFO    ] client: logging in using static token
+[2025-04-19 05:24:26] [INFO    ] help: HelpCommand initialized.
+[2025-04-19 05:24:26] [INFO    ] set: SetCommand initialized.
+[2025-04-19 05:24:26] [INFO    ] clear: ClearCommand initialized.
+[2025-04-19 05:24:26] [INFO    ] smiles_help: SmilesHelpCommand initialized.
+[2025-04-19 05:24:26] [INFO    ] settings: SettingsCommand initialized.
+[2025-04-19 05:24:26] [INFO    ] auto_smile: AutoSmileCommand initialized.
+[2025-04-19 05:24:26] [INFO    ] render: RenderCommand initialized.
+[2025-04-19 05:24:26] [INFO    ] element_info: ElementInfoCommand initialized.
+[2025-04-19 05:24:26] [INFO    ] sys_info: SystemInfoCommand initialized.
+[2025-04-19 05:24:26] [INFO    ] sys_restart: SysRestart initialized.
+[2025-04-19 05:24:26] [INFO    ] sys_shutdown: SysShutdown initialized.
+[2025-04-19 05:24:26] [INFO    ] sys_update: SysUpdate initialized.
+[2025-04-19 05:24:26] [INFO    ] main: All cogs loaded.
+[2025-04-19 05:24:26] [INFO    ] gateway: Shard ID None has connected to Gateway (Session ID: 2f4f7c83b00a674f2d4f7f9b07beb47f).
+[2025-04-19 05:24:28] [INFO    ] main: SmileBot initialized.
+[2025-04-19 05:24:28] [INFO    ] main: Logged in as SMILES.bot#2045 (ID: 1347275416225976333)
+[2025-04-19 05:24:32] [INFO    ] smile: smile.render_reaction(ctx, CC(=O)O.OCC>[H+].[Cl-].OCC>CC(=O)OCC, 1347283142096060426)
+[2025-04-19 05:24:32] [ERROR   ] smile: Reaction error: (3, 0)
+[2025-04-19 05:26:39] [INFO    ] client: logging in using static token
+[2025-04-19 05:26:39] [INFO    ] help: HelpCommand initialized.
+[2025-04-19 05:26:39] [INFO    ] set: SetCommand initialized.
+[2025-04-19 05:26:39] [INFO    ] clear: ClearCommand initialized.
+[2025-04-19 05:26:39] [INFO    ] smiles_help: SmilesHelpCommand initialized.
+[2025-04-19 05:26:39] [INFO    ] settings: SettingsCommand initialized.
+[2025-04-19 05:26:39] [INFO    ] auto_smile: AutoSmileCommand initialized.
+[2025-04-19 05:26:39] [INFO    ] render: RenderCommand initialized.
+[2025-04-19 05:26:39] [INFO    ] element_info: ElementInfoCommand initialized.
+[2025-04-19 05:26:39] [INFO    ] sys_info: SystemInfoCommand initialized.
+[2025-04-19 05:26:39] [INFO    ] sys_restart: SysRestart initialized.
+[2025-04-19 05:26:39] [INFO    ] sys_shutdown: SysShutdown initialized.
+[2025-04-19 05:26:39] [INFO    ] sys_update: SysUpdate initialized.
+[2025-04-19 05:26:39] [INFO    ] main: All cogs loaded.
+[2025-04-19 05:26:40] [INFO    ] gateway: Shard ID None has connected to Gateway (Session ID: 2aad56a6f54e51781ee4d482e14b65d2).
+[2025-04-19 05:26:42] [INFO    ] main: SmileBot initialized.
+[2025-04-19 05:26:42] [INFO    ] main: Logged in as SMILES.bot#2045 (ID: 1347275416225976333)
+[2025-04-19 05:26:49] [INFO    ] smile: smile.render_reaction(ctx, CC(=O)O.OCC>[H+].[Cl-].OCC>CC(=O)OCC, 1347283142096060426)
+[2025-04-19 05:26:49] [ERROR   ] smile: Reaction error: (3, 0)
+[2025-04-19 05:27:36] [INFO    ] client: logging in using static token
+[2025-04-19 05:27:37] [INFO    ] help: HelpCommand initialized.
+[2025-04-19 05:27:37] [INFO    ] set: SetCommand initialized.
+[2025-04-19 05:27:37] [INFO    ] clear: ClearCommand initialized.
+[2025-04-19 05:27:37] [INFO    ] smiles_help: SmilesHelpCommand initialized.
+[2025-04-19 05:27:37] [INFO    ] settings: SettingsCommand initialized.
+[2025-04-19 05:27:37] [INFO    ] auto_smile: AutoSmileCommand initialized.
+[2025-04-19 05:27:37] [INFO    ] render: RenderCommand initialized.
+[2025-04-19 05:27:37] [INFO    ] element_info: ElementInfoCommand initialized.
+[2025-04-19 05:27:37] [INFO    ] sys_info: SystemInfoCommand initialized.
+[2025-04-19 05:27:37] [INFO    ] sys_restart: SysRestart initialized.
+[2025-04-19 05:27:37] [INFO    ] sys_shutdown: SysShutdown initialized.
+[2025-04-19 05:27:37] [INFO    ] sys_update: SysUpdate initialized.
+[2025-04-19 05:27:37] [INFO    ] main: All cogs loaded.
+[2025-04-19 05:27:38] [INFO    ] gateway: Shard ID None has connected to Gateway (Session ID: 722b18a0aac16789ccfe00bec39dc79c).
+[2025-04-19 05:27:40] [INFO    ] main: SmileBot initialized.
+[2025-04-19 05:27:40] [INFO    ] main: Logged in as SMILES.bot#2045 (ID: 1347275416225976333)
+[2025-04-19 05:27:42] [INFO    ] smile: smile.render_reaction(ctx, CC(=O)O.OCC>[H+].[Cl-].OCC>CC(=O)OCC, 1347283142096060426)
+[2025-04-19 05:27:42] [ERROR   ] smile: Reaction error: (3, 0)
+[2025-04-19 05:29:46] [INFO    ] client: logging in using static token
+[2025-04-19 05:29:47] [INFO    ] help: HelpCommand initialized.
+[2025-04-19 05:29:47] [INFO    ] set: SetCommand initialized.
+[2025-04-19 05:29:47] [INFO    ] clear: ClearCommand initialized.
+[2025-04-19 05:29:47] [INFO    ] smiles_help: SmilesHelpCommand initialized.
+[2025-04-19 05:29:47] [INFO    ] settings: SettingsCommand initialized.
+[2025-04-19 05:29:47] [INFO    ] auto_smile: AutoSmileCommand initialized.
+[2025-04-19 05:29:47] [INFO    ] render: RenderCommand initialized.
+[2025-04-19 05:29:47] [INFO    ] element_info: ElementInfoCommand initialized.
+[2025-04-19 05:29:47] [INFO    ] sys_info: SystemInfoCommand initialized.
+[2025-04-19 05:29:47] [INFO    ] sys_restart: SysRestart initialized.
+[2025-04-19 05:29:47] [INFO    ] sys_shutdown: SysShutdown initialized.
+[2025-04-19 05:29:47] [INFO    ] sys_update: SysUpdate initialized.
+[2025-04-19 05:29:47] [INFO    ] main: All cogs loaded.
+[2025-04-19 05:29:47] [INFO    ] gateway: Shard ID None has connected to Gateway (Session ID: fb14565869c7cd7cacbdbf744e0dfb86).
+[2025-04-19 05:29:49] [INFO    ] main: SmileBot initialized.
+[2025-04-19 05:29:50] [INFO    ] main: Logged in as SMILES.bot#2045 (ID: 1347275416225976333)
+[2025-04-19 05:29:51] [INFO    ] smile: smile.render_reaction(ctx, CC(=O)O.OCC>[H+].[Cl-].OCC>CC(=O)OCC, 1347283142096060426)
+[2025-04-19 05:29:51] [ERROR   ] smile: Reaction error: (3, 0)
+[2025-04-19 05:32:20] [INFO    ] client: logging in using static token
+[2025-04-19 05:32:20] [INFO    ] help: HelpCommand initialized.
+[2025-04-19 05:32:20] [INFO    ] set: SetCommand initialized.
+[2025-04-19 05:32:20] [INFO    ] clear: ClearCommand initialized.
+[2025-04-19 05:32:20] [INFO    ] smiles_help: SmilesHelpCommand initialized.
+[2025-04-19 05:32:20] [INFO    ] settings: SettingsCommand initialized.
+[2025-04-19 05:32:20] [INFO    ] auto_smile: AutoSmileCommand initialized.
+[2025-04-19 05:32:20] [INFO    ] render: RenderCommand initialized.
+[2025-04-19 05:32:20] [INFO    ] element_info: ElementInfoCommand initialized.
+[2025-04-19 05:32:20] [INFO    ] sys_info: SystemInfoCommand initialized.
+[2025-04-19 05:32:20] [INFO    ] sys_restart: SysRestart initialized.
+[2025-04-19 05:32:20] [INFO    ] sys_shutdown: SysShutdown initialized.
+[2025-04-19 05:32:20] [INFO    ] sys_update: SysUpdate initialized.
+[2025-04-19 05:32:20] [INFO    ] main: All cogs loaded.
+[2025-04-19 05:32:21] [INFO    ] gateway: Shard ID None has connected to Gateway (Session ID: 981cf9efd233f8c960c3a2627a0bae19).
+[2025-04-19 05:32:23] [INFO    ] main: SmileBot initialized.
+[2025-04-19 05:32:23] [INFO    ] main: Logged in as SMILES.bot#2045 (ID: 1347275416225976333)
+[2025-04-19 05:32:25] [INFO    ] smile: smile.render_reaction(ctx, CC(=O)O.OCC>[H+].[Cl-].OCC>CC(=O)OCC, 1347283142096060426)
+[2025-04-19 05:32:25] [ERROR   ] smile: Reaction error: (3, 0)
+[2025-04-19 05:32:52] [INFO    ] gateway: Shard ID None has successfully RESUMED session 981cf9efd233f8c960c3a2627a0bae19.
+[2025-04-19 05:34:13] [INFO    ] client: logging in using static token
+[2025-04-19 05:34:14] [INFO    ] help: HelpCommand initialized.
+[2025-04-19 05:34:14] [INFO    ] set: SetCommand initialized.
+[2025-04-19 05:34:14] [INFO    ] clear: ClearCommand initialized.
+[2025-04-19 05:34:14] [INFO    ] smiles_help: SmilesHelpCommand initialized.
+[2025-04-19 05:34:14] [INFO    ] settings: SettingsCommand initialized.
+[2025-04-19 05:34:14] [INFO    ] auto_smile: AutoSmileCommand initialized.
+[2025-04-19 05:34:14] [INFO    ] render: RenderCommand initialized.
+[2025-04-19 05:34:14] [INFO    ] element_info: ElementInfoCommand initialized.
+[2025-04-19 05:34:14] [INFO    ] sys_info: SystemInfoCommand initialized.
+[2025-04-19 05:34:14] [INFO    ] sys_restart: SysRestart initialized.
+[2025-04-19 05:34:14] [INFO    ] sys_shutdown: SysShutdown initialized.
+[2025-04-19 05:34:14] [INFO    ] sys_update: SysUpdate initialized.
+[2025-04-19 05:34:14] [INFO    ] main: All cogs loaded.
+[2025-04-19 05:34:14] [INFO    ] gateway: Shard ID None has connected to Gateway (Session ID: 42212e1b02364c21745e760dda0bfeb2).
+[2025-04-19 05:34:16] [INFO    ] main: SmileBot initialized.
+[2025-04-19 05:34:16] [INFO    ] main: Logged in as SMILES.bot#2045 (ID: 1347275416225976333)
+[2025-04-19 05:34:19] [INFO    ] smile: smile.render_reaction(ctx, CC(=O)O.OCC>[H+].[Cl-].OCC>CC(=O)OCC, 1347283142096060426)
+[2025-04-19 05:34:19] [ERROR   ] smile: Reaction error: Python argument types in
+    rdkit.Chem.rdChemReactions.ReactionToSmiles(ChemicalReaction)
+did not match C++ signature:
+    ReactionToSmiles(class RDKit::ChemicalReaction reaction, struct RDKit::SmilesWriteParams params)
+    ReactionToSmiles(class RDKit::ChemicalReaction reaction, bool canonical=True)
+[2025-04-19 05:35:16] [INFO    ] client: logging in using static token
+[2025-04-19 05:35:17] [INFO    ] help: HelpCommand initialized.
+[2025-04-19 05:35:17] [INFO    ] set: SetCommand initialized.
+[2025-04-19 05:35:17] [INFO    ] clear: ClearCommand initialized.
+[2025-04-19 05:35:17] [INFO    ] smiles_help: SmilesHelpCommand initialized.
+[2025-04-19 05:35:17] [INFO    ] settings: SettingsCommand initialized.
+[2025-04-19 05:35:17] [INFO    ] auto_smile: AutoSmileCommand initialized.
+[2025-04-19 05:35:17] [INFO    ] render: RenderCommand initialized.
+[2025-04-19 05:35:17] [INFO    ] element_info: ElementInfoCommand initialized.
+[2025-04-19 05:35:17] [INFO    ] sys_info: SystemInfoCommand initialized.
+[2025-04-19 05:35:17] [INFO    ] sys_restart: SysRestart initialized.
+[2025-04-19 05:35:17] [INFO    ] sys_shutdown: SysShutdown initialized.
+[2025-04-19 05:35:17] [INFO    ] sys_update: SysUpdate initialized.
+[2025-04-19 05:35:17] [INFO    ] main: All cogs loaded.
+[2025-04-19 05:35:17] [INFO    ] gateway: Shard ID None has connected to Gateway (Session ID: 5ca604d54e0823daf155bf7a31aee30b).
+[2025-04-19 05:35:19] [INFO    ] main: SmileBot initialized.
+[2025-04-19 05:35:19] [INFO    ] main: Logged in as SMILES.bot#2045 (ID: 1347275416225976333)
+[2025-04-19 05:35:22] [INFO    ] smile: smile.render_reaction(ctx, CC(=O)O.OCC>[H+].[Cl-].OCC>CC(=O)OCC, 1347283142096060426)
+[2025-04-19 05:35:22] [ERROR   ] smile: Reaction error: (3, 0)
+[2025-04-19 05:35:46] [INFO    ] client: logging in using static token
+[2025-04-19 05:35:46] [INFO    ] help: HelpCommand initialized.
+[2025-04-19 05:35:46] [INFO    ] set: SetCommand initialized.
+[2025-04-19 05:35:46] [INFO    ] clear: ClearCommand initialized.
+[2025-04-19 05:35:46] [INFO    ] smiles_help: SmilesHelpCommand initialized.
+[2025-04-19 05:35:46] [INFO    ] settings: SettingsCommand initialized.
+[2025-04-19 05:35:46] [INFO    ] auto_smile: AutoSmileCommand initialized.
+[2025-04-19 05:35:46] [INFO    ] render: RenderCommand initialized.
+[2025-04-19 05:35:46] [INFO    ] element_info: ElementInfoCommand initialized.
+[2025-04-19 05:35:46] [INFO    ] sys_info: SystemInfoCommand initialized.
+[2025-04-19 05:35:46] [INFO    ] sys_restart: SysRestart initialized.
+[2025-04-19 05:35:46] [INFO    ] sys_shutdown: SysShutdown initialized.
+[2025-04-19 05:35:46] [INFO    ] sys_update: SysUpdate initialized.
+[2025-04-19 05:35:46] [INFO    ] main: All cogs loaded.
+[2025-04-19 05:35:47] [INFO    ] gateway: Shard ID None has connected to Gateway (Session ID: 8497a3cfaa43bc6caa0474630d4ca789).
+[2025-04-19 05:35:49] [INFO    ] main: SmileBot initialized.
+[2025-04-19 05:35:53] [INFO    ] smile: smile.render_reaction(ctx, CC(=O)O.OCC>[H+].[Cl-].OCC>CC(=O)OCC, 1347283142096060426)
+[2025-04-19 05:35:53] [ERROR   ] smile: Reaction error: Python argument types in
+    ChemicalReaction.Validate(str, bool)
+did not match C++ signature:
+    Validate(class RDKit::ChemicalReaction const * __ptr64 self, bool silent=False)
+[2025-04-19 05:36:19] [INFO    ] main: Logged in as SMILES.bot#2045 (ID: 1347275416225976333)
+[2025-04-19 05:36:37] [INFO    ] smile: smile.render_reaction(ctx, CC(=O)O.OCC>[H+].[Cl-].OCC>CC(=O)OCC, 1347283142096060426)
+[2025-04-19 05:36:37] [ERROR   ] smile: Reaction error: Python argument types in
+    ChemicalReaction.Validate(str, bool)
+did not match C++ signature:
+    Validate(class RDKit::ChemicalReaction const * __ptr64 self, bool silent=False)
+[2025-04-19 05:39:16] [INFO    ] client: logging in using static token
+[2025-04-19 05:39:16] [INFO    ] help: HelpCommand initialized.
+[2025-04-19 05:39:16] [INFO    ] set: SetCommand initialized.
+[2025-04-19 05:39:16] [INFO    ] clear: ClearCommand initialized.
+[2025-04-19 05:39:16] [INFO    ] smiles_help: SmilesHelpCommand initialized.
+[2025-04-19 05:39:16] [INFO    ] settings: SettingsCommand initialized.
+[2025-04-19 05:39:16] [INFO    ] auto_smile: AutoSmileCommand initialized.
+[2025-04-19 05:39:16] [INFO    ] render: RenderCommand initialized.
+[2025-04-19 05:39:16] [INFO    ] element_info: ElementInfoCommand initialized.
+[2025-04-19 05:39:16] [INFO    ] sys_info: SystemInfoCommand initialized.
+[2025-04-19 05:39:16] [INFO    ] sys_restart: SysRestart initialized.
+[2025-04-19 05:39:16] [INFO    ] sys_shutdown: SysShutdown initialized.
+[2025-04-19 05:39:16] [INFO    ] sys_update: SysUpdate initialized.
+[2025-04-19 05:39:16] [INFO    ] main: All cogs loaded.
+[2025-04-19 05:39:17] [INFO    ] gateway: Shard ID None has connected to Gateway (Session ID: 010f95953f8be23b405941ed8ba0dec7).
+[2025-04-19 05:39:19] [INFO    ] main: SmileBot initialized.
+[2025-04-19 05:39:19] [INFO    ] main: Logged in as SMILES.bot#2045 (ID: 1347275416225976333)
+[2025-04-19 05:39:22] [INFO    ] smile: smile.render_reaction(ctx, CC(=O)O.OCC>[H+].[Cl-].OCC>CC(=O)OCC, 1347283142096060426)
+[2025-04-19 05:39:22] [ERROR   ] smile: Reaction error: No registered converter was able to extract a C++ pointer to type class RDKit::ROMol from this Python object of type str
+[2025-04-19 05:40:04] [INFO    ] client: logging in using static token
+[2025-04-19 05:40:05] [INFO    ] help: HelpCommand initialized.
+[2025-04-19 05:40:05] [INFO    ] set: SetCommand initialized.
+[2025-04-19 05:40:05] [INFO    ] clear: ClearCommand initialized.
+[2025-04-19 05:40:05] [INFO    ] smiles_help: SmilesHelpCommand initialized.
+[2025-04-19 05:40:05] [INFO    ] settings: SettingsCommand initialized.
+[2025-04-19 05:40:05] [INFO    ] auto_smile: AutoSmileCommand initialized.
+[2025-04-19 05:40:05] [INFO    ] render: RenderCommand initialized.
+[2025-04-19 05:40:05] [INFO    ] element_info: ElementInfoCommand initialized.
+[2025-04-19 05:40:05] [INFO    ] sys_info: SystemInfoCommand initialized.
+[2025-04-19 05:40:05] [INFO    ] sys_restart: SysRestart initialized.
+[2025-04-19 05:40:05] [INFO    ] sys_shutdown: SysShutdown initialized.
+[2025-04-19 05:40:05] [INFO    ] sys_update: SysUpdate initialized.
+[2025-04-19 05:40:05] [INFO    ] main: All cogs loaded.
+[2025-04-19 05:40:05] [INFO    ] gateway: Shard ID None has connected to Gateway (Session ID: 87f2eb3f9f561c855625d064c886ab0c).
+[2025-04-19 05:40:07] [INFO    ] main: SmileBot initialized.
+[2025-04-19 05:40:07] [INFO    ] main: Logged in as SMILES.bot#2045 (ID: 1347275416225976333)
+[2025-04-19 05:40:07] [INFO    ] smile: smile.render_reaction(ctx, CC(=O)O.OCC>[H+].[Cl-].OCC>CC(=O)OCC, 1347283142096060426)
+[2025-04-19 05:40:07] [ERROR   ] smile: Reaction error: No registered converter was able to extract a C++ pointer to type class RDKit::ROMol from this Python object of type str
+[2025-04-19 05:40:11] [INFO    ] smile: smile.render_reaction(ctx, CC(=O)O.OCC>[H+].[Cl-].OCC>CC(=O)OCC, 1347283142096060426)
+[2025-04-19 05:40:11] [ERROR   ] smile: Reaction error: No registered converter was able to extract a C++ pointer to type class RDKit::ROMol from this Python object of type str
+[2025-04-19 05:43:34] [INFO    ] client: logging in using static token
+[2025-04-19 05:43:34] [INFO    ] help: HelpCommand initialized.
+[2025-04-19 05:43:34] [INFO    ] set: SetCommand initialized.
+[2025-04-19 05:43:34] [INFO    ] clear: ClearCommand initialized.
+[2025-04-19 05:43:34] [INFO    ] smiles_help: SmilesHelpCommand initialized.
+[2025-04-19 05:43:34] [INFO    ] settings: SettingsCommand initialized.
+[2025-04-19 05:43:34] [INFO    ] auto_smile: AutoSmileCommand initialized.
+[2025-04-19 05:43:34] [INFO    ] render: RenderCommand initialized.
+[2025-04-19 05:43:34] [INFO    ] element_info: ElementInfoCommand initialized.
+[2025-04-19 05:43:34] [INFO    ] sys_info: SystemInfoCommand initialized.
+[2025-04-19 05:43:34] [INFO    ] sys_restart: SysRestart initialized.
+[2025-04-19 05:43:34] [INFO    ] sys_shutdown: SysShutdown initialized.
+[2025-04-19 05:43:34] [INFO    ] sys_update: SysUpdate initialized.
+[2025-04-19 05:43:34] [INFO    ] main: All cogs loaded.
+[2025-04-19 05:43:35] [INFO    ] gateway: Shard ID None has connected to Gateway (Session ID: 082a6f298b155d5dcfb87d36c84e096f).
+[2025-04-19 05:43:37] [INFO    ] main: SmileBot initialized.
+[2025-04-19 05:43:37] [INFO    ] main: Logged in as SMILES.bot#2045 (ID: 1347275416225976333)
+[2025-04-19 05:43:45] [INFO    ] smile: smile.render_reaction(ctx, CC(=O)O.OCC>[H+].[Cl-].OCC>CC(=O)OCC, 1347283142096060426)
+[2025-04-19 05:43:45] [ERROR   ] smile: Reaction error: Python argument types in
+    rdkit.Chem.rdChemReactions.ReactionToSmiles(ChemicalReaction)
+did not match C++ signature:
+    ReactionToSmiles(class RDKit::ChemicalReaction reaction, struct RDKit::SmilesWriteParams params)
+    ReactionToSmiles(class RDKit::ChemicalReaction reaction, bool canonical=True)
+[2025-04-19 05:43:52] [INFO    ] client: logging in using static token
+[2025-04-19 05:43:52] [INFO    ] help: HelpCommand initialized.
+[2025-04-19 05:43:52] [INFO    ] set: SetCommand initialized.
+[2025-04-19 05:43:52] [INFO    ] clear: ClearCommand initialized.
+[2025-04-19 05:43:52] [INFO    ] smiles_help: SmilesHelpCommand initialized.
+[2025-04-19 05:43:52] [INFO    ] settings: SettingsCommand initialized.
+[2025-04-19 05:43:52] [INFO    ] auto_smile: AutoSmileCommand initialized.
+[2025-04-19 05:43:52] [INFO    ] render: RenderCommand initialized.
+[2025-04-19 05:43:52] [INFO    ] element_info: ElementInfoCommand initialized.
+[2025-04-19 05:43:53] [INFO    ] sys_info: SystemInfoCommand initialized.
+[2025-04-19 05:43:53] [INFO    ] sys_restart: SysRestart initialized.
+[2025-04-19 05:43:53] [INFO    ] sys_shutdown: SysShutdown initialized.
+[2025-04-19 05:43:53] [INFO    ] sys_update: SysUpdate initialized.
+[2025-04-19 05:43:53] [INFO    ] main: All cogs loaded.
+[2025-04-19 05:43:53] [INFO    ] gateway: Shard ID None has connected to Gateway (Session ID: 4905380beb7cd52227eed8c8836cdb58).
+[2025-04-19 05:43:55] [INFO    ] main: SmileBot initialized.
+[2025-04-19 05:43:57] [INFO    ] smile: smile.render_reaction(ctx, CC(=O)O.OCC>[H+].[Cl-].OCC>CC(=O)OCC, 1347283142096060426)
+[2025-04-19 05:43:57] [ERROR   ] smile: Reaction error: Python argument types in
+    rdkit.Chem.rdChemReactions.ReactionToSmiles(ChemicalReaction)
+did not match C++ signature:
+    ReactionToSmiles(class RDKit::ChemicalReaction reaction, struct RDKit::SmilesWriteParams params)
+    ReactionToSmiles(class RDKit::ChemicalReaction reaction, bool canonical=True)
+[2025-04-19 05:44:11] [INFO    ] client: logging in using static token
+[2025-04-19 05:44:12] [INFO    ] help: HelpCommand initialized.
+[2025-04-19 05:44:12] [INFO    ] set: SetCommand initialized.
+[2025-04-19 05:44:12] [INFO    ] clear: ClearCommand initialized.
+[2025-04-19 05:44:12] [INFO    ] smiles_help: SmilesHelpCommand initialized.
+[2025-04-19 05:44:12] [INFO    ] settings: SettingsCommand initialized.
+[2025-04-19 05:44:12] [INFO    ] auto_smile: AutoSmileCommand initialized.
+[2025-04-19 05:44:12] [INFO    ] render: RenderCommand initialized.
+[2025-04-19 05:44:12] [INFO    ] element_info: ElementInfoCommand initialized.
+[2025-04-19 05:44:12] [INFO    ] sys_info: SystemInfoCommand initialized.
+[2025-04-19 05:44:12] [INFO    ] sys_restart: SysRestart initialized.
+[2025-04-19 05:44:12] [INFO    ] sys_shutdown: SysShutdown initialized.
+[2025-04-19 05:44:12] [INFO    ] sys_update: SysUpdate initialized.
+[2025-04-19 05:44:12] [INFO    ] main: All cogs loaded.
+[2025-04-19 05:44:12] [INFO    ] gateway: Shard ID None has connected to Gateway (Session ID: 138aab860593759a1364313e27d18793).
+[2025-04-19 05:44:14] [INFO    ] main: SmileBot initialized.
+[2025-04-19 05:44:17] [INFO    ] smile: smile.render_reaction(ctx, CC(=O)O.OCC>[H+].[Cl-].OCC>CC(=O)OCC, 1347283142096060426)
+[2025-04-19 05:44:17] [ERROR   ] smile: Reaction error: Python argument types in
+    rdkit.Chem.rdChemReactions.ReactionToSmiles(ChemicalReaction)
+did not match C++ signature:
+    ReactionToSmiles(class RDKit::ChemicalReaction reaction, struct RDKit::SmilesWriteParams params)
+    ReactionToSmiles(class RDKit::ChemicalReaction reaction, bool canonical=True)
+[2025-04-19 05:45:07] [INFO    ] main: Logged in as SMILES.bot#2045 (ID: 1347275416225976333)
+[2025-04-19 05:48:04] [INFO    ] client: logging in using static token
+[2025-04-19 05:48:04] [INFO    ] help: HelpCommand initialized.
+[2025-04-19 05:48:04] [INFO    ] set: SetCommand initialized.
+[2025-04-19 05:48:04] [INFO    ] clear: ClearCommand initialized.
+[2025-04-19 05:48:04] [INFO    ] smiles_help: SmilesHelpCommand initialized.
+[2025-04-19 05:48:04] [INFO    ] settings: SettingsCommand initialized.
+[2025-04-19 05:48:04] [INFO    ] auto_smile: AutoSmileCommand initialized.
+[2025-04-19 05:48:04] [INFO    ] render: RenderCommand initialized.
+[2025-04-19 05:48:04] [INFO    ] element_info: ElementInfoCommand initialized.
+[2025-04-19 05:48:04] [INFO    ] sys_info: SystemInfoCommand initialized.
+[2025-04-19 05:48:04] [INFO    ] sys_restart: SysRestart initialized.
+[2025-04-19 05:48:04] [INFO    ] sys_shutdown: SysShutdown initialized.
+[2025-04-19 05:48:04] [INFO    ] sys_update: SysUpdate initialized.
+[2025-04-19 05:48:04] [INFO    ] main: All cogs loaded.
+[2025-04-19 05:48:04] [INFO    ] gateway: Shard ID None has connected to Gateway (Session ID: aea00c76f142157339d5c05e3de3fa98).
+[2025-04-19 05:48:06] [INFO    ] main: SmileBot initialized.
+[2025-04-19 05:48:07] [INFO    ] main: Logged in as SMILES.bot#2045 (ID: 1347275416225976333)
+[2025-04-19 05:48:14] [INFO    ] smile: smile.render_reaction(ctx, CC(=O)O.OCC>[H+].[Cl-].OCC>CC(=O)OCC, 1347283142096060426)
+[2025-04-19 05:48:14] [ERROR   ] smile: Reaction error: (3, 0)
+[2025-04-19 05:48:42] [INFO    ] smile: smile.render_reaction(ctx, [C:2]=[O:1]>>[C:2][OH:1], 1347283142096060426)
+[2025-04-19 05:49:14] [INFO    ] smile: smile.render_reaction(ctx, CC(=O)O.OCC>[H+].[Cl-].OCC>CC(=O)OCC, 1347283142096060426)
+[2025-04-19 05:49:14] [ERROR   ] smile: Reaction error: (3, 0)

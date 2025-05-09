@@ -10,12 +10,13 @@ NAME = "SmileBot"
 load_dotenv()
 
 # set sensitive data from .env as variables
-OWNER_ID = os.getenv("OWNER")
-TOKEN = os.getenv("TOKEN")
-WEBHOOK_URL = os.getenv("WEBHOOK_URL")
+SUPPORT_GUILD_ID:int = int(os.getenv("SUPPORT_GUILD_ID"))
+OWNERS_ID:list = [int(user) for user in os.getenv("OWNERS").split(",")]
+TOKEN:str = os.getenv("TOKEN")
+WEBHOOK_URL:str = os.getenv("WEBHOOK_URL")
 
 # set pattern for auto_detect
 AUTO_DETECT_PATTERN = re.compile(r"&(.+)&")
 
 # smile
-SMILE_BG = (55, 56, 61)
+SMILE_BG:tuple[int, int, int] = (55, 56, 61)

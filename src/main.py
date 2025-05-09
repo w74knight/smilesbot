@@ -4,7 +4,7 @@ import logging.handlers
 from discord.ext import commands
 
 from cogs import __all__ as command_modules
-from constants import AUTO_DETECT_PATTERN, OWNER_ID, TOKEN, NAME
+from constants import AUTO_DETECT_PATTERN, OWNERS_ID, TOKEN, NAME
 from db.db import DatabaseHandler
 from smile.smile import Smile
 from util import get_prefix
@@ -15,7 +15,7 @@ from DiscordLogger import DiscordLoggerHandler
 class SmileBot(commands.Bot):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.owner_id = OWNER_ID
+        self.owner_ids = OWNERS_ID
         self.help_command = None
         self.logger = logging.getLogger(NAME)
 

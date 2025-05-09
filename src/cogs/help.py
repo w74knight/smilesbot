@@ -26,7 +26,9 @@ class HelpCommand(commands.Cog):
             command_class = getattr(module, class_name)
             name = getattr(command_class, "name", None)
             description = getattr(command_class, "description", "No description provided.")
-            if name:
+
+            # /sys... commands are restricted to the support server only. should not be visible in help menu.
+            if name and not name.startswith("/sys"):
                 embed.add_field(name=f"`{name}`", value=description, inline=False)
         
         await ctx.send(embed=embed)

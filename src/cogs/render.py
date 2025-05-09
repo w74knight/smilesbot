@@ -1,10 +1,15 @@
 from logging import Logger, getLogger
+from typing import override
 
 from discord.ext import commands
 
 from constants import NAME
 from util import humanOnly
 
+def not_bot():
+    async def predicate(ctx):
+        return ctx.author.id != ctx.bot.user.id
+    return commands.check(predicate)
 
 class RenderCommand(commands.Cog):
     name = "/render"
@@ -24,6 +29,7 @@ class RenderCommand(commands.Cog):
         pass
     
     @render.command(name="mlcl", description="Render a molecule.")
+    @not_bot()
     async def mlcl(self, ctx, mlcl: str, legends:str = "", highlightatoms: str = ""):
         highlightatoms = tuple(map(int, highlightatoms.split(","))) if highlightatoms else ()
 
