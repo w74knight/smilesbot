@@ -8,7 +8,7 @@ from util import humanOnly
 
 class RenderCommand(commands.Cog):
     name = "/render"
-    description = "Render a molecule."
+    description = "Render a SMILES string."
 
     def __init__(self, bot):
         self.bot:commands.Bot = bot
@@ -29,9 +29,10 @@ class RenderCommand(commands.Cog):
 
         await self.bot.smile.render_molecule(ctx, mlcl, str(ctx.guild.id), legends=legends, highlightAtoms=highlightatoms)
 
-    @render.command(name="rxn", description="Render a reaction equation.")
-    async def rxn(self, ctx, rxn: str):
-        await self.bot.smile.render_reaction(ctx, rxn, str(ctx.guild.id))
+# Reaction rendering for v2
+    # @render.command(name="rxn", description="Render a reaction equation.")
+    # async def rxn(self, ctx, rxn: str):
+    #    await self.bot.smile.render_reaction(ctx, rxn, str(ctx.guild.id))
 
 async def setup(bot):
     await bot.add_cog(RenderCommand(bot))
