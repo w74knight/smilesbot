@@ -37,6 +37,8 @@ class Smile(object):
             self.logger.error(f"SMILES validation failed: {e}")
             return False
 
+    # v2 functionality; in testing disabled for public
+    # Function validates SMARTS notation before rendering
     def __is_valid_smarts(self, rxn: str) -> bool:
         try:
             rxn = Chem.ReactionFromSmarts(rxn, useSmiles=True)
@@ -165,6 +167,8 @@ class Smile(object):
         bio.seek(0)
         return bio
 
+    # v2 functionality; in testing disabled for public
+    # Creates image of chemical reaction
     def create_rxn_image(self, rxn, server_id) -> io.BytesIO:
         self.__loadRenderOptions(rxn, server_id)
         # not sure why this is needed, but otherwise it'll error
@@ -230,6 +234,8 @@ class Smile(object):
             await ctx.send(f"Rendering error: {e}")
             return
 
+    # v2 functionality; in testing disabled for public
+    # Renders chemical reaction image
 
     async def render_reaction(self, ctx, reaction, server_id) -> None:
         self.logger.info(f"smile.render_reaction(ctx, {reaction}, {server_id})")
@@ -253,7 +259,7 @@ class Smile(object):
                     server_id
                 )
             )
-            
+
         except Exception as e:
             self.logger.error(f"Reaction error: {e}")
             await ctx.send(f"Reaction error: {e}")

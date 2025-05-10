@@ -35,7 +35,8 @@ class RenderCommand(commands.Cog):
 
         await self.bot.smile.render_molecule(ctx, mlcl, str(ctx.guild.id), legends=legends, highlightAtoms=highlightatoms)
 
-# Reaction rendering for v2
+    # v2 functionality; in testing disabled for public
+    # Renders a chemical reaction
     # @render.command(name="rxn", description="Render a reaction equation.")
     # async def rxn(self, ctx, rxn: str):
     #    await self.bot.smile.render_reaction(ctx, rxn, str(ctx.guild.id))
