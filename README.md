@@ -36,9 +36,6 @@ Displays the help menu.
 Quick guide to SMILES syntax.
 
 ## Render
-### `/render rxn:<SMILES Notation>`
-**Renders chemical equations.**
-
 ### `/render mlcl:<SMILES Notation>`
 **Render chemical structures using SMILES syntax.**
 - Render multiple structures by separating them with a `,` (up to 4 structures).
