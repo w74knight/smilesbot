@@ -31,7 +31,7 @@ class RenderCommand(commands.Cog):
     @render.command(name="mlcl", description="Render a molecule.")
     @not_bot()
     async def mlcl(self, ctx, mlcl: str, legends:str = "", highlightatoms: str = ""):
-        highlightatoms = tuple(map(int, highlightatoms.split(","))) if highlightatoms else ()
+        highlightatoms = tuple(map(int, highlightatoms.split(";"))) if highlightatoms else ()
 
         await self.bot.smile.render_molecule(ctx, mlcl, str(ctx.guild.id), legends=legends, highlightAtoms=highlightatoms)
 
