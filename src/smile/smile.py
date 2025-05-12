@@ -188,7 +188,7 @@ class Smile(object):
     async def render_molecule(self, ctx, molecule, server_id, legends, **drawFuncArgs) -> None:
         self.logger.info(f"smile.render_molecule(ctx, {molecule}, {server_id}, {legends})")
 
-        molecules = [m.strip() for m in molecule.split(",")]
+        molecules = [m.strip() for m in molecule.split(";")]
         mol_objects = []
 
         if len(molecules) > 4:
