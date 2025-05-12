@@ -111,7 +111,7 @@ class Smile(object):
     def __processLegend(self, legends, num_mols) -> list:
         render_legend = []
         if legends:
-            legends = [legend.strip() for legend in legends.split(",")]
+            legends = [legend.strip() for legend in legends.split(";")]
             for i in range(num_mols):
                 if i < len(legends):
                     render_legend.append(legends[i])
