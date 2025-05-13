@@ -58,7 +58,7 @@ This render function also supports:
 
 ##### Multiple compounds
 
-`/render mlcl mlcl: OCCc1ccn2cnccc12; C1CC1Oc1cc2ccncn2c1; CNC(=O)c1nccc2cccn12`
+`/render mlcl: OCCc1ccn2cnccc12; C1CC1Oc1cc2ccncn2c1; CNC(=O)c1nccc2cccn12`
 <p align="center">
 <img src = https://github.com/user-attachments/assets/42b105bc-970b-462f-9126-33883cebd761 width=400>
 </p>
