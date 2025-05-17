@@ -6,7 +6,8 @@ from logging import Logger, getLogger
 import cirpy
 import discord
 from rdkit.Chem import AllChem as Chem
-from rdkit.Chem import Draw
+from rdkit.Chem import Draw, rdMolDescriptors, rdDepictor, rdDistGeom
+
 from rdkit.Chem.Draw import rdMolDraw2D
 from rdkit.Chem import rdChemReactions as Reactions
 
@@ -90,6 +91,8 @@ class Smile(object):
         self.opts.SetFlexiMode = True
         self.opts.scaleBondWidth = True
         self.opts.scaleHighlightBondWidth = True
+        self.opts.legendFraction = 0.15
+        self.opts.legendFontSize = 40
 
         # Color Options
         self.opts.setSymbolColour((complement_bg_color))
@@ -137,14 +140,17 @@ class Smile(object):
         self.opts.setAtomPalette(pallette)
 
     def create_molecule_image(self, mols, server_id, legends, **drawFuncArgs) -> io.BytesIO:
+        rdDepictor.SetPreferCoordGen(True)
+
         if not isinstance(mols, list):
             mols = [mols]
 
         for mol in mols:
-            try:
-                Chem.Kekulize(mol, clearAromaticFlags=True)
-            except:
-                print("Kekulization failed, skipping.")
+            Chem.SanitizeMol(mol)
+            Chem.Kekulize(mol, clearAromaticFlags=True)
+            Chem.Compute2DCoords(mol)
+            rdDepictor.NormalizeDepiction(mol)
+
         self.d2d = rdMolDraw2D.MolDraw2DCairo(-1, -1)
         self.opts = self.d2d.drawOptions()
 
@@ -207,6 +213,7 @@ class Smile(object):
                     return
 
             mol_obj = Chem.MolFromSmiles(mol)
+
             if mol_obj:
                 mol_objects.append(mol_obj)
             else:
