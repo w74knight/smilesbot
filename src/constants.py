@@ -12,7 +12,7 @@ load_dotenv()
 # set sensitive data from .env as variables
 SUPPORT_GUILD_ID:int = int(os.getenv("SUPPORT_GUILD_ID"))
 OWNERS_ID:list = [int(user) for user in os.getenv("OWNERS").split(",")]
-TOKEN:str = os.getenv("TESTING_TOKEN")
+TOKEN:str = os.getenv("TOKEN")
 WEBHOOK_URL:str = os.getenv("WEBHOOK_URL")
 
 # set pattern for auto_detect
