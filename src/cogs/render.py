@@ -37,8 +37,8 @@ class RenderCommand(commands.Cog):
 
     # v2 functionality; in testing disabled for public
     # Renders a chemical reaction
-    # @render.command(name="rxn", description="Render a reaction equation.")
-    # async def rxn(self, ctx, rxn: str):
+    #@render.command(name="rxn", description="Render a reaction equation.")
+    #async def rxn(self, ctx, rxn: str):
     #    await self.bot.smile.render_reaction(ctx, rxn, str(ctx.guild.id))
 
 async def setup(bot):

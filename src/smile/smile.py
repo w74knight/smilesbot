@@ -5,8 +5,10 @@ from logging import Logger, getLogger
 
 import cirpy
 import discord
-from rdkit.Chem import AllChem as Chem
-from rdkit.Chem import Draw
+from rdkit import Chem
+from rdkit.Chem import AllChem
+from rdkit.Chem import Draw, rdMolDescriptors, rdDepictor, rdDistGeom
+
 from rdkit.Chem.Draw import rdMolDraw2D
 from rdkit.Chem import rdChemReactions as Reactions
 
@@ -90,6 +92,9 @@ class Smile(object):
         self.opts.SetFlexiMode = True
         self.opts.scaleBondWidth = True
         self.opts.scaleHighlightBondWidth = True
+        self.opts.legendFraction = 0.15
+        self.opts.legendFontSize = 40
+        rdDepictor.LoadDefaultRingSystemTemplates()
 
         # Color Options
         self.opts.setSymbolColour((complement_bg_color))
@@ -137,14 +142,20 @@ class Smile(object):
         self.opts.setAtomPalette(pallette)
 
     def create_molecule_image(self, mols, server_id, legends, **drawFuncArgs) -> io.BytesIO:
+
         if not isinstance(mols, list):
             mols = [mols]
 
         for mol in mols:
-            try:
-                Chem.Kekulize(mol, clearAromaticFlags=True)
-            except:
-                print("Kekulization failed, skipping.")
+            rdDepictor.Compute2DCoords(mol, useRingTemplates=True)
+            mol = Chem.AddHs(mol)
+            Chem.SanitizeMol(mol)
+            Chem.Kekulize(mol, clearAromaticFlags=True)
+            rdDepictor.NormalizeDepiction(mol)
+            rdDepictor.StraightenDepiction(mol)
+            rdDepictor.GenerateDepictionMatching3DStructure(mol, mol)
+
+
         self.d2d = rdMolDraw2D.MolDraw2DCairo(-1, -1)
         self.opts = self.d2d.drawOptions()
 
@@ -170,19 +181,20 @@ class Smile(object):
     # v2 functionality; in testing disabled for public
     # Creates image of chemical reaction
     def create_rxn_image(self, rxn, server_id) -> io.BytesIO:
+        self.d2d = rdMolDraw2D.MolDraw2DCairo(-1, -1)
+        self.opts = self.d2d.drawOptions()
+
         self.__loadRenderOptions(rxn, server_id)
         # not sure why this is needed, but otherwise it'll error
-        self.opts.scalingFactor = 50
 
-        img = Draw.ReactionToImage(
-            rxn,
-            subImgSize=(960, 540),
-            drawOptions=self.opts,
-        )
-        bio = io.BytesIO()
-        img.save(bio, format="PNG")
+        Reactions.SanitizeRxn(rxn)
+        coords = Reactions.Compute2DCoordsForReaction(rxn)
+
+        self.d2d.DrawReaction(rxn, confIds=coords)
+        self.d2d.FinishDrawing()
+        bio = io.BytesIO(self.d2d.GetDrawingText())
+
         bio.seek(0)
-
         return bio
 
     async def render_molecule(self, ctx, molecule, server_id, legends="", **drawFuncArgs) -> None:
@@ -194,7 +206,7 @@ class Smile(object):
         if len(molecules) > 4:
             await ctx.send("You can only render 4 molecules at a time.")
             return
-        
+
         for mol in molecules:
             if not self.__is_valid_smiles(mol):
                 try:
@@ -207,6 +219,7 @@ class Smile(object):
                     return
 
             mol_obj = Chem.MolFromSmiles(mol)
+
             if mol_obj:
                 mol_objects.append(mol_obj)
             else:
