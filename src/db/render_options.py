@@ -16,11 +16,6 @@ class RenderOptions:
         self.connection = connection
         self.cursor = connection.cursor()
         self.init()
-
-    def init(self):
-        self.logger = getLogger(NAME)
-        self.init()
-
         self.logger.info("RenderOptions initialized.")
 
     def init(self):
