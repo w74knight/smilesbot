@@ -4,9 +4,9 @@ import logging.handlers
 from discord.ext import commands
 
 from cogs import __all__ as command_modules
-from constants import AUTO_DETECT_PATTERN, OWNERS_ID, TOKEN, NAME
+from constants import AUTO_DETECT_PATTERN, OWNERS_ID, TOKEN, NAME, DISCORD_DARK_JSON
 from db.db import DatabaseHandler
-from smile.smile import Smile
+from smiles.smiles import Smile
 from util import get_prefix
 import asyncio
 
@@ -33,8 +33,11 @@ class SmileBot(commands.Bot):
                 )
             )
         await self.tree.sync()
-
         self.logger.info(f"Logged in as {self.user} (ID: {self.user.id})")
+
+    async def on_guild_join(self, guild):
+        self.logger.info(f"Joined new guild (ID: {guild.id})" )
+        self.db_handler.element_colors.set_element_defaults(str(guild.id), DISCORD_DARK)
 
     async def setup_hook(self):
         for module_name in command_modules:

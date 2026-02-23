@@ -1,8 +1,8 @@
 import sqlite3
 from logging import getLogger
-
+import json
 from constants import NAME
-
+from constants import DISCORD_DARK_JSON as discord_dark
 
 class ElementColors:
     def __init__(self, connection):
@@ -33,6 +33,15 @@ class ElementColors:
         ''', (server_id, element, color))
         self.connection.commit()
 
+    def set_element_defaults(self, server_id, DISCORD_DARK_JSON):
+        for element, color in DISCORD_DARK_JSON.items():
+            color_json = json.dumps(color)
+            self.cursor.execute('''
+                INSERT OR REPLACE INTO element_colors (server_id, element, color)
+                VALUES (? , ?, ?)
+            ''', (str(server_id), str(element), color_json))
+        self.connection.commit()
+
     def get_element_colors(self, server_id):
         self.cursor.execute('''
             SELECT element, color FROM element_colors WHERE server_id=?
@@ -40,7 +49,9 @@ class ElementColors:
         results = self.cursor.fetchall()
         atom_palette = {}
         for row in results:
-            atom_palette[int(row["element"])] = tuple(int(rgb) for rgb in row["color"].split(','))
+            element = int(row["element"])
+            color_list = json.loads(row["color"])  # parse JSON back to list
+            atom_palette[element] = tuple(color_list)  # convert list to tuple
 
         return atom_palette
     

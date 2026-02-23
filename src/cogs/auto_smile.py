@@ -9,7 +9,7 @@ from util import admin_only
 
 class AutoSmileCommand(commands.Cog):
     name = "/auto_smile"
-    description = "Enable or disable automatic smile[...] message detection."
+    description = "Enable or disable automatic smiles[...] message detection."
     setting_key = 'auto_smile'
 
     def __init__(self, bot: commands.Bot):
@@ -20,7 +20,7 @@ class AutoSmileCommand(commands.Cog):
         self.logger.info("AutoSmileCommand initialized.")
 
     @admin_only()
-    @commands.hybrid_command(name="auto_smile", description="Enable or disable automatic smile[...] message detection.")
+    @commands.hybrid_command(name="auto_smile", description="Enable or disable automatic smiles[...] message detection.")
     async def auto_smile(self, ctx):
         guild_id = str(ctx.guild.id)
 
@@ -29,7 +29,7 @@ class AutoSmileCommand(commands.Cog):
 
         self.database_handler.server_settings.set_server_setting(guild_id, self.setting_key, not auto_smile)
 
-        await ctx.send(f"Automatic smile detection is now {'enabled' if not auto_smile else 'disabled'}.")
+        await ctx.send(f"Automatic smiles detection is now {'enabled' if not auto_smile else 'disabled'}.")
 
 async def setup(bot):
     await bot.add_cog(AutoSmileCommand(bot))

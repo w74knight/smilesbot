@@ -39,7 +39,7 @@ class RenderCommand(commands.Cog):
     # Renders a chemical reaction
     #@render.command(name="rxn", description="Render a reaction equation.")
     #async def rxn(self, ctx, rxn: str):
-    #    await self.bot.smile.render_reaction(ctx, rxn, str(ctx.guild.id))
+    #    await self.bot.smiles.render_reaction(ctx, rxn, str(ctx.guild.id))
 
 async def setup(bot):
     await bot.add_cog(RenderCommand(bot))

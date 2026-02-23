@@ -8,8 +8,8 @@ import io
 
 from constants import NAME, OWNERS_ID, SUPPORT_GUILD_ID
 
-PROJECT_DIR = "/home/smile.bot/smilesbot"
-PYTHON_PATH = "/home/smile.bot/smilesbot/env/bin/python3.13"
+PROJECT_DIR = "/home/smiles.bot/smilesbot"
+PYTHON_PATH = "/home/smiles.bot/smilesbot/env/bin/python3.13"
 
 class SysUpdateCommand(commands.Cog):
     name = "/sysupdate"
