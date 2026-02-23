@@ -1,13 +1,13 @@
 from logging import Logger, getLogger
 
 import discord
+import json
 from discord.ext import commands
 from rdkit import Chem
 
-from constants import NAME
+from constants import NAME, OWNERS_ID, DISCORD_DARK_JSON
 from db.db import DatabaseHandler
 from util import admin_only, rgb_to_hex
-
 
 class SetCommand(commands.Cog):
     name = "/set"
@@ -42,7 +42,7 @@ class SetCommand(commands.Cog):
         rgb = tuple(map(int, color.split(',')))
         hex_color = rgb_to_hex(rgb)
 
-        self.db_handler.element_colors.set_element_color(str(ctx.guild.id), element, color)
+        self.db_handler.element_colors.set_element_color(str(ctx.guild.id), element, json.dumps(rgb))
 
         # Create an embed to display the color
         embed = discord.Embed(
@@ -74,6 +74,26 @@ class SetCommand(commands.Cog):
         embed.set_thumbnail(url=f"https://dummyimage.com/250/{hex_color}/ffffff&text=Background")
 
         await ctx.send(embed=embed)
+
+    @admin_only()
+    @set.command(name="defaults", description="Set all settings to defaults")
+    async def defaults(self, ctx):
+        self.db_handler.element_colors.set_element_defaults(str(ctx.guild.id), DISCORD_DARK_JSON)
+        await ctx.send(f"All values set to defaults")
+
+    @admin_only()
+    @set.command(name="defaults_global", description="Set ALL settings to defaults for ALL servers")
+    async def defaults_global(self, ctx):
+        if ctx.author.id not in OWNERS_ID:
+            await ctx.send("You are not authorized.")
+            return
+
+        await ctx.send("Setting defaults for all guilds . . .")
+        for guild in self.bot.guilds:
+            self.db_handler.element_colors.set_element_defaults(str(guild.id), DISCORD_DARK_JSON)
+            self.logger.info(f"Set defaults for {guild.id}")
+
+        await ctx.send(f"Complete!")
 
     def __boolOptionHelper(self, ctx, option_name):
         prev_value = self.db_handler.render_options.get(str(ctx.guild.id), option_name)

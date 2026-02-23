@@ -12,11 +12,9 @@ from rdkit.Chem import Draw, rdMolDescriptors, rdDepictor, rdDistGeom
 from rdkit.Chem.Draw import rdMolDraw2D
 from rdkit.Chem import rdChemReactions as Reactions
 
-from constants import SMILE_BG, NAME
+from constants import SMILE_BG, NAME, DISCORD_DARK_JSON
 from db.db import DatabaseHandler
 from util import complement_color, smile_rgb, transform_rgb_to_smile
-
-from .pallette import DISCORD_DARK
 
 
 class Smile(object):
@@ -132,14 +130,14 @@ class Smile(object):
         return cirpy.resolve(name, 'smiles')
 
     def loadAtomPalette(self, server_id) -> None:
-        pallette = self.db_handler.element_colors.get_element_colors(server_id)
-        if pallette:
-            pallette = transform_rgb_to_smile(pallette)
-            pallette = DISCORD_DARK | pallette
+        palette = self.db_handler.element_colors.get_element_colors(server_id)
+        if palette:
+            palette = transform_rgb_to_smile(palette)
+            palette = DISCORD_DARK_JSON | palette
         else:
-            pallette = DISCORD_DARK
+            palette = DISCORD_DARK_JSON
 
-        self.opts.setAtomPalette(pallette)
+        self.opts.setAtomPalette(palette)
 
     def create_molecule_image(self, mols, server_id, legends, **drawFuncArgs) -> io.BytesIO:
 
@@ -198,7 +196,7 @@ class Smile(object):
         return bio
 
     async def render_molecule(self, ctx, molecule, server_id, legends="", **drawFuncArgs) -> None:
-        self.logger.info(f"smile.render_molecule(ctx, {molecule}, {server_id}, {legends})")
+        self.logger.info(f"smiles.render_molecule(ctx, {molecule}, {server_id}, {legends})")
 
         molecules = [m.strip() for m in molecule.split(";")]
         mol_objects = []
@@ -251,7 +249,7 @@ class Smile(object):
     # Renders chemical reaction image
 
     async def render_reaction(self, ctx, reaction, server_id) -> None:
-        self.logger.info(f"smile.render_reaction(ctx, {reaction}, {server_id})")
+        self.logger.info(f"smiles.render_reaction(ctx, {reaction}, {server_id})")
 
         reaction = reaction.strip()
         if not self.__is_valid_smarts(reaction):

@@ -4,9 +4,8 @@ import discord
 from discord.ext import commands
 from rdkit import Chem
 
-from constants import NAME, SMILE_BG
+from constants import NAME, SMILE_BG, DISCORD_DARK_JSON
 from db.db import DatabaseHandler
-from smile.pallette import DISCORD_DARK
 from util import admin_only, rgb_to_hex, humanOnly
 
 
@@ -44,10 +43,7 @@ class GetCommand(commands.Cog):
             return await ctx.send("Invalid element number. Must be between 0 and 118.")
 
         color = self.db_handler.get_element_colors(str(ctx.guild.id)).get(element)
-
-        if not color: # no color set, display default color
-            color = DISCORD_DARK.get(element, (1,1,1))
-            color = tuple(int(c * 255) for c in color)
+        color = tuple(int(c * 255) if isinstance(c, float) else c for c in color)
 
         element_name = self.periodic_table.GetElementName(element)
         hex_color = rgb_to_hex(color)

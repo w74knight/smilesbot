@@ -1,5 +1,7 @@
 import os
 import re
+from pathlib import Path
+import json
 
 from dotenv import load_dotenv
 
@@ -18,5 +20,10 @@ WEBHOOK_URL:str = os.getenv("WEBHOOK_URL")
 # set pattern for auto_detect
 AUTO_DETECT_PATTERN = re.compile(r"&(.+)&")
 
-# smile
+# smiles
 SMILE_BG:tuple[int, int, int] = (55, 56, 61)
+
+base_dir = Path(__file__).resolve().parent
+DISCORD_DARK_PATH = base_dir / "smiles" / "palette.json"
+with DISCORD_DARK_PATH.open("r", encoding="utf-8") as f:
+    DISCORD_DARK_JSON = json.load(f)["discord dark"]

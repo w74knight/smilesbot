@@ -6,7 +6,7 @@ from constants import NAME
 from .element_colors import ElementColors
 from .render_options import RenderOptions
 from .server_settings import ServerSettings
-
+import os
 
 class DatabaseHandler:
     def __init__(self, db_name='database.db'):
