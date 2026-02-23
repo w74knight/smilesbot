@@ -37,7 +37,7 @@ class SmileBot(commands.Bot):
 
     async def on_guild_join(self, guild):
         self.logger.info(f"Joined new guild (ID: {guild.id})" )
-        self.db_handler.element_colors.set_element_defaults(str(guild.id), DISCORD_DARK)
+        self.db_handler.element_colors.set_element_defaults(str(guild.id), DISCORD_DARK_JSON)
 
     async def setup_hook(self):
         for module_name in command_modules:
