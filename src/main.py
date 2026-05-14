@@ -29,7 +29,7 @@ class SmileBot(commands.Bot):
             status=discord.Status.online, 
             activity=discord.Activity(
                     type=discord.ActivityType.watching,
-                    name=" 🚧 UNDER CONSTRUCTION 🚧"
+                    name="/render"
                 )
             )
         await self.tree.sync()
