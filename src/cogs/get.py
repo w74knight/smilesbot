@@ -84,9 +84,10 @@ class GetCommand(commands.Cog):
         embed = discord.Embed(title="Render Options", color=discord.Color.blue())
         embed.add_field(name="Background Color", value=render_config.get("background_color", "Default"))
         embed.add_field(name="Color Bonds", value=bool(render_config.get("colorBonds")))
-        embed.add_field(name="Include Atom Numbers", value=bool(render_config.get("includeAtomNumbers")), inline=False)
-        embed.add_field(name="No Carbon Symbols", value=bool(render_config.get("noCarbonSymbols")))
-        embed.add_field(name="Wedge Dashed Bonds", value=bool(render_config.get("wedgeDashedBonds")), inline=False)
+        embed.add_field(name="Add Stereo Annotations", value=bool(render_config.get("addStereoAnnotations")), inline=False)
+        embed.add_field(name="Explicit Methyl", value=bool(render_config.get("explicitMethyl")))
+        embed.add_field(name="Atom Label Deuterium Tritium", value=bool(render_config.get("atomLabelDeuteriumTritium")), inline=False)
+        embed.add_field(name="dummiesAreAttachments", value=bool(render_config.get("dummiesAreAttachments")), inline=False)
 
         await ctx.send(embed=embed)
 

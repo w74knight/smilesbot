@@ -29,15 +29,18 @@ class SmileBot(commands.Bot):
             status=discord.Status.online, 
             activity=discord.Activity(
                     type=discord.ActivityType.watching,
-                    name="/render"
+                    name=" 🚧 UNDER CONSTRUCTION 🚧"
                 )
             )
         await self.tree.sync()
         self.logger.info(f"Logged in as {self.user} (ID: {self.user.id})")
 
     async def on_guild_join(self, guild):
-        self.logger.info(f"Joined new guild (ID: {guild.id})" )
-        self.db_handler.element_colors.set_element_defaults(str(guild.id), DISCORD_DARK_JSON)
+        guild_id = str(guild.id)
+        self.logger.info(f"Joined new guild (ID: {guild_id})")
+        self.db_handler.element_colors.set_element_defaults(guild_id, DISCORD_DARK_JSON)
+        self.db_handler.render_options.set_render_defaults(guild_id)
+        self.db_handler.server_settings.set_server_defaults(guild_id)
 
     async def setup_hook(self):
         for module_name in command_modules:

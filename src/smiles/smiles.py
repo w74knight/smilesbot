@@ -2,11 +2,9 @@ import asyncio
 import functools
 import io
 from logging import Logger, getLogger
-
 import cirpy
 import discord
 from rdkit import Chem
-from rdkit.Chem import AllChem
 from rdkit.Chem import Draw, rdMolDescriptors, rdDepictor, rdDistGeom
 
 from rdkit.Chem.Draw import rdMolDraw2D
@@ -25,6 +23,16 @@ class Smile(object):
     
         self.d2d = rdMolDraw2D.MolDraw2DCairo(-1, -1) # not really being used
         self.opts = self.d2d.drawOptions()
+        rdDepictor.LoadDefaultRingSystemTemplates()
+
+    def __get_custom_keys(self, render_options: dict) -> set[str]:
+        """Keys in the DB that aren't direct MolDrawOptions attributes."""
+        test_opts = rdMolDraw2D.MolDraw2DCairo(-1, -1).drawOptions()
+        custom = set()
+        for key in render_options:
+            if not hasattr(test_opts, key):
+                custom.add(key)
+        return custom
 
     def __is_valid_smiles(self, smiles: str) -> bool:
         try:
@@ -66,52 +74,42 @@ class Smile(object):
             i = atom.GetIdx()
             self.opts.atomLabels[i] = str(i)
 
-    def __loadRenderOptions(self, mols, server_id) -> None:
+    def __loadRenderOptions(self, mols, server_id) -> None:  # remove custom_keys param
         if not isinstance(mols, list):
             mols = [mols]
 
         bg_color = self.db_handler.render_options.get_bgcolor(server_id)
         render_options = self.db_handler.get_render_option(server_id)
+        custom_keys = self.__get_custom_keys(render_options)
 
-        # complementary color for legend & reaction plus and arrows
-        complement_bg_color = complement_color(bg_color) + (1.0,)
-        self.opts.setLegendColour(complement_bg_color)
-        self.opts.setSymbolColour(complement_bg_color)
-
-        # convert rgb to ratio
+        complement_bg_color = tuple(c / 255 for c in complement_color(bg_color)) + (1.0,)
         bg_color = tuple(c / 255 for c in bg_color)
-        self.opts.setBackgroundColour(bg_color)
-        self.opts.setHighlightColour((0, 0, 1.0, 0.1))
 
-        self.opts.setBackgroundColour(smile_rgb(*SMILE_BG))
         self.opts.drawMolsSameScale = False
-
-        # Misc settings to help readability
-        self.opts.SetFlexiMode = True
+        self.d2d.SetFlexiMode(True)
         self.opts.scaleBondWidth = True
         self.opts.scaleHighlightBondWidth = True
         self.opts.legendFraction = 0.15
         self.opts.legendFontSize = 40
-        rdDepictor.LoadDefaultRingSystemTemplates()
 
-        # Color Options
-        self.opts.setSymbolColour((complement_bg_color))
-        self.opts.setAnnotationColour((complement_bg_color))
-        self.opts.setLegendColour((complement_bg_color))
+        self.opts.setSymbolColour(complement_bg_color)
+        self.opts.setAnnotationColour(complement_bg_color)
+        self.opts.setLegendColour(complement_bg_color)
         self.opts.setBackgroundColour(bg_color)
         self.opts.setHighlightColour((0, 0, 1.0, 0.1))
 
-        if (render_options.get("includeAtomNumbers")):
+        if render_options.get("includeAtomNumbers"):
             for mol in mols:
                 self.__addAtomNumbers(mol)
-            del render_options["includeAtomNumbers"]
 
         for key, value in render_options.items():
+            if key in custom_keys:
+                continue
             setattr(self.opts, key, bool(value))
 
         self.loadAtomPalette(server_id)
-    
-    def __processLegend(self, legends, num_mols) -> list:
+
+    def __processLegend(self, legends, num_mols) -> tuple:
         render_legend = []
         if legends:
             legends = [legend.strip() for legend in legends.split(";")]
@@ -123,11 +121,11 @@ class Smile(object):
         else:
             render_legend = [""] * num_mols
 
-        return render_legend
+        return tuple(render_legend)
     
     @functools.lru_cache(maxsize=1000)
-    def _resolve_name_to_smiles(self, name: str) -> str:
-        return cirpy.resolve(name, 'smiles')
+    def _resolve_name_to_smiles(self, name: str) -> str | None:
+        return cirpy.resolve(name, "smiles")
 
     def loadAtomPalette(self, server_id) -> None:
         palette = self.db_handler.element_colors.get_element_colors(server_id)
@@ -140,37 +138,43 @@ class Smile(object):
         self.opts.setAtomPalette(palette)
 
     def create_molecule_image(self, mols, server_id, legends, **drawFuncArgs) -> io.BytesIO:
-
         if not isinstance(mols, list):
             mols = [mols]
 
+        # Reinitialize drawer first
+        self.d2d = rdMolDraw2D.MolDraw2DCairo(-1, -1)
+        self.opts = self.d2d.drawOptions()
+
         for mol in mols:
             rdDepictor.Compute2DCoords(mol, useRingTemplates=True)
-            mol = Chem.AddHs(mol)
             Chem.SanitizeMol(mol)
             Chem.Kekulize(mol, clearAromaticFlags=True)
             rdDepictor.NormalizeDepiction(mol)
             rdDepictor.StraightenDepiction(mol)
-            rdDepictor.GenerateDepictionMatching3DStructure(mol, mol)
-
-
-        self.d2d = rdMolDraw2D.MolDraw2DCairo(-1, -1)
-        self.opts = self.d2d.drawOptions()
 
         mols_per_row = (len(mols) + 1) // 2
 
         highlight_atoms = drawFuncArgs.pop("highlightAtoms", None)
+        if highlight_atoms:
+            highlight_atoms = tuple(int(a) for a in highlight_atoms)
+
+        # Load DB settings onto self.opts BEFORE passing it to MolsToGridImage
         self.__loadRenderOptions(mols, server_id)
 
         img_data = Draw.MolsToGridImage(
             mols,
-            subImgSize=(960, 540),
             molsPerRow=mols_per_row,
-            legends=legends,
-            highlightAtomLists=[highlight_atoms] * len(mols) if highlight_atoms else None,
+            subImgSize=(960, 540),
+            legends=list(legends),
+            highlightAtomLists=tuple([tuple(highlight_atoms)] * len(mols)) if highlight_atoms else None,
             returnPNG=True,
             drawOptions=self.opts,
         )
+
+        if not isinstance(img_data, bytes):
+            buf = io.BytesIO()
+            img_data.save(buf, format="PNG")
+            img_data = buf.getvalue()
 
         bio = io.BytesIO(img_data)
         bio.seek(0)

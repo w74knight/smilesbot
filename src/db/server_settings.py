@@ -3,6 +3,10 @@ from sqlite3 import Connection
 
 from constants import NAME
 
+DEFAULT_SERVER_SETTINGS = {
+    "prefix": "/",
+    "auto_smile": False
+}
 
 class ServerSettings:
     def __init__(self, connection):
@@ -47,4 +51,18 @@ class ServerSettings:
         self.cursor.execute('''
         DELETE FROM server_settings WHERE server_id = ?;
         ''', (server_id,))
+        self.connection.commit()
+
+    def set_server_defaults(self, server_id):
+        self.cursor.execute('''
+            INSERT INTO server_settings (server_id, prefix, auto_smile)
+            VALUES (?, ?, ?)
+            ON CONFLICT(server_id) DO UPDATE SET
+                prefix=excluded.prefix,
+                auto_smile=excluded.auto_smile
+        ''', (
+            server_id,
+            DEFAULT_SERVER_SETTINGS["prefix"],
+            DEFAULT_SERVER_SETTINGS["auto_smile"]
+        ))
         self.connection.commit()

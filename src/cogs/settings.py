@@ -38,21 +38,39 @@ class SettingsCommand(commands.Cog):
         # Render options
         bg_color = render_config.get("background_color") or SMILE_BG
 
-        embed.add_field(name="Render Options", value=" ", inline=False)
-        embed.add_field(name="Background Color", value=bg_color, inline=False)
-        embed.add_field(name="Include Atom Numbers", value=bool(render_config.get("includeAtomNumbers")))
-        embed.add_field(name="Add Stereo Annotations", value=bool(render_config.get("addStereoAnnotations")))
-        embed.add_field(name="Explicit Methyl", value=bool(render_config.get("explicitMethyl")), inline=False)
-        embed.add_field(name="Atom Label Deuterium Tritium", value=bool(render_config.get("atomLabelDeuteriumTritium")))
+        embed = discord.Embed(title="Render Options", color=discord.Color.blue())
+        embed.add_field(name="Background Color", value=render_config.get("background_color", "Default"))
+        embed.add_field(name="Color Bonds", value=bool(render_config.get("colorBonds")))
+        embed.add_field(name="Add Stereo Annotations", value=bool(render_config.get("addStereoAnnotations")), inline=False)
+        embed.add_field(name="Explicit Methyl", value=bool(render_config.get("explicitMethyl")))
+        embed.add_field(name="Atom Label Deuterium Tritium", value=bool(render_config.get("atomLabelDeuteriumTritium")), inline=False)
         embed.add_field(name="dummiesAreAttachments", value=bool(render_config.get("dummiesAreAttachments")), inline=False)
 
-        atom_colors = ""
+        atom_colors_lines = []
         for element, color in element_colors.items():
             element_name = self.periodic_table.GetElementName(element)
-            atom_colors += f"{element_name}: {color}\n"
+            atom_colors_lines.append(f"{element_name}: {color}")
 
-        if atom_colors:
-            embed.add_field(name="Element Colors", value=atom_colors, inline=False)
+        chunk = ""
+        field_count = 0
+        for element, color in sorted(element_colors.items(), key=lambda item: int(item[0])):
+            element_name = self.periodic_table.GetElementName(int(element))
+            line = f"{element_name}: {color}"
+            if len(chunk) + len(line) + 1 > 1024:
+                embed.add_field(
+                    name="Element Colors" if field_count == 0 else "Element Colors (cont.)",
+                    value=chunk,
+                    inline=False
+                )
+                chunk = ""
+                field_count += 1
+            chunk += line + "\n"
+        if chunk:
+            embed.add_field(
+                name="Element Colors" if field_count == 0 else "Element Colors (cont.)",
+                value=chunk,
+                inline=False
+            )
         
         await ctx.send(embed=embed)
 

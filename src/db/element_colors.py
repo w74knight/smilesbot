@@ -39,7 +39,7 @@ class ElementColors:
             self.cursor.execute('''
                 INSERT OR REPLACE INTO element_colors (server_id, element, color)
                 VALUES (? , ?, ?)
-            ''', (str(server_id), str(element), color_json))
+            ''', (server_id, str(element), color_json))
         self.connection.commit()
 
     def get_element_colors(self, server_id):

@@ -4,10 +4,12 @@ from logging import getLogger
 from constants import NAME, SMILE_BG
 
 DEFAULT_RENDER_OPTIONS = {
+    "background_color": ",".join(str(c) for c in SMILE_BG),
     "includeAtomNumbers": False,
     "addStereoAnnotations": False,
     "explicitMethyl": False,
-    "atomLabelDeuteriumTritium": False
+    "atomLabelDeuteriumTritium": False,
+    "dummiesAreAttachments": False
 }
 
 class RenderOptions:
@@ -37,10 +39,19 @@ class RenderOptions:
         ''')
         self.connection.commit()
 
+    def get_render_option_keys(self) -> set[str]:
+        self.cursor.execute("PRAGMA table_info(render_options)")
+        rows = self.cursor.fetchall()
+        # Exclude non-rendering columns
+        skip = {"server_id", "background_color"}
+        return {row["name"] for row in rows if row["name"] not in skip}
+
     # Get render options
     def get_render_option(self, server_id):
         self.cursor.execute('''
-            SELECT * FROM render_options WHERE server_id=?
+            SELECT includeAtomNumbers, addStereoAnnotations, explicitMethyl, 
+                   atomLabelDeuteriumTritium, dummiesAreAttachments
+            FROM render_options WHERE server_id=?
         ''', (server_id,))
         result = self.cursor.fetchone()
         return dict(result) if result else DEFAULT_RENDER_OPTIONS
@@ -86,4 +97,27 @@ class RenderOptions:
         self.cursor.execute('''
         DELETE FROM render_options WHERE server_id = ?;
         ''', (server_id,))
+        self.connection.commit()
+
+    def set_render_defaults(self, server_id):
+        self.cursor.execute('''
+            INSERT INTO render_options (server_id, background_color, includeAtomNumbers, addStereoAnnotations, 
+                                       explicitMethyl, atomLabelDeuteriumTritium, dummiesAreAttachments)
+            VALUES (?, ?, ?, ?, ?, ?, ?)
+            ON CONFLICT(server_id) DO UPDATE SET
+                background_color=excluded.background_color,
+                includeAtomNumbers=excluded.includeAtomNumbers,
+                addStereoAnnotations=excluded.addStereoAnnotations,
+                explicitMethyl=excluded.explicitMethyl,
+                atomLabelDeuteriumTritium=excluded.atomLabelDeuteriumTritium,
+                dummiesAreAttachments=excluded.dummiesAreAttachments
+        ''', (
+            server_id,
+            DEFAULT_RENDER_OPTIONS["background_color"],
+            DEFAULT_RENDER_OPTIONS["includeAtomNumbers"],
+            DEFAULT_RENDER_OPTIONS["addStereoAnnotations"],
+            DEFAULT_RENDER_OPTIONS["explicitMethyl"],
+            DEFAULT_RENDER_OPTIONS["atomLabelDeuteriumTritium"],
+            DEFAULT_RENDER_OPTIONS["dummiesAreAttachments"]
+        ))
         self.connection.commit()

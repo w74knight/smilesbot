@@ -27,13 +27,12 @@ class RenderCommand(commands.Cog):
     @commands.hybrid_group()
     async def render(self, name):
         pass
-    
+
     @render.command(name="mlcl", description="Render a molecule.")
     @not_bot()
-    async def mlcl(self, ctx, mlcl: str, legends:str = "", highlightatoms: str = ""):
-        highlightatoms = tuple(map(int, highlightatoms.split(";"))) if highlightatoms else ()
-
-        await self.bot.smile.render_molecule(ctx, mlcl, str(ctx.guild.id), legends=legends, highlightAtoms=highlightatoms)
+    async def mlcl(self, ctx, mlcl: str, legends: str = "", highlightatoms: str = ""):
+        highlight = tuple(map(int, highlightatoms.split(";"))) if highlightatoms else None
+        await self.bot.smile.render_molecule(ctx, mlcl, str(ctx.guild.id), legends=legends, highlightAtoms=highlight)
 
     # v2 functionality; in testing disabled for public
     # Renders a chemical reaction

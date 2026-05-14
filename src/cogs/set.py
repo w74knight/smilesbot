@@ -78,8 +78,11 @@ class SetCommand(commands.Cog):
     @admin_only()
     @set.command(name="defaults", description="Set all settings to defaults")
     async def defaults(self, ctx):
-        self.db_handler.element_colors.set_element_defaults(str(ctx.guild.id), DISCORD_DARK_JSON)
-        await ctx.send(f"All values set to defaults")
+        guild_id = str(ctx.guild.id)
+        self.db_handler.element_colors.set_element_defaults(guild_id, DISCORD_DARK_JSON)
+        self.db_handler.render_options.set_render_defaults(guild_id)
+        self.db_handler.server_settings.set_server_defaults(guild_id)
+        await ctx.send("All values set to defaults.")
 
     @admin_only()
     @set.command(name="defaults_global", description="Set ALL settings to defaults for ALL servers")
@@ -87,13 +90,36 @@ class SetCommand(commands.Cog):
         if ctx.author.id not in OWNERS_ID:
             await ctx.send("You are not authorized.")
             return
-
         await ctx.send("Setting defaults for all guilds . . .")
         for guild in self.bot.guilds:
-            self.db_handler.element_colors.set_element_defaults(str(guild.id), DISCORD_DARK_JSON)
-            self.logger.info(f"Set defaults for {guild.id}")
-
+            guild_id = str(guild.id)
+            self.db_handler.element_colors.set_element_defaults(guild_id, DISCORD_DARK_JSON)
+            self.db_handler.render_options.set_render_defaults(guild_id)
+            self.db_handler.server_settings.set_server_defaults(guild_id)
+            self.logger.info(f"Set defaults for {guild_id}")
         await ctx.send(f"Complete!")
+
+    @admin_only()
+    @set.command(name="hard_reset_global", description="Hard reset ALL settings for ALL servers")
+    async def hard_reset_global(self, ctx):
+        if ctx.author.id not in OWNERS_ID:
+            await ctx.send("You are not authorized.")
+            return
+
+        await ctx.send("Hard resetting all guilds . . .")
+        for guild in self.bot.guilds:
+            guild_id = str(guild.id)
+            self.db_handler.element_colors.clear(guild_id)
+            self.db_handler.render_options.clear(guild_id)
+            self.db_handler.server_settings.clear(guild_id)
+            self.logger.info(f"Cleared {guild_id}")
+
+            self.db_handler.element_colors.set_element_defaults(guild_id, DISCORD_DARK_JSON)
+            self.db_handler.render_options.set_render_defaults(guild_id)
+            self.db_handler.server_settings.set_server_defaults(guild_id)
+            self.logger.info(f"Set defaults for {guild_id}")
+
+        await ctx.send("Complete!")
 
     def __boolOptionHelper(self, ctx, option_name):
         prev_value = self.db_handler.render_options.get(str(ctx.guild.id), option_name)

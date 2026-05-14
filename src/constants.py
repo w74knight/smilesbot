@@ -26,4 +26,6 @@ SMILE_BG:tuple[int, int, int] = (55, 56, 61)
 base_dir = Path(__file__).resolve().parent
 DISCORD_DARK_PATH = base_dir / "smiles" / "palette.json"
 with DISCORD_DARK_PATH.open("r", encoding="utf-8") as f:
-    DISCORD_DARK_JSON = json.load(f)["discord dark"]
+    _raw = json.load(f)["discord dark"]
+
+DISCORD_DARK_JSON = {int(k): tuple(v) for k, v in _raw.items()}
