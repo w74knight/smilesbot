@@ -62,10 +62,15 @@ class Smile(object):
         )
         embed.set_image(url="attachment://molecule.png")
 
-
         sent_message = await ctx.send(embed=embed, file=discord.File(img, filename="molecule.png"))
-        
-        await sent_message.add_reaction("❌")
+
+        # Check permission before attempting to react
+        channel = sent_message.channel
+        perms = channel.permissions_for(channel.guild.me)
+        if perms.add_reactions:
+            await sent_message.add_reaction("❌")
+        else:
+            self.logger.warning(f"Missing add_reactions permission in channel {channel.id}, skipping reaction.")
 
         self.d2d.ClearDrawing()
     
