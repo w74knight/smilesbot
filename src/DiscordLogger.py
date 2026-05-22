@@ -6,7 +6,7 @@ from discord.ext import tasks
 import threading
 
 class DiscordLoggerHandler(logging.Handler):
-    def __init__(self, bot, level=logging.NOTSET):
+    def __init__(self, bot, level=logging.WARN):
         super().__init__(level)
         self.webhook_url = WEBHOOK_URL
         self.log_queue = []
