@@ -1,11 +1,13 @@
 import asyncio
 import functools
 import io
+import socket
 from logging import Logger, getLogger
 import cirpy
 import discord
 from rdkit import Chem
 from rdkit.Chem import Draw, rdMolDescriptors, rdDepictor, rdDistGeom
+from urllib.error import URLError, HTTPError
 
 from rdkit.Chem.Draw import rdMolDraw2D
 from rdkit.Chem import rdChemReactions as Reactions
@@ -129,8 +131,26 @@ class Smile(object):
         return tuple(render_legend)
     
     @functools.lru_cache(maxsize=1000)
-    def _resolve_name_to_smiles(self, name: str) -> str | None:
+    def _resolve_name_to_smiles_cached(self, name: str) -> str | None:
         return cirpy.resolve(name, "smiles")
+
+    async def _resolve_name_to_smiles(self, ctx, name: str) -> str | None:
+        try:
+            return await asyncio.get_running_loop().run_in_executor(
+                None, self._resolve_name_to_smiles_cached, name
+            )
+        except HTTPError as e:
+            self.logger.warning(f"CIR HTTP error for {name!r}: {e.code} {e.reason}")
+            await ctx.send(f"CIR returned an error ({e.code}): {e.reason}")
+        except (URLError, socket.timeout) as e:
+            self.logger.warning(f"CIR unreachable for {name!r}: {e}")
+            await ctx.send(
+                "The chemical name resolver (CIR) appears to be down or unreachable right now. Try again later.")
+        except Exception as e:
+            # Catch-all: something unexpected (bad response format, cirpy internals, etc.)
+            self.logger.exception(f"Unexpected error resolving {name!r}")
+            await ctx.send(f"Unexpected error resolving '{name}': {e}")
+        return None
 
     def loadAtomPalette(self, server_id) -> None:
         palette = self.db_handler.element_colors.get_element_colors(server_id)
@@ -217,7 +237,7 @@ class Smile(object):
         for mol in molecules:
             if not self.__is_valid_smiles(mol):
                 try:
-                    mol = self._resolve_name_to_smiles(mol)
+                    mol = await self._resolve_name_to_smiles(ctx, mol)
                     if not mol:
                         raise ValueError("Could not resolve name to SMILES.")
                 except Exception as e:
