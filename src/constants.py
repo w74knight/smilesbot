@@ -18,7 +18,7 @@ TOKEN:str = os.getenv("TOKEN")
 WEBHOOK_URL:str = os.getenv("WEBHOOK_URL")
 
 # set pattern for auto_detect
-AUTO_DETECT_PATTERN = re.compile(r"^&[^&]+&$")
+AUTO_DETECT_PATTERN = re.compile(r"^&([^&]+)&$")
 
 # smiles
 SMILE_BG:tuple[int, int, int] = (55, 56, 61)
